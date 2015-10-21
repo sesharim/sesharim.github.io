@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<div class='container'>
+  <div class="row post">
+    <div class="twelve columns post-title">
+      <h5>
+        {% if page.title != 'Blog' %}
+          {{ page.title }} &mdash;
+          {{ page.date | date: "%b %-d, %Y" }}
+          {% if page.author %}
+            {{ page.author }}
+          {% endif %}
+          {% if page.meta %}
+            {{ page.meta }}
+          {% endif %}
+        {% endif %}
+        <small></small>
+      </h5>
+    </div>
+
+    <div class="twelve columns post-content">
+      {{ content }}
+    </div>
+
+    <div class="twelve columns post-content">
+      {% include comments.html %}
+    </div>
+  </div>
+</div>

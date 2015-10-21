@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="container">
+    <ul class="navbar-list">
+      <li class="navbar-item"><a class="navbar-link" href="#">&nbsp;</a></li>
+        {% for page in site.pages %}
+          {% if page.title %}
+            <li class="navbar-item">
+              <a class="navbar-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+    </ul>
+  </div>
+</nav>
+<div class='u-cf'>&nbsp;</div>
+<!-- Company, Work, Products, Contact -->
