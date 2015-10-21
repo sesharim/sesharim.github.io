@@ -18,19 +18,15 @@ set :ssh_options, {
  forward_agent: true
 }
 
-# before 'deploy:update', 'deploy:update_jekyll'
+namespace :deploy do
+  task :update_jekyll do
+    on roles(:app) do
+      within "#{deploy_to}/current" do
+        execute :jekyll, "build"
+      end
+    end
+  end
 
-# namespace :deploy do
-#   [:start, :stop, :restart, :finalize_update].each do |t|
-#     desc "#{t} task is a no-op with jekyll"
-#     task t, :roles => :app do ; end
-#   end
+end
 
-#   desc 'Run jekyll to update site before uploading'
-#   task :update_jekyll do
-#     # clear existing _site
-#     # build site using jekyll
-#     # remove Capistrano stuff from build
-#     %x(rm -rf _site/* && jekyll build && rm _site/Capfile && rm -rf _site/config)
-#   end
-# end
+after "deploy:symlink:release", "deploy:update_jekyll"
