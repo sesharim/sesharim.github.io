@@ -17,16 +17,3 @@ set :pty, true
 set :ssh_options, {
  forward_agent: true
 }
-
-namespace :deploy do
-  task :update_jekyll do
-    on roles(:app) do
-      within "#{deploy_to}/current" do
-        execute :jekyll, "build"
-      end
-    end
-  end
-
-end
-
-after "deploy:symlink:release", "deploy:update_jekyll"
