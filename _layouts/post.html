@@ -24,9 +24,11 @@ layout: default
       {{ content }}
     </div>
 
-    <div class="twelve columns post-content">
-      {% include comments.html %}
-    </div>
+    {% if page.comments %}
+      <div class="twelve columns post-content">
+        {% include comments.html %}
+      </div>
+      <script id="dsq-count-scr" src="//customgears.disqus.com/count.js" async></script>
+    {% endif %}
   </div>
 </div>
-<script id="dsq-count-scr" src="//customgears.disqus.com/count.js" async></script>
