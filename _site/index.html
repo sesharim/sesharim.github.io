@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Agile Development &amp; Consulting | CustomGears &mdash; </title>
-  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-">
+  <meta name="description" content="web and mobile development">
+  <meta name="keywords" content="web agency, ios application development, mobile, api, frontend, backend, development">
+  <meta name="author" content="Max Lukin">
 
   <link rel="stylesheet" href="/css/main.css">
   <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="canonical" href="http://customgears.net/">
   <link rel="alternate" type="application/rss+xml" title="Agile Development &amp; Consulting | CustomGears" href="http://customgears.net/feed.xml" />
 </head>
@@ -20,6 +22,7 @@
   <div class="container">
     <ul class="navbar-list">
       <li class="navbar-item"><a class="navbar-link" href="#">&nbsp;</a></li>
+      <li class="navbar-item"><a class="navbar-link" href="/">Company</a></li>
         
           
             <li class="navbar-item">
@@ -39,11 +42,12 @@
         
           
         
+        <li class="navbar-item"><a class="navbar-link" href="#contacts">Contacts</a></li>
     </ul>
   </div>
 </nav>
 <div class='u-cf'>&nbsp;</div>
-<!-- Company, Work, Products, Contact -->
+<!-- Work, Products, Contact -->
 
     <div class="section hero">
   <div class="container">
@@ -55,8 +59,8 @@
         <a class="button button-primary" href="#contact">Contact us</a>
       </div>
       <div class="one-half column phones">
-        <img src="images/iphone.jpeg" class='phone'>
-        <!-- <img src="iphone.jpeg" class='phone'> -->
+        <img src="iphone.png" class='phone'>
+        <img src="iphone.png" class='phone'>
       </div>
     </div>
   </div>
@@ -64,53 +68,86 @@
 
 <div class="section categories" id='company'>
   <div class="container">
-    #company
+    <!-- #company -->
   </div>
 </div>
 
-<div class="section" id='work'>
+<!-- <div class="section" id='work'>
   <div class="container">
     #work
   </div>
-</div>
+</div> -->
 
-
-<div class="section" id='products'>
+<!-- <div class="section" id='products'>
   <div class="container">
     #products
   </div>
-</div>
+</div> -->
 
-<div class="section" id='company'>
+<!-- <div class="section" id='company'>
   <div class="container">
 
   </div>
-</div>
+</div> -->
 
-<div class="section categories" id='contact'>
+<div class="section categories" id='contacts'>
   <div class="container">
 
-  <form>
-    <div class="row">
-      <div class="six columns">
-        <label for="exampleEmailInput">Your email</label>
-        <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
-      </div>
-      <div class="six columns">
-        <label for="exampleRecipientInput">Reason for contacting</label>
+    <div class='row'>
+      <div class="twelve columns">
+        <h3><i class="fa fa-skype">&nbsp;lukin.maksim</i></h3>
       </div>
     </div>
-    <label for="exampleMessage">Message</label>
-    <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
-    <label class="example-send-yourself-copy">
-    <input class="button-primary" type="submit" value="Submit">
-  </form>
+    <div class='row'>
+      <div class="twelve columns">
+        <h3><i class="fa fa-envelope">&nbsp;hello.customgears@gmail.com</i></h3>
+      </div>
+    </div>
+
+    <div class='u-cf'>&nbsp;</div>
+    <div class='u-cf'>&nbsp;</div>
+
+    <form accept-charset="UTF-8" action="https://formkeep.com/f/fa55fceb9ca2" method="POST">
+      <input type="hidden" name="utf8" value="✓">
+
+      <div class="row">
+        <div class="six columns">
+          <label for="exampleEmailInput">Your email</label>
+          <input class="u-full-width contact-field" name='email' type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+        </div>
+
+        <div class="six columns">
+          <label for="exampleRecipientInput">Type of the project</label>
+          <select class="u-full-width contact-field" name='project' id="exampleRecipientInput">
+            <option value="Web">Web</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Both">Both</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="exampleMessage">Message</label>
+      <textarea class="u-full-width contact-field" name='details' placeholder="I have idea about the project for …" id="exampleMessage"></textarea>
+      <label class="example-send-yourself-copy">
+      <input class="button-primary" type="submit" value="Submit">
+    </form>
 
   </div>
 </div>
 
     <!-- footer -->
 
-    <script id="dsq-count-scr" src="//customgears.disqus.com/count.js" async></script>
+    <!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68680443-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
   </body>
 </html>
