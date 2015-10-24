@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  How to create perfect blog
-date:   2015-10-2 21:22:04
+date:   2015-10-24 21:22:04
 <!-- categories: jekyll update -->
 <!-- tags: ruby rails -->
 author: Max Lukin
