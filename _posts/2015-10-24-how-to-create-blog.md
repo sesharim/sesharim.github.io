@@ -90,6 +90,7 @@ set :log_level, :info
 set :pty, true
 
 # this setting will allow you to use your local ssh key for auth
+# just be sure that you key is added: ssh-add ~/.ssh/id_rsa
 set :ssh_options, {
  forward_agent: true
 }
