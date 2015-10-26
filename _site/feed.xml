@@ -5,18 +5,114 @@
     <description>web and mobile development</description>
     <link>http://customgears.net/</link>
     <atom:link href="http://customgears.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 22 Oct 2015 01:04:09 +0300</pubDate>
-    <lastBuildDate>Thu, 22 Oct 2015 01:04:09 +0300</lastBuildDate>
+    <pubDate>Mon, 26 Oct 2015 23:14:12 +0200</pubDate>
+    <lastBuildDate>Mon, 26 Oct 2015 23:14:12 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>Our first blog post!</title>
+        <title>How to create blog</title>
+        <description>&lt;p&gt;Before start writing posts for our blog, we at &lt;strong&gt;CustomGears&lt;/strong&gt; have tried a lot of other solutions like &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt;, &lt;a href=&quot;https://github.com/jipiboily/monologue&quot;&gt;Monologue&lt;/a&gt;, &lt;a href=&quot;https://github.com/KatanaCode/blogit&quot;&gt;Blogit&lt;/a&gt; or &lt;a href=&quot;https://github.com/greyblake/blogo&quot;&gt;Blogo&lt;/a&gt;. There’s some requirements were for oncoming web site like static pages with information about our agency, contacts page, and blog, which support static files and it’s easy to create new ones. And here’s an amazing solution we found.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;&lt;/strong&gt; is really simple, lightweight tool to create static files and blogs.
+It supports markdown, layouts and partials. Here’s &lt;strong&gt;&lt;a href=&quot;https://github.com/sesharim/customgears&quot;&gt;source&lt;/a&gt;&lt;/strong&gt; code of this blog.&lt;/p&gt;
+
+&lt;p&gt;Firstly, we have to install gem, let’s start:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install jekyll
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll new project
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;project
+~/project &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll serve
+
+&lt;span class=&quot;c&quot;&gt;# and this is it! you will see something like:&lt;/span&gt;
+Configuration file: /Users/project/_config.yml
+            Source: /Users/project
+       Destination: /Users/project/_site
+      Generating...
+                    &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+ Auto-regeneration: enabled &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/Users/project&amp;#39;&lt;/span&gt;
+Configuration file: /Users/project/_config.yml
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This means that our blog is running on &lt;strong&gt;http://127.0.0.1:4000/&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We’re using &lt;strong&gt;Jenkyll&lt;/strong&gt; with &lt;a href=&quot;https://github.com/capistrano/capistrano&quot;&gt;Capistrano&lt;/a&gt;. It’s extremly simple to setup one.
+Iformation how to install &lt;a href=&quot;https://github.com/capistrano/capistrano&quot;&gt;Capistrano&lt;/a&gt; you can find in it’s repository.
+Firslty, let’s create Gemfile with content:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://rubygems.org&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# or any other version that you prefer&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;2.2.2&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;jekyll&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano-jekyll&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano-bundler&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano-rvm&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we’re going to install our gems:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Our capify file looks like:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Load DSL and set up stages&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano/setup&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano/deploy&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano/rvm&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano/bundler&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;capistrano/jekyll&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Load custom tasks from `lib/capistrano/tasks` if you have any defined&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;glob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;lib/capistrano/tasks/*.rake&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And what about deploy.rb?&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;lock&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;3.4.0&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;IP_OF_YOUR_DIGITALOCEAN_SERVER&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;roles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;%w{app db web}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ApplicationName&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:repo_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;GITHUB_REPO_URL&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:branch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:master&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:deploy_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/home/rails&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:scm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:git&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:root&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:use_sudo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pretty&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:keep_releases&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:log_level&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:info&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# this setting will allow you to use your local ssh key for auth&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:ssh_options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;ss&quot;&gt;forward_agent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Well, this is it. Now we can create new markdown post, save it into _posts folder, and just run:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;cap production deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I’m a big fun of DigitalOcean, it’s really awesome to deploy any size of project. Works fast, and here’s a gift for you, &lt;strong&gt;&lt;a href=&quot;https://www.digitalocean.com/?refcode=0f6d5c28d999&quot;&gt;10$&lt;/a&gt;&lt;/strong&gt; to setup your first instance. Enjoy!&lt;/p&gt;
+
+&lt;p&gt;We’re &lt;a href=&quot;http://customgears.net/#contacts&quot;&gt;agency&lt;/a&gt; that helps to bring your ideas into real life. Ping us for help.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 25 Oct 2015 00:22:04 +0300</pubDate>
+        <link>http://customgears.net/how-to-create-blog</link>
+        <guid isPermaLink="true">http://customgears.net/how-to-create-blog</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Our first post</title>
         <description>&lt;p&gt;Hi there! here’s our first blog post.
 We’re going to share with you some interesting technical articles.&lt;/p&gt;
 </description>
         <pubDate>Thu, 15 Oct 2015 00:22:04 +0300</pubDate>
-        <link>http://customgears.net/our-first-blog-post</link>
-        <guid isPermaLink="true">http://customgears.net/our-first-blog-post</guid>
+        <link>http://customgears.net/our-first-post</link>
+        <guid isPermaLink="true">http://customgears.net/our-first-post</guid>
         
         
       </item>
