@@ -9,4 +9,4 @@ github_username:  sesharim
 
 # Build settings
 markdown: kramdown
-permalink: /:title
+permalink: /blog/:title

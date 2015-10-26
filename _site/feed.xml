@@ -5,8 +5,8 @@
     <description>web and mobile development</description>
     <link>http://customgears.net/</link>
     <atom:link href="http://customgears.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 26 Oct 2015 23:14:12 +0200</pubDate>
-    <lastBuildDate>Mon, 26 Oct 2015 23:14:12 +0200</lastBuildDate>
+    <pubDate>Mon, 26 Oct 2015 23:22:37 +0200</pubDate>
+    <lastBuildDate>Mon, 26 Oct 2015 23:22:37 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -85,6 +85,7 @@ Firslty, let’s create Gemfile with content:&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:pty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# this setting will allow you to use your local ssh key for auth&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# just be sure that you key is added: ssh-add ~/.ssh/id_rsa&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:ssh_options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
  &lt;span class=&quot;ss&quot;&gt;forward_agent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -99,8 +100,8 @@ Firslty, let’s create Gemfile with content:&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 25 Oct 2015 00:22:04 +0300</pubDate>
-        <link>http://customgears.net/how-to-create-blog</link>
-        <guid isPermaLink="true">http://customgears.net/how-to-create-blog</guid>
+        <link>http://customgears.net/blog/how-to-create-blog</link>
+        <guid isPermaLink="true">http://customgears.net/blog/how-to-create-blog</guid>
         
         
       </item>
@@ -111,8 +112,8 @@ Firslty, let’s create Gemfile with content:&lt;/p&gt;
 We’re going to share with you some interesting technical articles.&lt;/p&gt;
 </description>
         <pubDate>Thu, 15 Oct 2015 00:22:04 +0300</pubDate>
-        <link>http://customgears.net/our-first-post</link>
-        <guid isPermaLink="true">http://customgears.net/our-first-post</guid>
+        <link>http://customgears.net/blog/our-first-post</link>
+        <guid isPermaLink="true">http://customgears.net/blog/our-first-post</guid>
         
         
       </item>
