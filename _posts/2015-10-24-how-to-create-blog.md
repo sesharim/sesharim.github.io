@@ -99,10 +99,14 @@ set :ssh_options, {
 
 Well, this is it. Now we can create new markdown post, save it into _posts folder, and just run:
 {% highlight sh %}
+$ git commit -am 'added new blog post'
+$ git push origin your_branch
 $ bundle exec cap production deploy
 {% endhighlight %}
 
 I'm a big fun of DigitalOcean, it's really awesome to deploy any size of project. Works fast, and here's a gift for you, **[10$](https://www.digitalocean.com/?refcode=0f6d5c28d999)** to setup your first instance. Enjoy!
+
+However, you could use [Github Pages][github_pages] which is free.
 
 We're [agency](http://customgears.net/#contacts) that helps to bring your ideas into real life. Ping us for help.
 
@@ -113,3 +117,4 @@ We're [agency](http://customgears.net/#contacts) that helps to bring your ideas 
 [jekyll]: https://jekyllrb.com
 [customgears]: https://github.com/sesharim/customgears
 [capistrano]: https://github.com/capistrano/capistrano
+[github_pages]: https://pages.github.com
