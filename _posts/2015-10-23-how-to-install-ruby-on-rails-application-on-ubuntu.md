@@ -33,7 +33,7 @@ $ adduser deployer
 {% endhighlight %}
 
 And we'll add him all privileges:
-{% highlight config %}
+{% highlight sh %}
 $ visudo
 $ deployer ALL=(ALL:ALL) ALL
 {% endhighlight %}
@@ -62,7 +62,7 @@ $ nano /etc/postgresql/9.4/main/pg_hba.conf
 {% endhighlight %}
 
 And replace some configs inside:
-{% highlight config %}
+{% highlight sh %}
 local all postgres trust
 local all all trust
 {% endhighlight %}
@@ -93,7 +93,7 @@ $ nano /etc/nginx/sites-available/rails
 {% endhighlight %}
 
 And nginx config will look like:
-{% highlight config %}
+{% highlight nginx %}
 upstream app_server {
   server unix:///home/rails/shared/tmp/sockets/puma.sock;
 }

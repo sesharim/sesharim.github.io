@@ -107,7 +107,7 @@ $ bundle exec cap production deploy
 I'm a big fun of DigitalOcean, it's really awesome to deploy any size of project.
 Works fast, and here's a gift for you, **[10$](https://www.digitalocean.com/?refcode=0f6d5c28d999)** to setup your first instance.
 
-I also created some basic steps for install **[Ruby on Rails on ubuntu](https://gist.github.com/sesharim/c54636da42758ffbe2fb "How to setup Ruby on Rails on ubuntu")**. However, you could use [Github Pages][github_pages] which is free.
+I also created some basic steps for install **[Ruby on Rails on ubuntu]({% post_url 2015-10-23-how-to-install-ruby-on-rails-application-on-ubuntu %} "How to install Ruby on Rails on ubuntu")**. However, you could use [Github Pages][github_pages] which is free.
 
 We're [agency](http://customgears.net/#contacts) that helps to bring your ideas into real life. Ping us for help.
 
