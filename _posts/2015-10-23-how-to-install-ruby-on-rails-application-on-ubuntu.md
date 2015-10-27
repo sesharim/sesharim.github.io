@@ -8,7 +8,7 @@ author: Max Lukin
 comments: true
 <!-- excerpt: quote -->
 ---
-I'll describe the process of building personal blog on Ruby on Rails from scratch.
+I'll describe the process how to install Ruby on Rails application on Ubuntu from scratch.
 But firstly we have to prepare our server for application.
 
 We will use DigitalOcean.
