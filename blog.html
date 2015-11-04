@@ -8,18 +8,17 @@ permalink: /blog/
   <div class="row post">
     {% for post in site.posts %}
       <div class="twelve columns post-title">
-        <h4>
-          <small>{{ post.date | date: "%b %-d, %Y" }}</small>
+        <h5>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h4>
+        </h5>
+      </div>
 
-        <div class='twelve columns post-content'>
-          {% if post.description %}
-            <span class="body">{{ post.description | markdownify }}</span>
-          {% else %}
-            <span class="body">{{ post.excerpt | strip_html }}</span>
-          {% endif %}
-        </div>
+      <div class='twelve columns post-content'>
+        {% if post.description %}
+          <span class="body">{{ post.description | markdownify }}</span>
+        {% else %}
+          <span class="body">{{ post.excerpt | strip_html }}</span>
+        {% endif %}
       </div>
 
       <div class='u-cf'>&nbsp;</div>
@@ -28,8 +27,9 @@ permalink: /blog/
   </div>
 
   <div class='row'>
-    <a href="{{ "/feed.xml" | prepend: site.baseurl }}"><i class="fa fa-rss">&nbsp;RSS</i>
-</a>
+    <div class='twelve columns'>
+      <a href="{{ "/feed.xml" | prepend: site.baseurl }}"><i class="fa fa-rss">&nbsp;RSS</i></a>
+    </div>
   </div>
 </div>
 

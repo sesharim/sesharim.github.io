@@ -1,23 +1,11 @@
 ---
 layout: default
 ---
-
 <div class='container'>
   <div class="row post">
     <div class="twelve columns post-title">
-      <h5>
-        {% if page.title != 'Blog' %}
-          {{ page.title }} &mdash;
-          {{ page.date | date: "%b %-d, %Y" }}
-          {% if page.author %}
-            {{ page.author }}
-          {% endif %}
-          {% if page.meta %}
-            {{ page.meta }}
-          {% endif %}
-        {% endif %}
-        <small></small>
-      </h5>
+      <small>by <b>{{ page.author }}</b> on {{ page.date | date: "%b %-d, %Y" }}</small>
+      <h5><a class="post-link" href="#">{{ page.title }}</a></h5>
     </div>
 
     <div class="twelve columns post-content">
@@ -25,10 +13,7 @@ layout: default
     </div>
 
     {% if page.comments %}
-      <div class="twelve columns post-content">
-        {% include comments.html %}
-      </div>
-      <script id="dsq-count-scr" src="//customgears.disqus.com/count.js" async></script>
+      {% include comments.html %}
     {% endif %}
   </div>
 </div>
