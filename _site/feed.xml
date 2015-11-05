@@ -5,8 +5,8 @@
     <description>web and mobile development</description>
     <link>http://customgears.net/</link>
     <atom:link href="http://customgears.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 05 Nov 2015 09:57:31 +0200</pubDate>
-    <lastBuildDate>Thu, 05 Nov 2015 09:57:31 +0200</lastBuildDate>
+    <pubDate>Thu, 05 Nov 2015 10:02:36 +0200</pubDate>
+    <lastBuildDate>Thu, 05 Nov 2015 10:02:36 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -20,7 +20,7 @@
 - &lt;strong&gt;O&lt;/strong&gt;: Open/closed Principle - classes or methods should be open for extension, but closed for modification&lt;br /&gt;
 - &lt;strong&gt;L&lt;/strong&gt;: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.&lt;br /&gt;
 - &lt;strong&gt;I&lt;/strong&gt;: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.&lt;br /&gt;
-- &lt;strong&gt;D&lt;/strong&gt;: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.\&lt;/p&gt;
+- &lt;strong&gt;D&lt;/strong&gt;: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.&lt;/p&gt;
 
 &lt;p&gt;Second one is &lt;strong&gt;LoD&lt;/strong&gt;, or &lt;strong&gt;The Law of Demeter&lt;/strong&gt;:&lt;br /&gt;
 - The Law of Demeter, or Principle of Least Knowledge is a well-known software design principle for reducing coupling between collaborating objects.&lt;/p&gt;
@@ -29,13 +29,13 @@
 - &lt;strong&gt;T&lt;/strong&gt;ransparent The consequences of change should be obvious in the code that is changing and in distant code that relies upon it;&lt;br /&gt;
 - &lt;strong&gt;R&lt;/strong&gt;easonable The cost of any change should be proportional to the benefits the change achieves;&lt;br /&gt;
 - &lt;strong&gt;U&lt;/strong&gt;sable Existing code should be usable in new and unexpected contexts;&lt;br /&gt;
-- &lt;strong&gt;E&lt;/strong&gt;xemplary The code itself should encourage those who change it to perpetuate these qualities;\&lt;/p&gt;
+- &lt;strong&gt;E&lt;/strong&gt;xemplary The code itself should encourage those who change it to perpetuate these qualities;&lt;/p&gt;
 
 &lt;p&gt;Code that is Transparent, Reasonable, Usable, and Exemplary (&lt;strong&gt;TRUE&lt;/strong&gt;) not only meets today’s needs but can also be changed to meet the needs of the future. The first step in creating code that is TRUE is to ensure that each class has a single, well-defined responsibility.&lt;/p&gt;
 
 &lt;p&gt;And the most important part is testing:&lt;br /&gt;
 - &lt;strong&gt;BDD&lt;/strong&gt; - Behavior-driven development is a software development practice of working in a short feedback loop, where we consistently apply test-driven development to every new feature we are exploring and working on.&lt;br /&gt;
-- &lt;strong&gt;TDD&lt;/strong&gt; - Test-driven development is a programming technique that requires you to write test.\&lt;/p&gt;
+- &lt;strong&gt;TDD&lt;/strong&gt; - Test-driven development is a programming technique that requires you to write test.&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 25 Oct 2015 00:22:04 +0300</pubDate>
@@ -149,7 +149,7 @@ Works fast, and here’s a gift for you, &lt;strong&gt;&lt;a href=&quot;https://
     
       <item>
         <title>How to install Ruby on Rails application on Ubuntu</title>
-        <description>&lt;p&gt;I’ll describe the process how to install Ruby on Rails application on Ubuntu from scratch.
+        <description>&lt;p&gt;We’ll describe the process how to install Ruby on Rails application on Ubuntu from scratch.
 But firstly we have to prepare our server for application.&lt;/p&gt;
 
 &lt;p&gt;We will use DigitalOcean.
