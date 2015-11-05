@@ -8,5 +8,5 @@ author: Max Lukin
 comments: true
 <!-- excerpt: quote -->
 ---
-Hi there! here's our first blog post.\\
+Hi there! here's our first blog post.
 We're going to share with you some interesting technical articles.
