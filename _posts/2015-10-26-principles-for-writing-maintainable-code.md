@@ -12,14 +12,14 @@ Applications always change, and writing maintainable code is very important in s
 
 In our work we're using principles like: [DRY (Don't repeat youself)][dry]{:target="_blank"}, [KISS (Keep it simple, stupid)][kiss]{:target="_blank"}, [YAGNI (You aren't gonna need it)][yagni]{:target="_blank"} and [Eating your own dog food][eyodf]{:target="_blank"}, but in this post we'll highlight most important ones.
 
-First one is **SOLID**. Those principles of OOP consist of:\\
+**SOLID**. Those principles of OOP consist of:\\
 - **S**: Single Responsibility Principle - a class or method should serve a single purpose.\\
 - **O**: Open/closed Principle - classes or methods should be open for extension, but closed for modification\\
 - **L**: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.\\
 - **I**: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.\\
 - **D**: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.
 
-Second one is **LoD**, or **The Law of Demeter**:\\
+**LoD**, or **The Law of Demeter**:\\
 - The Law of Demeter, or Principle of Least Knowledge is a well-known software design principle for reducing coupling between collaborating objects.
 
 The code you write should have the following qualities.\\
