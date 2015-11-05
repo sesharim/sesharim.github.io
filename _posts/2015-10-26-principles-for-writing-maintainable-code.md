@@ -8,7 +8,7 @@ author: Max Lukin
 comments: true
 <!-- excerpt: How to create your own simple blog -->
 ---
-Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.
+Applications always change, and writing maintainable code is very important in software engineering.\\ Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.
 
 In our work we're using principles like: [DRY (Don't repeat youself)][dry]{:target="_blank"}, [KISS (Keep it simple, stupid)][kiss]{:target="_blank"}, [YAGNI (You aren't gonna need it)][yagni]{:target="_blank"} and [Eating your own dog food][eyodf]{:target="_blank"}, but in this post we'll highlight most important ones.
 

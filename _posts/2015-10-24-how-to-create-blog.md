@@ -8,7 +8,7 @@ author: Max Lukin
 comments: true
 <!-- excerpt: How to create your own simple blog -->
 ---
-Before start writing posts for our blog, we at **CustomGears** have tried a lot of other solutions like [Octopress][octopress], [Monologue][monologue], [Blogit][blogit] or [Blogo][blogo]. There's some requirements were for oncoming web site like static pages with information about our agency, contacts page, and blog, which support static files and it's easy to create new ones. And here's an amazing solution we found.
+Before start writing posts for our blog, we at **CustomGears** have tried a lot of other solutions like [Octopress][octopress], [Monologue][monologue], [Blogit][blogit] or [Blogo][blogo].\\ There's some requirements were for oncoming web site like static pages with information about our agency, contacts page, and blog, which support static files and it's easy to create new ones. And here's an amazing solution we found.
 
 **[Jekyll][jekyll]** is really simple, lightweight tool to create static files and blogs.
 It supports markdown, layouts and partials. Here's **[source][customgears]** code of this blog.
