@@ -5,17 +5,42 @@
     <description>web and mobile development</description>
     <link>http://customgears.net/</link>
     <atom:link href="http://customgears.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 28 Oct 2015 12:19:47 +0200</pubDate>
-    <lastBuildDate>Wed, 28 Oct 2015 12:19:47 +0200</lastBuildDate>
+    <pubDate>Thu, 05 Nov 2015 09:57:31 +0200</pubDate>
+    <lastBuildDate>Thu, 05 Nov 2015 09:57:31 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>Top 10 best practices with Ruby</title>
-        <description>&lt;p&gt;In progress.&lt;/p&gt;
+        <title>Principles for Writing Maintainable Code</title>
+        <description>&lt;p&gt;Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.&lt;/p&gt;
+
+&lt;p&gt;In our work we’re using principles like: &lt;a href=&quot;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&quot; target=&quot;_blank&quot;&gt;DRY (Don’t repeat youself)&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/KISS_principle&quot; target=&quot;_blank&quot;&gt;KISS (Keep it simple, stupid)&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it&quot; target=&quot;_blank&quot;&gt;YAGNI (You aren’t gonna need it)&lt;/a&gt; and &lt;a href=&quot;https://en.wikipedia.org/wiki/Eating_your_own_dog_food&quot; target=&quot;_blank&quot;&gt;Eating your own dog food&lt;/a&gt;, but in this post we’ll highlight most important ones.&lt;/p&gt;
+
+&lt;p&gt;First one is &lt;strong&gt;SOLID&lt;/strong&gt;. Those principles of OOP consist of:&lt;br /&gt;
+- &lt;strong&gt;S&lt;/strong&gt;: Single Responsibility Principle - a class or method should serve a single purpose.&lt;br /&gt;
+- &lt;strong&gt;O&lt;/strong&gt;: Open/closed Principle - classes or methods should be open for extension, but closed for modification&lt;br /&gt;
+- &lt;strong&gt;L&lt;/strong&gt;: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.&lt;br /&gt;
+- &lt;strong&gt;I&lt;/strong&gt;: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.&lt;br /&gt;
+- &lt;strong&gt;D&lt;/strong&gt;: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.\&lt;/p&gt;
+
+&lt;p&gt;Second one is &lt;strong&gt;LoD&lt;/strong&gt;, or &lt;strong&gt;The Law of Demeter&lt;/strong&gt;:&lt;br /&gt;
+- The Law of Demeter, or Principle of Least Knowledge is a well-known software design principle for reducing coupling between collaborating objects.&lt;/p&gt;
+
+&lt;p&gt;The code you write should have the following qualities.&lt;br /&gt;
+- &lt;strong&gt;T&lt;/strong&gt;ransparent The consequences of change should be obvious in the code that is changing and in distant code that relies upon it;&lt;br /&gt;
+- &lt;strong&gt;R&lt;/strong&gt;easonable The cost of any change should be proportional to the benefits the change achieves;&lt;br /&gt;
+- &lt;strong&gt;U&lt;/strong&gt;sable Existing code should be usable in new and unexpected contexts;&lt;br /&gt;
+- &lt;strong&gt;E&lt;/strong&gt;xemplary The code itself should encourage those who change it to perpetuate these qualities;\&lt;/p&gt;
+
+&lt;p&gt;Code that is Transparent, Reasonable, Usable, and Exemplary (&lt;strong&gt;TRUE&lt;/strong&gt;) not only meets today’s needs but can also be changed to meet the needs of the future. The first step in creating code that is TRUE is to ensure that each class has a single, well-defined responsibility.&lt;/p&gt;
+
+&lt;p&gt;And the most important part is testing:&lt;br /&gt;
+- &lt;strong&gt;BDD&lt;/strong&gt; - Behavior-driven development is a software development practice of working in a short feedback loop, where we consistently apply test-driven development to every new feature we are exploring and working on.&lt;br /&gt;
+- &lt;strong&gt;TDD&lt;/strong&gt; - Test-driven development is a programming technique that requires you to write test.\&lt;/p&gt;
+
 </description>
         <pubDate>Sun, 25 Oct 2015 00:22:04 +0300</pubDate>
-        <link>http://customgears.net/blog/top-10-best-practices-working-with-ruby</link>
-        <guid isPermaLink="true">http://customgears.net/blog/top-10-best-practices-working-with-ruby</guid>
+        <link>http://customgears.net/blog/principles-for-writing-maintainable-code</link>
+        <guid isPermaLink="true">http://customgears.net/blog/principles-for-writing-maintainable-code</guid>
         
         
       </item>
