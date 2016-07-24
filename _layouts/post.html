@@ -1,19 +1,20 @@
 ---
 layout: default
 ---
-<div class='container'>
-  <div class="row post">
-    <div class="twelve columns post-title">
-      <small>by <b>{{ page.author }}</b> on {{ page.date | date: "%b %-d, %Y" }}</small>
-      <h5><a class="post-link" href="#">{{ page.title }}</a></h5>
-    </div>
+<div class="post-template">
+  <h4><a href="/">< back</a></h4>
 
-    <div class="twelve columns post-content">
-      {{ content }}
-    </div>
-
-    {% if page.comments %}
-      {% include comments.html %}
-    {% endif %}
+  <div class="cleafix"><br/></div>
+  <div>
+    <kbd>By <b>{{ page.author }}</b> on {{ page.date | date: "%b %-d, %Y" }}</kbd>
+    <h4><a class="post-link" href="#">{{ page.title }}</a></h4>
   </div>
+
+  <hr />
+
+  <div>{{ content }}</div>
+
+  {% if page.comments %}
+    {% include comments.html %}
+  {% endif %}
 </div>

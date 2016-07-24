@@ -1,52 +1,9 @@
-h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-size:60px;
-  color:#505050;
-  letter-spacing:5px;
-  text-align:center;
-  width:600px;
-  margin:40px auto;
-  line-height:60px;
-  font-weight: 300;
-}
-.about {
-  font-weight:300;
-  font-family: 'Open Sans', sans-serif;
-  line-height:1.6em;
-  max-width:600px;
-  margin:1em auto;
-  color:#222;
-}
-strong {
-  font-weight:400;
-  color:#000;
-}
-body {
-  background:#f9f9f9;
-  position:relative;
-  width:600px;
-  margin:0px auto;
-}
-.about a,
-.about a:visited {
-  color:#558;
-  font-weight:400;
+* { font-size: 17px }
+
+.starter-template {
+  margin: 50px 20%;
 }
 
-.about ul {
-  list-style-type: none;
-  padding-left: 10px;
-}
-
-.social-links {
-  padding: 0;
-  text-align: center;
-}
-.social-links li {
-  display:inline-block;
-}
-.social-links li .icon {
-  width: 40px;
-  height: 40px;
-  fill: #4C4C4C;
+.post-template {
+  margin: 50px 5%;
 }
