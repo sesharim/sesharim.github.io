@@ -1,10 +1,12 @@
-lock '3.4.0'
+# lock '3.6.1'
+
 server '107.170.122.37', user: 'root', roles: %w{app db web}
 
-set :application, 'CustomGears'
-set :repo_url, 'git@github.com:sesharim/customgears.git'
-set :branch, :master
-set :deploy_to, '/home/rails'
+set :application, 'brandservice'
+set :repo_url, 'git@github.com:Aejis/brandservice.git'
+set :branch, :production
+set :deploy_to, '/home/rails/apps/'
+
 set :scm, :git
 set :user, :root
 set :use_sudo, false
