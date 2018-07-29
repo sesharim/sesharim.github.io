@@ -17,18 +17,16 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <link rel="canonical" href="http://customgears.net/blog/principles-for-writing-maintainable-code">
-  <link rel="alternate" type="application/rss+xml" title="Agile Development &amp; Consulting | CustomGears" href="http://customgears.net/feed.xml" />
-  <link rel="shortcut icon" type="image/png" href="http://customgears.net/favicon.png">
+  <link rel="canonical" href="http://localhost:4000/blog/principles-for-writing-maintainable-code">
+  <link rel="alternate" type="application/rss+xml" title="Agile Development &amp; Consulting | CustomGears" href="http://localhost:4000/feed.xml" />
+  <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png">
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="/css/main.css">
 
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
 
   <!-- Some evil icons -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/evil-icons/1.7.2/evil-icons.min.css">
@@ -36,7 +34,6 @@
 </head>
 
   <body>
-    <div class="container">
       <div class="post-template">
   <h4><a href="/">< back</a></h4>
 
@@ -52,27 +49,35 @@
 
 <p>In our work we’re using principles like: <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY (Don’t repeat youself)</a>, <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS (Keep it simple, stupid)</a>, <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it" target="_blank">YAGNI (You aren’t gonna need it)</a> and <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food" target="_blank">Eating your own dog food</a>, but in this post we’ll highlight most important ones.</p>
 
-<p>First one is <strong>SOLID</strong>. Those principles of OOP consist of:<br />
-- <strong>S</strong>: Single Responsibility Principle - a class or method should serve a single purpose.<br />
-- <strong>O</strong>: Open/closed Principle - classes or methods should be open for extension, but closed for modification<br />
-- <strong>L</strong>: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.<br />
-- <strong>I</strong>: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.<br />
-- <strong>D</strong>: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.</p>
+<p>First one is <strong>SOLID</strong>. Those principles of OOP consist of:\</p>
+<ul>
+  <li><strong>S</strong>: Single Responsibility Principle - a class or method should serve a single purpose.\</li>
+  <li><strong>O</strong>: Open/closed Principle - classes or methods should be open for extension, but closed for modification\</li>
+  <li><strong>L</strong>: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.\</li>
+  <li><strong>I</strong>: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.\</li>
+  <li><strong>D</strong>: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.</li>
+</ul>
 
-<p>Second one is <strong>LoD</strong>, or <strong>The Law of Demeter</strong>:<br />
-- The Law of Demeter, or Principle of Least Knowledge is a well-known software design principle for reducing coupling between collaborating objects.</p>
+<p>Second one is <strong>LoD</strong>, or <strong>The Law of Demeter</strong>:\</p>
+<ul>
+  <li>The Law of Demeter, or Principle of Least Knowledge is a well-known software design principle for reducing coupling between collaborating objects.</li>
+</ul>
 
-<p>The code you write should have the following qualities.<br />
-- <strong>T</strong>ransparent The consequences of change should be obvious in the code that is changing and in distant code that relies upon it;<br />
-- <strong>R</strong>easonable The cost of any change should be proportional to the benefits the change achieves;<br />
-- <strong>U</strong>sable Existing code should be usable in new and unexpected contexts;<br />
-- <strong>E</strong>xemplary The code itself should encourage those who change it to perpetuate these qualities;</p>
+<p>The code you write should have the following qualities.\</p>
+<ul>
+  <li><strong>T</strong>ransparent The consequences of change should be obvious in the code that is changing and in distant code that relies upon it;\</li>
+  <li><strong>R</strong>easonable The cost of any change should be proportional to the benefits the change achieves;\</li>
+  <li><strong>U</strong>sable Existing code should be usable in new and unexpected contexts;\</li>
+  <li><strong>E</strong>xemplary The code itself should encourage those who change it to perpetuate these qualities;</li>
+</ul>
 
 <p>Code that is Transparent, Reasonable, Usable, and Exemplary (<strong>TRUE</strong>) not only meets today’s needs but can also be changed to meet the needs of the future. The first step in creating code that is TRUE is to ensure that each class has a single, well-defined responsibility.</p>
 
-<p>And the most important part is testing:<br />
-- <strong>BDD</strong> - Behavior-driven development is a software development practice of working in a short feedback loop, where we consistently apply test-driven development to every new feature we are exploring and working on.<br />
-- <strong>TDD</strong> - Test-driven development is a programming technique that requires you to write test.</p>
+<p>And the most important part is testing:\</p>
+<ul>
+  <li><strong>BDD</strong> - Behavior-driven development is a software development practice of working in a short feedback loop, where we consistently apply test-driven development to every new feature we are exploring and working on.\</li>
+  <li><strong>TDD</strong> - Test-driven development is a programming technique that requires you to write test.</li>
+</ul>
 
 </div>
 
@@ -113,7 +118,11 @@
 <!-- End Google Analytics -->
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
 
 </html>
