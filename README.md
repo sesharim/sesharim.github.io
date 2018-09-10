@@ -1,2 +1,1 @@
-# customgears
-Personal site
+# Personal site
