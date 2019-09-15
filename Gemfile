@@ -2,6 +2,4 @@ source 'https://rubygems.org'
 
 ruby '2.6.3'
 
-gem 'jekyll'
-# gem 'jekyll-assets'
-# gem 'jekyll-gist'
+gem "jekyll", '>= 3.8.3'
