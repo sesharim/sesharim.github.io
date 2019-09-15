@@ -10,5 +10,3 @@ github_username:  sesharim
 # Build settings
 markdown: kramdown
 permalink: /blog/:title
-
-theme: jekyll-theme-cayman
