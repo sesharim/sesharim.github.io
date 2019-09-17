@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "main.css",
+	"sources": [
+		"main.scss",
+		"_sass/template.scss"
+	],
+	"sourcesContent": [
+		"@charset \"utf-8\";\n@import \"template\";\n",
+		"* { font-size: 20px }\n"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,CAAC,CAAC,EAAE,SAAS,EAAE,IAAK,GAAE"
+}
