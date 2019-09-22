@@ -4,23 +4,31 @@
   <body>
       <header>
         <nav class="light-blue lighten-1" role="navigation">
-          <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">WebHouse</a>
-            <ul class="right hide-on-med-and-down">
+          <div class="nav-wrapper container">
+            <a id="logo-container" href="/" class="brand-logo">WebHouse</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="/">Main</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="about.html">About</a></li>
               <li><a href="technology.html">Technology we use</a></li>
-              <li><a href="works.html">Works</a></li>
+              <li><a href="whatwedo.html">What we do</a></li>
+              <!-- <li><a href="about.html">About</a></li>
+              <li><a href="works.html">Works</a></li> -->
               <li><a href="contacts.html">Contacts</a></li>
             </ul>
-
-            <ul id="nav-mobile" class="sidenav">
-              <li><a href="#">Navbar Link</a></li>
-            </ul>
-
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           </div>
         </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+          <li><a href="/">Main</a></li>
+          <li><a href="technology.html">Technology we use</a></li>
+          <li><a href="whatwedo.html">What we do</a></li>
+          <!-- <li><a href="about.html">About</a></li>
+          <li><a href="works.html">Works</a></li> -->
+          <li><a href="contacts.html">Contacts</a></li>
+        </ul>
+
       </header>
       <main>
         {{ content }}
