@@ -1,79 +1,67 @@
 ---
 layout: default
 ---
-<div class="section" id="index-banner">
-  <div class="container">
-    <h1 class="header center orange-text">Full-cycle Software Development Company</h1>
-    <!-- <div class="row center">
-      <h5 class="header col s12 light"></h5>
-    </div> -->
-    <div class="row center">
-      <a href="contacts.html" class="btn-large waves-effect waves-light orange">
-        Get a free consultation
-      </a>
+<div class="starter-template">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <p>
+        <strong>Max Lukin</strong>, Software Engineer at <a target="_blank" href="http://customgears.net/">CustomGears</a>
+      </p>
+
+      <p>What I do:</p>
+
+      &mdash; work as a full-stack developer with
+      <a target="_blank" href="http://rubyonrails.org/">Ruby on Rails</a> and
+      <a target="_blank" href="https://facebook.github.io/react/">ReactJS</a>/
+      <a target="_blank" href="http://redux.js.org/">ReduxJS</a>
+      <br/> &mdash; help startups grow, consult and support
+      <br/> &mdash; open for partnership based on great project ideas
+      <br/> &mdash; build
+      <a target="_blank" href="https://www.youtube.com/watch?v=_ZLimUDUJTA">FPV Drones</a> and
+      <a href="https://en.wikipedia.org/wiki/Internet_of_things" target="_blank">Internet of things</a>
+      <br/>
+      <br/>
+
+      <ul class="list-inline text-center">
+        <li class="list-inline-item">
+          <a class="social-icon" href="mailto:lukin.maksim@gmail.com">
+            <div data-icon="ei-envelope"></div>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-icon" target="_blank" href="https://github.com/sesharim">
+            <div data-icon="ei-sc-github"></div>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-icon" target="_blank" href="https://twitter.com/sesharim">
+            <div data-icon="ei-sc-twitter"></div>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-icon" target="_blank" href="https://linkedin.com/in/sesharim">
+            <div data-icon="ei-sc-linkedin"></div>
+          </a>
+        </li>
+      </ul>
     </div>
+    <div class="col-3"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <small class="text-muted">blog posts</small>
+
+      <ul class="list-inline">
+        {% for post in site.posts %}
+        <li>{{ post.date | date_to_string }}
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-3"></div>
   </div>
 </div>
-
-<div class="container">
-  <div class="section">
-
-    <!--   Icon Section   -->
-    <div class="row">
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <!-- <h2 class="center light-blue-text">Custom Software Development</h2> -->
-          <h5 class="center">Custom Software Development</h5>
-
-          <p class="light">
-            We have 10 years of experience in turning our clients’ business ideas into successful web solutions that meet
-            their business requirements and contribute to their strategies. We focus on building enterprise application software,
-            business intelligence solutions, custom eLearning development, data visualization tools, but we can build
-            solutions for practically any industry.
-          </p>
-        </div>
-      </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <!-- <h2 class="center light-blue-text">QA and Software Testing</h2> -->
-          <h5 class="center">QA and Software Testing</h5>
-
-          <p class="light">
-            Our experienced team of QA engineers is dedicated to ensuring the high quality and reliability of your websites and
-            applications. We employ full-cycle software testing services at all stages of your product development, from
-            requirements gathering to final testing at the deployment stage.
-            Our ultimate goal is to make sure that your product is user-friendly and meets the requirements of your target audience.
-          </p>
-        </div>
-      </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <!-- <h2 class="center light-blue-text">IT Staff Augmentation</h2> -->
-          <h5 class="center">Professional team</h5>
-
-          <p class="light">
-            Whether you’re looking for an agency to help you with digital strategy, UX testing, web design and development, or other
-            digital marketing activities, our team has the expertise and vision to bring your ideas to life.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- <div class="row">
-  <div class="col-12">
-    <small class="text-muted">blog posts</small>
-
-    <ul class="list-inline">
-      {% for post in site.posts %}
-      <li>{{ post.date | date_to_string }}
-        <a href="{{ post.url }}">{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</div> -->
