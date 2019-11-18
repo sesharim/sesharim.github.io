@@ -79,7 +79,7 @@ sudo -u postgres psql template1
 
 {% highlight sql %}
 ALTER USER postgres with encrypted password 'po$tgr3$$';
-create database customgears_production;
+create database webhouse_production;
 {% endhighlight %}
 
 Other sofr - Git, Node.js:
@@ -101,7 +101,7 @@ upstream app_server {
 server {
         listen   80;
         root /home/rails/current/public;
-        server_name customgears.net;
+        server_name webhouse.net;
         index index.htm index.html;
 
         location / {
