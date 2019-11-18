@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "main.css",
+	"sources": [
+		"main.scss",
+		"_sass/template.scss"
+	],
+	"sourcesContent": [
+		"@charset \"utf-8\";\n@import \"template\";\n\nbody {\n    display: flex;\n    min-height: 100vh;\n    flex-direction: column;\n  }\n\n  main {\n    flex: 1 0 auto;\n  }\n",
+		"* { font-size: 20px }\n"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,CAAC,CAAC,EAAE,SAAS,EAAE,IAAK,GAAE;;ADGtB,AAAA,IAAI,CAAC,EACD,OAAO,EAAE,IAAI,EACb,UAAU,EAAE,KAAK,EACjB,cAAc,EAAE,MAAM,GACvB;;AAED,AAAA,IAAI,CAAC,EACH,IAAI,EAAE,QAAQ,GACf"
+}
