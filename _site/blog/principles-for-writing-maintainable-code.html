@@ -5,7 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Agile Ruby on Rails Development and Consulting Company | WebHouse &mdash; Principles for Writing Maintainable Code</title>
+  <title>
+    Agile Ruby on Rails Development and Consulting Company | WebHouse &mdash; Principles for Writing Maintainable Code
+  </title>
   <meta name="description" content="Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important ...">
   <meta name="keywords" content="Ruby web development, agile Ruby development, Ruby on Rails web design, RoR consulting, Ruby on Rails service, RoR consultant, Ruby on Rails NYC, Ruby on Rails expertise, web agency, ios application development, mobile, api, frontend, backend, development, software engineer partner">
   <meta name="author" content="Max Lukin">
@@ -34,55 +36,60 @@
 </head>
 
   <body>
-    <div class="post-template">
-  <h4><a href="/">< back</a></h4>
+    <div class="container">
 
-  <div class="cleafix"><br/></div>
-  <div>
-    <kbd>By <b>Max Lukin</b> on Oct 25, 2015</kbd>
-    <h4><a class="post-link" href="#">Principles for Writing Maintainable Code</a></h4>
-  </div>
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+          <a href="/">Max Lukin</a>
+        </h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <a class="p-2 text-dark" href="/blog">Posts</a>
+        </nav>
+      </div>
 
-  <hr />
+      <h3>Principles for Writing Maintainable Code</h3>
+<h6>Nov 19, 2019</h6>
 
-  <div><p>Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.</p>
+<div class="clearfix">&nbsp;</div>
+
+<div><p>Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.</p>
 
 <p>In our work we’re using principles like: <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY (Don’t repeat youself)</a>, <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS (Keep it simple, stupid)</a>, <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it" target="_blank">YAGNI (You aren’t gonna need it)</a> and <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food" target="_blank">Eating your own dog food</a>, but in this post we’ll highlight most important ones.</p>
 
-<p>First one is <strong>SOLID</strong>. Those principles of OOP consist of:\</p>
+<p>First one is <strong>SOLID</strong>. Those principles of OOP consist of:</p>
 <ul>
-  <li><strong>S</strong>: Single Responsibility Principle - a class or method should serve a single purpose.\</li>
-  <li><strong>O</strong>: Open/closed Principle - classes or methods should be open for extension, but closed for modification\</li>
-  <li><strong>L</strong>: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.\</li>
-  <li><strong>I</strong>: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.\</li>
+  <li><strong>S</strong>: Single Responsibility Principle - a class or method should serve a single purpose.</li>
+  <li><strong>O</strong>: Open/closed Principle - classes or methods should be open for extension, but closed for modification</li>
+  <li><strong>L</strong>: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.</li>
+  <li><strong>I</strong>: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.</li>
   <li><strong>D</strong>: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.</li>
 </ul>
 
-<p>Second one is <strong>LoD</strong>, or <strong>The Law of Demeter</strong>:\</p>
+<p>Second one is <strong>LoD</strong>, or <strong>The Law of Demeter</strong>:</p>
 <ul>
   <li>The Law of Demeter, or Principle of Least Knowledge is a well-known software design principle for reducing coupling between collaborating objects.</li>
 </ul>
 
-<p>The code you write should have the following qualities.\</p>
+<p>The code you write should have the following qualities.</p>
 <ul>
-  <li><strong>T</strong>ransparent The consequences of change should be obvious in the code that is changing and in distant code that relies upon it;\</li>
-  <li><strong>R</strong>easonable The cost of any change should be proportional to the benefits the change achieves;\</li>
-  <li><strong>U</strong>sable Existing code should be usable in new and unexpected contexts;\</li>
+  <li><strong>T</strong>ransparent The consequences of change should be obvious in the code that is changing and in distant code that relies upon it;</li>
+  <li><strong>R</strong>easonable The cost of any change should be proportional to the benefits the change achieves;</li>
+  <li><strong>U</strong>sable Existing code should be usable in new and unexpected contexts;</li>
   <li><strong>E</strong>xemplary The code itself should encourage those who change it to perpetuate these qualities;</li>
 </ul>
 
 <p>Code that is Transparent, Reasonable, Usable, and Exemplary (<strong>TRUE</strong>) not only meets today’s needs but can also be changed to meet the needs of the future. The first step in creating code that is TRUE is to ensure that each class has a single, well-defined responsibility.</p>
 
-<p>And the most important part is testing:\</p>
+<p>And the most important part is testing:</p>
 <ul>
-  <li><strong>BDD</strong> - Behavior-driven development is a software development practice of working in a short feedback loop, where we consistently apply test-driven development to every new feature we are exploring and working on.\</li>
+  <li><strong>BDD</strong> - Behavior-driven development is a software development practice of working in a short feedback loop, where we consistently apply test-driven development to every new feature we are exploring and working on.</li>
   <li><strong>TDD</strong> - Test-driven development is a programming technique that requires you to write test.</li>
 </ul>
 
 </div>
 
-  
-    <div class="twelve columns post-content">
+
+  <div class="twelve columns post-content">
   <div id="disqus_thread"></div>
   <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -100,9 +107,9 @@
 </div>
 <script id="dsq-count-scr" src="//customgears.disqus.com/count.js" async></script>
 
-  
-</div>
 
+
+    </div>
   </body>
   <!-- Google Analytics -->
 <script>

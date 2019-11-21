@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<div class="row">
+  <div class="col-sm">
+    <ul class="list-inline">
+      {% for post in site.posts %}
+      <li>{{ post.date | date_to_string }}
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
