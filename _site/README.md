@@ -1,2 +1,0 @@
-# customgears
-Personal site
