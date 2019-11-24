@@ -2,65 +2,16 @@
 layout: default
 ---
 <div class="row">
-  <div class="col=12">
-    <img class="photo" src="photo.jpg">
+  <div class="col-2"></div>
+  <div class="col-8">
+    {% include navigation.html %}
 
-    <p class="lead">
-      Hello, i'm Max Lukin
-    </p>
-
-    <p class="lead">
-      I help business and companies to grow by consulting, developing and supporting using Software Engineering practices.
-    </p>
-
-    <p class="lead">
-      My area of interests includes large-scale web services, operational practices such as on-call and monitoring, effective developer tools and engineering leadership.
-    </p>
-    <p class="lead">
-      I enjoy working with open source (especially Ruby on Rails), writing about technologies I work with, speaking at conferences and traveling around the world.
-    </p>
-<!--     <p class="lead">
-      Currently, I work at Shopify. Previously, I've consulted Fortune 500 companies at Evil Martians, recorded the Ruby Noname Podcast, coached at RailsGirls and maintained Capistrano.
-    </p> -->
-    <p class="lead">
-      Feel free to email me at lukin.maksim@gmail.com
-    </p>
-
-    <ul class="social-links">
-      <li class="list-inline-item">
-        <a class="social-icon" href="mailto:lukin.maksim@gmail.com">
-          <div data-icon="ei-envelope"></div>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="social-icon" target="_blank" href="https://github.com/sesharim">
-          <div data-icon="ei-sc-github"></div>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="social-icon" target="_blank" href="https://twitter.com/sesharim">
-          <div data-icon="ei-sc-twitter"></div>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="social-icon" target="_blank" href="https://linkedin.com/in/sesharim">
-          <div data-icon="ei-sc-linkedin"></div>
-        </a>
-      </li>
-    </ul>
+    {% include main_content.html %}
+    {% include social_links.html %}
   </div>
+  <div class="col-2"></div>
 </div>
 
-<div class="row">
-  <div class="col-12">
-    <small class="text-muted">blog posts</small>
-
-    <ul class="list-inline">
-      {% for post in site.posts %}
-      <li>{{ post.date | date_to_string }}
-        <a href="{{ post.url }}">{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</div>
+{% comment %}
+  {% include blog_list.html %}
+{% endcomment %}

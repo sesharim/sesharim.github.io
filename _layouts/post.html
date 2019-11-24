@@ -1,13 +1,22 @@
 ---
 layout: default
 ---
-<h3>{{ page.title }}</h3>
-<h6>{{ page.date | date: "%b %-d, %Y" }}</h6>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    {% include navigation.html %}
 
-<div class="clearfix">&nbsp;</div>
+    <h3>{{ page.title }}</h3>
+    <h6>{{ page.date | date: "%b %-d, %Y" }}</h6>
+    <div class="clearfix">&nbsp;</div>
 
-<div>{{ content }}</div>
+    <div>{{ content }}</div>
+    <div class="clearfix">&nbsp;</div>
 
-{% if page.comments %}
-  {% include comments.html %}
-{% endif %}
+    {% if page.comments %}
+      {% include comments.html %}
+    {% endif %}
+  </div>
+  <div class="col-2"></div>
+</div>
+

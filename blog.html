@@ -2,13 +2,15 @@
 layout: default
 ---
 <div class="row">
-  <div class="col-sm">
-    <ul class="list-inline">
-      {% for post in site.posts %}
-      <li>{{ post.date | date_to_string }}
-        <a href="{{ post.url }}">{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
+  <div class="col-2"></div>
+  <div class="col-8">
+    {% include navigation.html %}
+
+    {% for post in site.posts %}
+      <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        {{ post.date | date_to_string }} <a href="{{ post.url }}">{{ post.title }}</a>
+      </div>
+    {% endfor %}
   </div>
+  <div class="col-2"></div>
 </div>
