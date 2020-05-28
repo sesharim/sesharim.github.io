@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "main.css",
+	"sources": [
+		"main.scss",
+		"_sass/template.scss"
+	],
+	"sourcesContent": [
+		"@charset \"utf-8\";\n@import \"template\";\n",
+		"p {\n  margin-bottom: 1rem;\n  font-size: 20px;\n}\nimg.photo {\n  border-radius: 100px;\n  width: 100px;\n}\na.navbar-logo-text {\n  text-decoration: underline #cecece !important;\n}\n"
+	],
+	"names": [],
+	"mappings": "ACAA,AAAA,CAAC,CAAC,EACA,aAAa,EAAE,IAAI,EACnB,SAAS,EAAE,IAAI,GAChB;;AACD,AAAA,GAAG,AAAA,MAAM,CAAC,EACR,aAAa,EAAE,KAAK,EACpB,KAAK,EAAE,KAAK,GACb;;AACD,AAAA,CAAC,AAAA,iBAAiB,CAAC,EACjB,eAAe,EAAE,4BAA4B,GAC9C"
+}

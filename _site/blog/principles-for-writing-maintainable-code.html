@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    Software Engineering &mdash; Principles for Writing Maintainable Code
+  </title>
+  <meta name="description" content="Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important ...">
+  <meta name="keywords" content="Ruby web development, agile Ruby development, Ruby on Rails web design, RoR consulting, Ruby on Rails service, RoR consultant, Ruby on Rails NYC, Ruby on Rails expertise, web agency, ios application development, mobile, api, frontend, backend, development, software engineer partner, sf developer, sf ruby on rails">
+  <meta name="author" content="Max Lukin">
+  <meta name="theme-color">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link rel="canonical" href="http://localhost:4000/blog/principles-for-writing-maintainable-code">
+  <link rel="alternate" type="application/rss+xml" title="Software Engineering" href="http://localhost:4000/feed.xml" />
+  <link rel="shortcut icon" type="image/png" href="http://localhost:4000/favicon.png">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Some evil icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evil-icons@1.9.0/assets/evil-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/evil-icons@1.9.0/assets/evil-icons.min.js"></script>
+</head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+  <div class="col-12">
+    <nav class="navbar navbar-light bg-light sticky-to">
+  <a class="navbar-brand navbar-logo-text" href="/">
+    <h3>Max Lukin</h3>
+  </a>
+  <a class="navbar-logo-tex" href="/projets">
+    <h3>Projects</h3>
+  </a>
+  <a class="navbar-logo-text" href="/why_remote_agency">
+    <h3>Why remote agency?</h3>
+  </a>
+  <a class="navbar-logo-text" href="/service_i_provide">
+    <h3>Service i provide</h3>
+  </a>
+  <a class="navbar-logo-text" href="/tools_i_use">
+    <h3>Tools i use</h3>
+  </a>
+  <a class="navbar-logo-text" href="/blog">
+    <h3>Posts</h3>
+  </a>
+</nav>
+<div class="clearfix">&nbsp;</div>
+
+
+    <h3>Principles for Writing Maintainable Code</h3>
+    <h6>Nov 19, 2019</h6>
+    <div class="clearfix">&nbsp;</div>
+
+    <div><p>Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.</p>
+
+<p>In our work we’re using principles like: <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY (Don’t repeat youself)</a>, <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS (Keep it simple, stupid)</a>, <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it" target="_blank">YAGNI (You aren’t gonna need it)</a> and <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food" target="_blank">Eating your own dog food</a>, but in this post we’ll highlight most important ones.</p>
+
+<p>First one is <strong>SOLID</strong>. Those principles of OOP consist of:</p>
+<ul>
+  <li><strong>S</strong>: Single Responsibility Principle - a class or method should serve a single purpose.</li>
+  <li><strong>O</strong>: Open/closed Principle - classes or methods should be open for extension, but closed for modification</li>
+  <li><strong>L</strong>: Liskov substitution principle - replacing any instances of a parent class with an instance of one of its children without creating any unexpected or incorrect behaviors.</li>
+  <li><strong>I</strong>: Interface Segregation Principle - any client specific classes are better than one general purpose class. Less relevant in dynamic languages.</li>
+  <li><strong>D</strong>: Dependency Inversion Principle - High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend upon abstractions.</li>
+</ul>
+
+<p>Second one is <strong>LoD</strong>, or <strong>The Law of Demeter</strong>:</p>
+<ul>
+  <li>The Law of Demeter, or Principle of Least Knowledge is a well-known software design principle for reducing coupling between collaborating objects.</li>
+</ul>
+
+<p>The code you write should have the following qualities.</p>
+<ul>
+  <li><strong>T</strong>ransparent The consequences of change should be obvious in the code that is changing and in distant code that relies upon it;</li>
+  <li><strong>R</strong>easonable The cost of any change should be proportional to the benefits the change achieves;</li>
+  <li><strong>U</strong>sable Existing code should be usable in new and unexpected contexts;</li>
+  <li><strong>E</strong>xemplary The code itself should encourage those who change it to perpetuate these qualities;</li>
+</ul>
+
+<p>Code that is Transparent, Reasonable, Usable, and Exemplary (<strong>TRUE</strong>) not only meets today’s needs but can also be changed to meet the needs of the future. The first step in creating code that is TRUE is to ensure that each class has a single, well-defined responsibility.</p>
+
+<p>And the most important part is testing:</p>
+<ul>
+  <li><strong>BDD</strong> - Behavior-driven development is a software development practice of working in a short feedback loop, where we consistently apply test-driven development to every new feature we are exploring and working on.</li>
+  <li><strong>TDD</strong> - Test-driven development is a programming technique that requires you to write test.</li>
+</ul>
+
+</div>
+    <div class="clearfix">&nbsp;</div>
+
+    
+      <div class="twelve columns post-content">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'customgears'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+<script id="dsq-count-scr" src="//customgears.disqus.com/count.js" async></script>
+
+    
+  </div>
+</div>
+
+
+    </div>
+  </body>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153285114-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-153285114-1');
+</script>
+<!-- End Google Analytics -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
