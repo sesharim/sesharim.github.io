@@ -2,22 +2,29 @@
 layout: default
 ---
 <div class="row">
+  <div class="col-12">
+    <h5 class="font-weight-light text-center">
+      Send a message, project idea or just hello!
+    </h5>
+  </div>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+
+<div class="row">
   <div class="col-sm">
     <form action="https://formspree.io/xoqkdzvl" method="POST">
       <div class="form-group">
-        <label>
-          Your email:
-          <input type="text" name="_replyto" class="form-control form-control-lg">
-          <small id="emailHelp" class="form-text text-muted">
-            Your email will never share with anyone else.
-          </small>
-        </label>
+        <label>Your email:</label>
+        <input type="text" name="_replyto" class="form-control">
+        <small id="emailHelp" class="form-text text-muted">
+          Your email will never share with anyone else.
+        </small>
       </div>
+
       <div class="form-group">
-        <label>
-          Your message:
-          <textarea name="message" class="form-control form-control-lg" rows="5"></textarea>
-        </label>
+        <label>Your message:</label>
+        <textarea name="message" class="form-control"></textarea>
       </div>
 
       <!-- your other form fields go here -->
@@ -25,6 +32,8 @@ layout: default
       <button type="submit" class="btn btn-light btn-lg">Send</button>
     </form>
   </div>
+
+  <div class="clearfix">&nbsp;</div>
 
   <div class="col-sm">
     <p>
