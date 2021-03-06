@@ -3,11 +3,11 @@
   <channel>
     <title>Software Engineering consultant</title>
     <description>Agile Web development</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Jun 2020 17:12:08 +0300</pubDate>
-    <lastBuildDate>Sun, 07 Jun 2020 17:12:08 +0300</lastBuildDate>
-    <generator>Jekyll v4.1.0</generator>
+    <link>https://lukin.io/</link>
+    <atom:link href="https://lukin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 06 Mar 2021 23:52:53 +0200</pubDate>
+    <lastBuildDate>Sat, 06 Mar 2021 23:52:53 +0200</lastBuildDate>
+    <generator>Jekyll v4.2.0</generator>
     
       <item>
         <title>Principles for Writing Maintainable Code</title>
@@ -47,8 +47,8 @@
 
 </description>
         <pubDate>Tue, 19 Nov 2019 14:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/principles-for-writing-maintainable-code</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/principles-for-writing-maintainable-code</guid>
+        <link>https://lukin.io/blog/principles-for-writing-maintainable-code</link>
+        <guid isPermaLink="true">https://lukin.io/blog/principles-for-writing-maintainable-code</guid>
         
         
       </item>
