@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Principles for Writing Maintainable Code
-date:   2019-11-19 12:00:00
+date:   2020-09-12 12:00:00
 <!-- categories: jekyll update -->
 <!-- tags: ruby rails -->
 author: Max Lukin
@@ -10,7 +10,7 @@ comments: true
 ---
 Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.
 
-In our work we're using principles like: [DRY (Don't repeat youself)][dry]{:target="_blank"}, [KISS (Keep it simple, stupid)][kiss]{:target="_blank"}, [YAGNI (You aren't gonna need it)][yagni]{:target="_blank"} and [Eating your own dog food][eyodf]{:target="_blank"}, but in this post we'll highlight most important ones.
+In my work i'm using principles like: [DRY (Don't repeat youself)][dry]{:target="_blank"}, [KISS (Keep it simple, stupid)][kiss]{:target="_blank"}, [YAGNI (You aren't gonna need it)][yagni]{:target="_blank"} and [Eating your own dog food][eyodf]{:target="_blank"}, but in this post i'll highlight most important ones.
 
 First one is **SOLID**. Those principles of OOP consist of:
 - **S**: Single Responsibility Principle - a class or method should serve a single purpose.

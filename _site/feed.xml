@@ -5,15 +5,15 @@
     <description>Agile Web development</description>
     <link>https://lukin.io/</link>
     <atom:link href="https://lukin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 18 Apr 2021 17:40:08 +0300</pubDate>
-    <lastBuildDate>Sun, 18 Apr 2021 17:40:08 +0300</lastBuildDate>
+    <pubDate>Sun, 12 Sep 2021 14:56:29 +0300</pubDate>
+    <lastBuildDate>Sun, 12 Sep 2021 14:56:29 +0300</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
         <title>Principles for Writing Maintainable Code</title>
         <description>&lt;p&gt;Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.&lt;/p&gt;
 
-&lt;p&gt;In our work we’re using principles like: &lt;a href=&quot;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&quot; target=&quot;_blank&quot;&gt;DRY (Don’t repeat youself)&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/KISS_principle&quot; target=&quot;_blank&quot;&gt;KISS (Keep it simple, stupid)&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it&quot; target=&quot;_blank&quot;&gt;YAGNI (You aren’t gonna need it)&lt;/a&gt; and &lt;a href=&quot;https://en.wikipedia.org/wiki/Eating_your_own_dog_food&quot; target=&quot;_blank&quot;&gt;Eating your own dog food&lt;/a&gt;, but in this post we’ll highlight most important ones.&lt;/p&gt;
+&lt;p&gt;In my work i’m using principles like: &lt;a href=&quot;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&quot; target=&quot;_blank&quot;&gt;DRY (Don’t repeat youself)&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/KISS_principle&quot; target=&quot;_blank&quot;&gt;KISS (Keep it simple, stupid)&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it&quot; target=&quot;_blank&quot;&gt;YAGNI (You aren’t gonna need it)&lt;/a&gt; and &lt;a href=&quot;https://en.wikipedia.org/wiki/Eating_your_own_dog_food&quot; target=&quot;_blank&quot;&gt;Eating your own dog food&lt;/a&gt;, but in this post i’ll highlight most important ones.&lt;/p&gt;
 
 &lt;p&gt;First one is &lt;strong&gt;SOLID&lt;/strong&gt;. Those principles of OOP consist of:&lt;/p&gt;
 &lt;ul&gt;
@@ -46,7 +46,7 @@
 &lt;/ul&gt;
 
 </description>
-        <pubDate>Tue, 19 Nov 2019 14:00:00 +0200</pubDate>
+        <pubDate>Sat, 12 Sep 2020 15:00:00 +0300</pubDate>
         <link>https://lukin.io/blog/principles-for-writing-maintainable-code</link>
         <guid isPermaLink="true">https://lukin.io/blog/principles-for-writing-maintainable-code</guid>
         
