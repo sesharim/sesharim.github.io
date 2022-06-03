@@ -5,8 +5,8 @@
     <description>Agile Web development</description>
     <link>https://lukin.io/</link>
     <atom:link href="https://lukin.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 16 Oct 2021 12:10:10 +0300</pubDate>
-    <lastBuildDate>Sat, 16 Oct 2021 12:10:10 +0300</lastBuildDate>
+    <pubDate>Fri, 03 Jun 2022 13:29:27 +0500</pubDate>
+    <lastBuildDate>Fri, 03 Jun 2022 13:29:27 +0500</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -46,7 +46,7 @@
 &lt;/ul&gt;
 
 </description>
-        <pubDate>Sat, 12 Sep 2020 15:00:00 +0300</pubDate>
+        <pubDate>Sat, 12 Sep 2020 17:00:00 +0500</pubDate>
         <link>https://lukin.io/blog/principles-for-writing-maintainable-code</link>
         <guid isPermaLink="true">https://lukin.io/blog/principles-for-writing-maintainable-code</guid>
         
