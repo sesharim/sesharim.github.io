@@ -1,1 +1,1 @@
-rvm use ruby-3.1.0@lukin --create
+rvm use ruby-3.1.2@lukin --create
