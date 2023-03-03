@@ -5,7 +5,7 @@ date:   2020-09-12 12:00:00
 <!-- categories: jekyll update -->
 <!-- tags: ruby rails -->
 author: Max Lukin
-comments: true
+comments: false
 <!-- excerpt: How to create your own simple blog -->
 ---
 Applications always change, and writing maintainable code is very important in software engineering. Here in CustomGears we decided to gather most important best practices with Ruby on Rails, examples and definations in one place.
