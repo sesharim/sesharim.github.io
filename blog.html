@@ -4,10 +4,9 @@ layout: default
 <div class="row">
   <div class="col-12">
     {% for post in site.posts %}
-    <h6>
+    <h5>
       <a href="{{ post.url }}" class="link-dark">{{ post.title }}</a>
-      <small class="text-muted">{{ post.date | date_to_string }}</small>
-    </h6>
+    </h5>
     {% endfor %}
   </div>
 </div>
