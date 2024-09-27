@@ -4,8 +4,8 @@ email: lukin.maksim@gmail.com
 description: Agile Web development
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://lukin.io"
-twitter_username: sesharim
-github_username:  sesharim
+twitter_username: lukin_io
+github_username:  lukin-io
 
 # Build settings
 markdown: kramdown
