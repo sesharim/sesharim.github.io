@@ -155,8 +155,8 @@ Almost half the profiled runtime was SQL.
 That matters because SQL-heavy tests are rarely fixed by staring at one assertion. The cost usually lives in setup:
 
 - `create(:user)` cascades
-- profile auto-creation
-- company/reference catalogs
+- avatar auto-creation
+- guild/reference catalogs
 - callbacks
 - chat/message graphs
 - access-request state machines
@@ -187,9 +187,9 @@ The safety rules were:
 | Rule | How it was applied |
 | --- | --- |
 | Keep request/integration confidence | Request tests still hit real endpoints, auth, serializers, callbacks, and DB writes. |
-| Keep mutation behavior real | Command, callback, uniqueness, destroy, chat/message, access-request, and job-state examples keep persisted rows. |
+| Keep mutation behavior real | Command, callback, uniqueness, destroy, chat/message, access-request, and quest-state examples keep persisted rows. |
 | Use `build_stubbed` only for read-only checks | Policy predicates, logger metadata, and serializer-only cases can be stubbed when the DB is not the behavior. |
-| Use `let_it_be` only for stable records | Shared users, companies, jobs, and profiles are read-only parents; rows mutated by examples stay local. |
+| Use `let_it_be` only for stable records | Shared users, guilds, quests, and avatars are read-only parents; rows mutated by examples stay local. |
 | Decouple app tests from seed runtime | App tests use explicit factory-backed local reference data, not `lib/tasks/seeds/**`. |
 | Do not remove assertions for speed | The target is setup shape, not coverage reduction. |
 
@@ -215,7 +215,7 @@ That was not the deal.
 | --- | --- |
 | Delete slow tests | Deleted tests make dashboards faster and confidence lower. That is not optimization. |
 | Mock request/integration behavior | Request tests are expensive because they prove routing, auth, controller envelopes, policies, serializers, callbacks, and DB behavior together. |
-| Replace mutation tests with read-only doubles | Commands, callbacks, uniqueness, destroy behavior, chat/messages, access requests, credits, and job state need persisted rows. |
+| Replace mutation tests with read-only doubles | Commands, callbacks, uniqueness, destroy behavior, chat/messages, access requests, credits, and quest state need persisted rows. |
 | Hide seed problems by deleting seed tests | Seed runtime tests remain in the repo. They are skipped in the default suite and can be run when seed work is active. |
 | Change API code to satisfy faster tests | This was test-only work. API behavior, JSON shape, authorization, and persistence rules stayed unchanged. |
 | Split huge files just to make charts look better | Splitting can help ownership, but it does not remove SQL or factory cost by itself. Setup shape was the real target. |
@@ -242,7 +242,7 @@ and:
 ```sh
 env FPROF=1 EVENT_PROF=sql.active_record EVENT_PROF_EXAMPLES=1 EVENT_PROF_TOP=40 \
   bundle exec rspec spec/bin spec/blueprints spec/channels spec/config spec/controllers spec/db \
-  spec/forms spec/initializers spec/jobs spec/lib spec/mailers spec/middleware spec/models \
+  spec/forms spec/initializers spec/workers spec/lib spec/mailers spec/middleware spec/models \
   spec/policies spec/queries spec/routing spec/services spec/smoke spec/tasks spec/validators \
   --tag '~full_only' --format progress
 ```
@@ -259,7 +259,7 @@ Once the suite had numbers, the refactor stopped being emotional.
 The Bitbucket flow now separates:
 
 - lint/security
-- unit/model/blueprint/policy/service/job/query/form/lib tests
+- unit/model/blueprint/policy/service/worker/query/form/lib tests
 - request/integration tests
 - Swagger generation
 - `full_only` tests
@@ -276,15 +276,15 @@ The app tests used to lean on seeded reference data. That made them realistic, b
 
 We replaced that with explicit factory-backed local reference data:
 
-- company types
-- company industries
-- company sizes
+- guild types
+- guild domains
+- guild sizes
 - avatar taxonomy
-- job post categories
+- quest board categories
 - realms
 - message channels
 - training tiers
-- business ID validation rules
+- guild permit validation rules
 
 Seed tests still exist. They are not deleted. They are skipped in the default suite and can be run locally when working on seeds.
 
@@ -315,23 +315,23 @@ Some tests only needed one slice.
 
 So the first split introduced narrower contexts:
 
-- `with local company reference data`
-- `with local company types`
-- `with local company industries`
-- `with local company sizes`
-- `with local business id validation rules`
+- `with local guild reference data`
+- `with local guild types`
+- `with local guild domains`
+- `with local guild sizes`
+- `with local guild permit validation rules`
 - `with local training tiers`
 - `with local message channels`
 
 Then seven tests moved off the broad context:
 
-- `spec/services/companies/business_id_validator_spec.rb`
-- `spec/models/business_id_validation_setting_spec.rb`
-- `spec/models/company_size_spec.rb`
-- `spec/models/company_type_spec.rb`
-- `spec/models/company_industry_spec.rb`
-- `spec/requests/api/v1/contact_types_spec.rb`
-- `spec/requests/api/v1/public/vocabulary/education_levels_spec.rb`
+- `spec/services/guilds/guild_permit_validator_spec.rb`
+- `spec/models/guild_permit_validation_setting_spec.rb`
+- `spec/models/guild_size_spec.rb`
+- `spec/models/guild_type_spec.rb`
+- `spec/models/guild_domain_spec.rb`
+- `spec/requests/api/v1/message_channels_spec.rb`
+- `spec/requests/api/v1/public/vocabulary/training_tiers_spec.rb`
 
 Focused result:
 
@@ -360,15 +360,15 @@ Examples of file-level wins:
 
 | Test file | Before | After | Main change |
 | --- | ---: | ---: | --- |
-| `spec/policies/work_experience_policy_spec.rb` | ~1,320 SQL | 74 SQL | Role/company policy matrix moved to `build_stubbed`; scope records stayed persisted. |
-| `spec/policies/profile_policy_spec.rb` | ~1,358 SQL | 83 SQL | Policy predicates moved to stubbed users/profiles; scope stayed persisted. |
-| `spec/blueprints/messages/location_setting_blueprint_spec.rb` | ~1,207 SQL | 10 SQL | Serializer-only behavior stopped creating a full persisted profile graph. |
-| `spec/blueprints/profile_note_blueprint_spec.rb` | ~742 SQL | 0 SQL | Plain object replaced DB-backed setup for serializer-only behavior. |
-| `spec/services/visibility/visibility_flags_spec.rb` | ~1,702 SQL | 219 SQL | Read examples use stubbed/assigned profile; update behavior stayed persisted. |
-| `spec/models/company_size_spec.rb` | 1,545 SQL | 153 SQL | Narrow company-size reference context. |
-| `spec/models/company_type_spec.rb` | 1,560 SQL | 256 SQL | Narrow company-type reference context. |
-| `spec/models/company_industry_spec.rb` | 1,628 SQL | 687 SQL | Company type + industry rows only. |
-| `spec/requests/api/v1/users/profiles/request_access_spec.rb` | 5,659 SQL | 1,847 SQL | Stable actors shared; access, credits, chats, and jobs stayed real. |
+| `spec/policies/quest_assignment_policy_spec.rb` | ~1,320 SQL | 74 SQL | Role/guild policy matrix moved to `build_stubbed`; scope records stayed persisted. |
+| `spec/policies/avatar_policy_spec.rb` | ~1,358 SQL | 83 SQL | Policy predicates moved to stubbed users/avatars; scope stayed persisted. |
+| `spec/blueprints/messages/location_setting_blueprint_spec.rb` | ~1,207 SQL | 10 SQL | Serializer-only behavior stopped creating a full persisted avatar graph. |
+| `spec/blueprints/avatar_note_blueprint_spec.rb` | ~742 SQL | 0 SQL | Plain object replaced DB-backed setup for serializer-only behavior. |
+| `spec/services/visibility/visibility_flags_spec.rb` | ~1,702 SQL | 219 SQL | Read examples use stubbed/assigned avatar; update behavior stayed persisted. |
+| `spec/models/guild_size_spec.rb` | 1,545 SQL | 153 SQL | Narrow guild-size reference context. |
+| `spec/models/guild_type_spec.rb` | 1,560 SQL | 256 SQL | Narrow guild-type reference context. |
+| `spec/models/guild_domain_spec.rb` | 1,628 SQL | 687 SQL | Guild type + domain rows only. |
+| `spec/requests/api/v1/users/avatars/request_access_spec.rb` | 5,659 SQL | 1,847 SQL | Stable actors shared; access, credits, chats, and quests stayed real. |
 
 This is why profiler order matters.
 
@@ -542,11 +542,11 @@ The remaining heaviest chunk is still visible:
 
 1. continue splitting broad `with local reference data`
 2. `spec/requests/llm_gateway/sessions_spec.rb`
-3. `spec/requests/api/v1/profiles/profile_cards_spec.rb`
-4. `spec/requests/api/v1/companies/profile/public_jobs_spec.rb`
-5. `spec/requests/api/v1/companies/team_management_spec.rb`
+3. `spec/requests/api/v1/avatars/avatar_cards_spec.rb`
+4. `spec/requests/api/v1/guilds/avatar/public_quests_spec.rb`
+5. `spec/requests/api/v1/guilds/team_management_spec.rb`
 6. `spec/requests/api/v1/users/conversation_messages_spec.rb`
-7. broad `spec/requests/api/v1/profiles_spec.rb`
+7. broad `spec/requests/api/v1/avatars_spec.rb`
 
 There are still 39 tests using the broad local reference context.
 
@@ -629,7 +629,7 @@ Use:
 
 This is especially important for reference data.
 
-If a test only needs training tiers, do not load company industries, realms, categories, specializations, and business ID rules.
+If a test only needs training tiers, do not load guild domains, realms, quest categories, skill trees, and guild permit rules.
 
 ### 5. Keep request tests honest
 
