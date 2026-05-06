@@ -5,8 +5,8 @@
     <description>Experienced Ruby on Rails and Go developer specializing in scalable web applications</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 06 May 2026 06:29:07 +0300</pubDate>
-    <lastBuildDate>Wed, 06 May 2026 06:29:07 +0300</lastBuildDate>
+    <pubDate>Wed, 06 May 2026 06:39:37 +0300</pubDate>
+    <lastBuildDate>Wed, 06 May 2026 06:39:37 +0300</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -807,6 +807,338 @@ Rules:
 &lt;p&gt;This would make AI output much easier to trust.&lt;/p&gt;
 
 &lt;hr /&gt;
+
+&lt;h2 id=&quot;software-fundamentals-matter-more-than-ever-in-the-ai-era&quot;&gt;Software fundamentals matter more than ever in the AI era&lt;/h2&gt;
+
+&lt;p&gt;Another strong talk that connects directly to the “mergeable by default” idea is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Software Fundamentals Matter More Than Ever”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The message is extremely important because it explains &lt;em&gt;why&lt;/em&gt; many AI-assisted codebases start degrading even when teams use powerful models.&lt;/p&gt;
+
+&lt;p&gt;The core point is simple:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;AI amplifies the quality of the engineering system around it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That amplification works in both directions.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Existing engineering quality&lt;/th&gt;
+      &lt;th&gt;What AI does&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Strong architecture + conventions&lt;/td&gt;
+      &lt;td&gt;Accelerates delivery&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Weak architecture + drift&lt;/td&gt;
+      &lt;td&gt;Accelerates chaos&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;This is why AI adoption often produces very different outcomes between teams using similar tools.&lt;/p&gt;
+
+&lt;p&gt;One team gets:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;faster delivery&lt;/li&gt;
+  &lt;li&gt;cleaner onboarding&lt;/li&gt;
+  &lt;li&gt;fewer repetitive tasks&lt;/li&gt;
+  &lt;li&gt;safer iteration&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Another team gets:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;more review debt&lt;/li&gt;
+  &lt;li&gt;duplicated abstractions&lt;/li&gt;
+  &lt;li&gt;inconsistent APIs&lt;/li&gt;
+  &lt;li&gt;growing architectural entropy&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The difference is rarely the model itself.&lt;/p&gt;
+
+&lt;p&gt;The difference is usually:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;system boundaries&lt;/li&gt;
+  &lt;li&gt;naming consistency&lt;/li&gt;
+  &lt;li&gt;decomposition quality&lt;/li&gt;
+  &lt;li&gt;verification&lt;/li&gt;
+  &lt;li&gt;contracts&lt;/li&gt;
+  &lt;li&gt;maintainability discipline&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;ai-amplifies-entropy-if-the-codebase-is-already-chaotic&quot;&gt;AI amplifies entropy if the codebase is already chaotic&lt;/h2&gt;
+
+&lt;p&gt;One of the strongest ideas from the second talk is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;AI makes bad codebases worse faster.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That sounds obvious, but it has major implications.&lt;/p&gt;
+
+&lt;p&gt;Before AI:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;weak engineering practices slowed teams down&lt;/li&gt;
+  &lt;li&gt;messy systems evolved more slowly&lt;/li&gt;
+  &lt;li&gt;architectural damage accumulated gradually&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;AI can generate large amounts of plausible code very quickly&lt;/li&gt;
+  &lt;li&gt;bad patterns replicate faster&lt;/li&gt;
+  &lt;li&gt;local shortcuts spread across the repo&lt;/li&gt;
+  &lt;li&gt;inconsistent abstractions become normalized&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The dangerous part is that the output often &lt;em&gt;looks&lt;/em&gt; reasonable.&lt;/p&gt;
+
+&lt;p&gt;That creates a false sense of progress.&lt;/p&gt;
+
+&lt;p&gt;A weak engineering system with AI can produce:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;more code&lt;/li&gt;
+  &lt;li&gt;more PRs&lt;/li&gt;
+  &lt;li&gt;more surface area&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;while simultaneously reducing long-term maintainability.&lt;/p&gt;
+
+&lt;p&gt;This is why software fundamentals suddenly matter &lt;em&gt;more&lt;/em&gt;, not less.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;why-rails-works-unusually-well-with-ai&quot;&gt;Why Rails works unusually well with AI&lt;/h2&gt;
+
+&lt;p&gt;This also explains why Rails often performs surprisingly well in AI-assisted development compared to fragmented stacks.&lt;/p&gt;
+
+&lt;p&gt;Rails strongly reduces ambiguity through conventions:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Concern&lt;/th&gt;
+      &lt;th&gt;Rails convention&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Models&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/models/**&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Controllers&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/controllers/**&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Request specs&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spec/requests/**&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Background jobs&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/jobs/**&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Serialization&lt;/td&gt;
+      &lt;td&gt;predictable serializer/blueprint layer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Naming&lt;/td&gt;
+      &lt;td&gt;convention over configuration&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Routing&lt;/td&gt;
+      &lt;td&gt;consistent REST structure&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;LLMs benefit heavily from predictability.&lt;/p&gt;
+
+&lt;p&gt;The less time the model spends asking:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“How is this project organized?”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;the more time it spends solving the actual task.&lt;/p&gt;
+
+&lt;p&gt;This is one reason why convention-heavy systems become powerful AI multipliers.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;decomposition-becomes-critical&quot;&gt;Decomposition becomes critical&lt;/h2&gt;
+
+&lt;p&gt;Another important point from the second talk:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;LLMs perform much better on small, deterministic tasks than vague, giant problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That has major implications for engineering workflows.&lt;/p&gt;
+
+&lt;p&gt;Good AI-assisted systems should encourage:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;bounded contexts&lt;/li&gt;
+  &lt;li&gt;small implementation scopes&lt;/li&gt;
+  &lt;li&gt;explicit requirements&lt;/li&gt;
+  &lt;li&gt;narrow responsibilities&lt;/li&gt;
+  &lt;li&gt;isolated verification loops&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This maps directly to:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;feature decomposition&lt;/li&gt;
+  &lt;li&gt;Flow docs&lt;/li&gt;
+  &lt;li&gt;PRDs&lt;/li&gt;
+  &lt;li&gt;contract-first APIs&lt;/li&gt;
+  &lt;li&gt;verification-driven development&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Without decomposition, AI receives:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;too much ambiguity&lt;/li&gt;
+  &lt;li&gt;too many unrelated files&lt;/li&gt;
+  &lt;li&gt;unclear authority&lt;/li&gt;
+  &lt;li&gt;mixed responsibilities&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That increases hallucination and drift.&lt;/p&gt;
+
+&lt;p&gt;With decomposition:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;retrieval becomes cleaner&lt;/li&gt;
+  &lt;li&gt;verification becomes cheaper&lt;/li&gt;
+  &lt;li&gt;generated code becomes more deterministic&lt;/li&gt;
+  &lt;li&gt;review becomes faster&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is another reason why a context engine matters:
+it reduces entropy before generation even starts.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;verification-matters-more-than-generation&quot;&gt;Verification matters more than generation&lt;/h2&gt;
+
+&lt;p&gt;One of the biggest misconceptions in AI engineering is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;faster generation = better engineering&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In reality:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;verification quality matters more than generation speed.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;AI is extremely good at producing:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;plausible code&lt;/li&gt;
+  &lt;li&gt;plausible architecture&lt;/li&gt;
+  &lt;li&gt;plausible explanations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But plausible is not the same as correct.&lt;/p&gt;
+
+&lt;p&gt;That is why systems like:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bin/verify&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;contract audits&lt;/li&gt;
+  &lt;li&gt;OpenAPI contracts&lt;/li&gt;
+  &lt;li&gt;request specs&lt;/li&gt;
+  &lt;li&gt;drift prevention&lt;/li&gt;
+  &lt;li&gt;architectural rules&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;become increasingly important in the AI era.&lt;/p&gt;
+
+&lt;p&gt;The stronger the generation becomes, the more important proof becomes.&lt;/p&gt;
+
+&lt;p&gt;Or more simply:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;verification &amp;gt; generation&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;senior-engineers-become-more-important-not-less&quot;&gt;Senior engineers become more important, not less&lt;/h2&gt;
+
+&lt;p&gt;The second talk also indirectly explains why strong senior engineers become &lt;em&gt;more&lt;/em&gt; valuable in AI-assisted environments.&lt;/p&gt;
+
+&lt;p&gt;Junior engineers with AI can generate large amounts of code quickly.&lt;/p&gt;
+
+&lt;p&gt;But senior engineers contribute something different:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;architectural judgment&lt;/li&gt;
+  &lt;li&gt;decomposition&lt;/li&gt;
+  &lt;li&gt;boundary design&lt;/li&gt;
+  &lt;li&gt;tradeoff analysis&lt;/li&gt;
+  &lt;li&gt;drift detection&lt;/li&gt;
+  &lt;li&gt;maintainability intuition&lt;/li&gt;
+  &lt;li&gt;verification discipline&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;AI accelerates implementation.&lt;/p&gt;
+
+&lt;p&gt;Senior engineers define:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;what should exist&lt;/li&gt;
+  &lt;li&gt;what should not exist&lt;/li&gt;
+  &lt;li&gt;what should remain stable&lt;/li&gt;
+  &lt;li&gt;what correctness means&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is why the real leverage comes from:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;externalized engineering judgment&lt;/li&gt;
+  &lt;li&gt;codified conventions&lt;/li&gt;
+  &lt;li&gt;reusable verification systems&lt;/li&gt;
+  &lt;li&gt;structured context&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Not from prompt tricks.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;the-combined-lesson-from-both-talks&quot;&gt;The combined lesson from both talks&lt;/h2&gt;
+
+&lt;p&gt;The two talks together point toward the same conclusion.&lt;/p&gt;
+
+&lt;p&gt;The future of AI-assisted engineering is not:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;bigger prompts&lt;/li&gt;
+  &lt;li&gt;more vibe coding&lt;/li&gt;
+  &lt;li&gt;infinite context dumping&lt;/li&gt;
+  &lt;li&gt;raw generation speed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The future is:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;explicit context systems&lt;/li&gt;
+  &lt;li&gt;deterministic workflows&lt;/li&gt;
+  &lt;li&gt;engineering conventions&lt;/li&gt;
+  &lt;li&gt;retrieval quality&lt;/li&gt;
+  &lt;li&gt;decomposition&lt;/li&gt;
+  &lt;li&gt;verification&lt;/li&gt;
+  &lt;li&gt;drift prevention&lt;/li&gt;
+  &lt;li&gt;mergeability&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The model matters.&lt;/p&gt;
+
+&lt;p&gt;But the surrounding engineering operating system matters even more.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-final-takeaway&quot;&gt;The final takeaway&lt;/h2&gt;
 

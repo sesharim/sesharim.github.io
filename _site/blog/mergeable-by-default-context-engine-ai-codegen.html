@@ -96,7 +96,7 @@
       
       
       
-      <span>· 14 min read</span>
+      <span>· 18 min read</span>
       
         <span>· Max Lukin</span>
       
@@ -913,6 +913,338 @@ Rules:
 <p>This would make AI output much easier to trust.</p>
 
 <hr />
+
+<h2 id="software-fundamentals-matter-more-than-ever-in-the-ai-era">Software fundamentals matter more than ever in the AI era</h2>
+
+<p>Another strong talk that connects directly to the “mergeable by default” idea is:</p>
+
+<blockquote>
+  <p>“Software Fundamentals Matter More Than Ever”</p>
+</blockquote>
+
+<p>The message is extremely important because it explains <em>why</em> many AI-assisted codebases start degrading even when teams use powerful models.</p>
+
+<p>The core point is simple:</p>
+
+<blockquote>
+  <p>AI amplifies the quality of the engineering system around it.</p>
+</blockquote>
+
+<p>That amplification works in both directions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Existing engineering quality</th>
+      <th>What AI does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Strong architecture + conventions</td>
+      <td>Accelerates delivery</td>
+    </tr>
+    <tr>
+      <td>Weak architecture + drift</td>
+      <td>Accelerates chaos</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This is why AI adoption often produces very different outcomes between teams using similar tools.</p>
+
+<p>One team gets:</p>
+<ul>
+  <li>faster delivery</li>
+  <li>cleaner onboarding</li>
+  <li>fewer repetitive tasks</li>
+  <li>safer iteration</li>
+</ul>
+
+<p>Another team gets:</p>
+<ul>
+  <li>more review debt</li>
+  <li>duplicated abstractions</li>
+  <li>inconsistent APIs</li>
+  <li>growing architectural entropy</li>
+</ul>
+
+<p>The difference is rarely the model itself.</p>
+
+<p>The difference is usually:</p>
+<ul>
+  <li>system boundaries</li>
+  <li>naming consistency</li>
+  <li>decomposition quality</li>
+  <li>verification</li>
+  <li>contracts</li>
+  <li>maintainability discipline</li>
+</ul>
+
+<hr />
+
+<h2 id="ai-amplifies-entropy-if-the-codebase-is-already-chaotic">AI amplifies entropy if the codebase is already chaotic</h2>
+
+<p>One of the strongest ideas from the second talk is:</p>
+
+<blockquote>
+  <p>AI makes bad codebases worse faster.</p>
+</blockquote>
+
+<p>That sounds obvious, but it has major implications.</p>
+
+<p>Before AI:</p>
+<ul>
+  <li>weak engineering practices slowed teams down</li>
+  <li>messy systems evolved more slowly</li>
+  <li>architectural damage accumulated gradually</li>
+</ul>
+
+<p>Now:</p>
+<ul>
+  <li>AI can generate large amounts of plausible code very quickly</li>
+  <li>bad patterns replicate faster</li>
+  <li>local shortcuts spread across the repo</li>
+  <li>inconsistent abstractions become normalized</li>
+</ul>
+
+<p>The dangerous part is that the output often <em>looks</em> reasonable.</p>
+
+<p>That creates a false sense of progress.</p>
+
+<p>A weak engineering system with AI can produce:</p>
+<ul>
+  <li>more code</li>
+  <li>more PRs</li>
+  <li>more surface area</li>
+</ul>
+
+<p>while simultaneously reducing long-term maintainability.</p>
+
+<p>This is why software fundamentals suddenly matter <em>more</em>, not less.</p>
+
+<hr />
+
+<h2 id="why-rails-works-unusually-well-with-ai">Why Rails works unusually well with AI</h2>
+
+<p>This also explains why Rails often performs surprisingly well in AI-assisted development compared to fragmented stacks.</p>
+
+<p>Rails strongly reduces ambiguity through conventions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concern</th>
+      <th>Rails convention</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Models</td>
+      <td><code class="language-plaintext highlighter-rouge">app/models/**</code></td>
+    </tr>
+    <tr>
+      <td>Controllers</td>
+      <td><code class="language-plaintext highlighter-rouge">app/controllers/**</code></td>
+    </tr>
+    <tr>
+      <td>Request specs</td>
+      <td><code class="language-plaintext highlighter-rouge">spec/requests/**</code></td>
+    </tr>
+    <tr>
+      <td>Background jobs</td>
+      <td><code class="language-plaintext highlighter-rouge">app/jobs/**</code></td>
+    </tr>
+    <tr>
+      <td>Serialization</td>
+      <td>predictable serializer/blueprint layer</td>
+    </tr>
+    <tr>
+      <td>Naming</td>
+      <td>convention over configuration</td>
+    </tr>
+    <tr>
+      <td>Routing</td>
+      <td>consistent REST structure</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>LLMs benefit heavily from predictability.</p>
+
+<p>The less time the model spends asking:</p>
+<blockquote>
+  <p>“How is this project organized?”</p>
+</blockquote>
+
+<p>the more time it spends solving the actual task.</p>
+
+<p>This is one reason why convention-heavy systems become powerful AI multipliers.</p>
+
+<hr />
+
+<h2 id="decomposition-becomes-critical">Decomposition becomes critical</h2>
+
+<p>Another important point from the second talk:</p>
+
+<blockquote>
+  <p>LLMs perform much better on small, deterministic tasks than vague, giant problems.</p>
+</blockquote>
+
+<p>That has major implications for engineering workflows.</p>
+
+<p>Good AI-assisted systems should encourage:</p>
+<ul>
+  <li>bounded contexts</li>
+  <li>small implementation scopes</li>
+  <li>explicit requirements</li>
+  <li>narrow responsibilities</li>
+  <li>isolated verification loops</li>
+</ul>
+
+<p>This maps directly to:</p>
+<ul>
+  <li>feature decomposition</li>
+  <li>Flow docs</li>
+  <li>PRDs</li>
+  <li>contract-first APIs</li>
+  <li>verification-driven development</li>
+</ul>
+
+<p>Without decomposition, AI receives:</p>
+<ul>
+  <li>too much ambiguity</li>
+  <li>too many unrelated files</li>
+  <li>unclear authority</li>
+  <li>mixed responsibilities</li>
+</ul>
+
+<p>That increases hallucination and drift.</p>
+
+<p>With decomposition:</p>
+<ul>
+  <li>retrieval becomes cleaner</li>
+  <li>verification becomes cheaper</li>
+  <li>generated code becomes more deterministic</li>
+  <li>review becomes faster</li>
+</ul>
+
+<p>This is another reason why a context engine matters:
+it reduces entropy before generation even starts.</p>
+
+<hr />
+
+<h2 id="verification-matters-more-than-generation">Verification matters more than generation</h2>
+
+<p>One of the biggest misconceptions in AI engineering is:</p>
+
+<blockquote>
+  <p>faster generation = better engineering</p>
+</blockquote>
+
+<p>In reality:</p>
+
+<blockquote>
+  <p>verification quality matters more than generation speed.</p>
+</blockquote>
+
+<p>AI is extremely good at producing:</p>
+<ul>
+  <li>plausible code</li>
+  <li>plausible architecture</li>
+  <li>plausible explanations</li>
+</ul>
+
+<p>But plausible is not the same as correct.</p>
+
+<p>That is why systems like:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bin/verify</code></li>
+  <li>contract audits</li>
+  <li>OpenAPI contracts</li>
+  <li>request specs</li>
+  <li>drift prevention</li>
+  <li>architectural rules</li>
+</ul>
+
+<p>become increasingly important in the AI era.</p>
+
+<p>The stronger the generation becomes, the more important proof becomes.</p>
+
+<p>Or more simply:</p>
+
+<blockquote>
+  <p>verification &gt; generation</p>
+</blockquote>
+
+<hr />
+
+<h2 id="senior-engineers-become-more-important-not-less">Senior engineers become more important, not less</h2>
+
+<p>The second talk also indirectly explains why strong senior engineers become <em>more</em> valuable in AI-assisted environments.</p>
+
+<p>Junior engineers with AI can generate large amounts of code quickly.</p>
+
+<p>But senior engineers contribute something different:</p>
+<ul>
+  <li>architectural judgment</li>
+  <li>decomposition</li>
+  <li>boundary design</li>
+  <li>tradeoff analysis</li>
+  <li>drift detection</li>
+  <li>maintainability intuition</li>
+  <li>verification discipline</li>
+</ul>
+
+<p>AI accelerates implementation.</p>
+
+<p>Senior engineers define:</p>
+<ul>
+  <li>what should exist</li>
+  <li>what should not exist</li>
+  <li>what should remain stable</li>
+  <li>what correctness means</li>
+</ul>
+
+<p>This is why the real leverage comes from:</p>
+<ul>
+  <li>externalized engineering judgment</li>
+  <li>codified conventions</li>
+  <li>reusable verification systems</li>
+  <li>structured context</li>
+</ul>
+
+<p>Not from prompt tricks.</p>
+
+<hr />
+
+<h2 id="the-combined-lesson-from-both-talks">The combined lesson from both talks</h2>
+
+<p>The two talks together point toward the same conclusion.</p>
+
+<p>The future of AI-assisted engineering is not:</p>
+<ul>
+  <li>bigger prompts</li>
+  <li>more vibe coding</li>
+  <li>infinite context dumping</li>
+  <li>raw generation speed</li>
+</ul>
+
+<p>The future is:</p>
+<ul>
+  <li>explicit context systems</li>
+  <li>deterministic workflows</li>
+  <li>engineering conventions</li>
+  <li>retrieval quality</li>
+  <li>decomposition</li>
+  <li>verification</li>
+  <li>drift prevention</li>
+  <li>mergeability</li>
+</ul>
+
+<p>The model matters.</p>
+
+<p>But the surrounding engineering operating system matters even more.</p>
 
 <h2 id="the-final-takeaway">The final takeaway</h2>
 
