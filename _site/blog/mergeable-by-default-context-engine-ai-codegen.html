@@ -619,7 +619,7 @@ Build the environment where the model can make fewer wrong assumptions.</p>
 <p>Imagine a task:</p>
 
 <blockquote>
-  <p>Add a new nested API endpoint for profile awards with file attachments.</p>
+  <p>Add a new nested API endpoint for avatar achievements with artifact attachments.</p>
 </blockquote>
 
 <p>A generic AI agent may create:</p>
@@ -635,7 +635,7 @@ Build the environment where the model can make fewer wrong assumptions.</p>
 <p>But a context-aware agent should know much more:</p>
 
 <ul>
-  <li>endpoints must live under <code class="language-plaintext highlighter-rouge">/api/v1/profiles</code></li>
+  <li>endpoints must live under <code class="language-plaintext highlighter-rouge">/api/v1/avatars</code></li>
   <li>JSON must stay snake_case</li>
   <li>list responses must return <code class="language-plaintext highlighter-rouge">{ data, meta }</code></li>
   <li>uploads should use nested attributes in one request</li>
@@ -845,7 +845,7 @@ Not “did it generate code?”, but “did it reduce the path to a safe merge?�
 
 <h3 id="1-task-classifier">1. Task classifier</h3>
 
-<p>Given a task like <code class="language-plaintext highlighter-rouge">WEB-142 Awards</code>, classify:</p>
+<p>Given a task like <code class="language-plaintext highlighter-rouge">GAME-142 Achievements</code>, classify:</p>
 
 <ul>
   <li>endpoint work</li>
@@ -863,16 +863,16 @@ Not “did it generate code?”, but “did it reduce the path to a safe merge?�
 
 <p>Produce a task-specific context bundle:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Task: WEB-142 Awards
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Task: GAME-142 Achievements
 
 Authoritative sources:
-- doc/requirements/WEB-142_*.md
+- doc/requirements/GAME-142_*.md
 - related Flow doc
 - related PRD if present
 
 Relevant implementation:
-- app/controllers/api/v1/profiles/...
-- app/models/award.rb
+- app/controllers/api/v1/avatars/...
+- app/models/achievement.rb
 - app/blueprints/...
 - spec/requests/...
 
@@ -1294,16 +1294,16 @@ it reduces entropy before generation even starts.</p>
 
 <p>For example, a database may contain:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span>
-<span class="n">companies</span>
-<span class="n">recruiters</span>
-<span class="n">contracts</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">players</span>
+<span class="n">guilds</span>
+<span class="n">scouts</span>
+<span class="n">guild_pacts</span>
 </code></pre></div></div>
 
 <p>But the semantic/business layer explains things like:</p>
 
 <ul>
-  <li>recruiter users must belong to verified non-agency companies</li>
+  <li>scout players must belong to verified non-mercenary guilds</li>
   <li>contracts only apply to certain organization types</li>
   <li>some users are prospects while others are active customers</li>
   <li>access states affect workflow permissions</li>

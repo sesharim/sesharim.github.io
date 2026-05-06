@@ -349,7 +349,7 @@ That matches my own conclusion from AI-assisted backend work:
 
 Imagine a task:
 
-> Add a new nested API endpoint for profile awards with file attachments.
+> Add a new nested API endpoint for avatar achievements with artifact attachments.
 
 A generic AI agent may create:
 
@@ -361,7 +361,7 @@ A generic AI agent may create:
 
 But a context-aware agent should know much more:
 
-- endpoints must live under `/api/v1/profiles`
+- endpoints must live under `/api/v1/avatars`
 - JSON must stay snake_case
 - list responses must return `{ data, meta }`
 - uploads should use nested attributes in one request
@@ -530,7 +530,7 @@ The next version should behave more like a retrieval + reasoning layer.
 
 ### 1. Task classifier
 
-Given a task like `WEB-142 Awards`, classify:
+Given a task like `GAME-142 Achievements`, classify:
 
 - endpoint work
 - model work
@@ -547,16 +547,16 @@ Then load relevant rules automatically.
 Produce a task-specific context bundle:
 
 ```text
-Task: WEB-142 Awards
+Task: GAME-142 Achievements
 
 Authoritative sources:
-- doc/requirements/WEB-142_*.md
+- doc/requirements/GAME-142_*.md
 - related Flow doc
 - related PRD if present
 
 Relevant implementation:
-- app/controllers/api/v1/profiles/...
-- app/models/award.rb
+- app/controllers/api/v1/avatars/...
+- app/models/achievement.rb
 - app/blueprints/...
 - spec/requests/...
 
@@ -877,15 +877,15 @@ Conceptual models describe meaning.
 For example, a database may contain:
 
 ```sql
-users
-companies
-recruiters
-contracts
+players
+guilds
+scouts
+guild_pacts
 ```
 
 But the semantic/business layer explains things like:
 
-- recruiter users must belong to verified non-agency companies
+- scout players must belong to verified non-mercenary guilds
 - contracts only apply to certain organization types
 - some users are prospects while others are active customers
 - access states affect workflow permissions

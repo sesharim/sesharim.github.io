@@ -5,8 +5,8 @@
     <description>Experienced Ruby on Rails and Go developer specializing in scalable web applications</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 06 May 2026 09:50:18 +0300</pubDate>
-    <lastBuildDate>Wed, 06 May 2026 09:50:18 +0300</lastBuildDate>
+    <pubDate>Wed, 06 May 2026 10:28:01 +0300</pubDate>
+    <lastBuildDate>Wed, 06 May 2026 10:28:01 +0300</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -513,7 +513,7 @@ Build the environment where the model can make fewer wrong assumptions.&lt;/p&gt
 &lt;p&gt;Imagine a task:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Add a new nested API endpoint for profile awards with file attachments.&lt;/p&gt;
+  &lt;p&gt;Add a new nested API endpoint for avatar achievements with artifact attachments.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;A generic AI agent may create:&lt;/p&gt;
@@ -529,7 +529,7 @@ Build the environment where the model can make fewer wrong assumptions.&lt;/p&gt
 &lt;p&gt;But a context-aware agent should know much more:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;endpoints must live under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/api/v1/profiles&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;endpoints must live under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/api/v1/avatars&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;JSON must stay snake_case&lt;/li&gt;
   &lt;li&gt;list responses must return &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{ data, meta }&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;uploads should use nested attributes in one request&lt;/li&gt;
@@ -739,7 +739,7 @@ Not “did it generate code?”, but “did it reduce the path to a safe merge?�
 
 &lt;h3 id=&quot;1-task-classifier&quot;&gt;1. Task classifier&lt;/h3&gt;
 
-&lt;p&gt;Given a task like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WEB-142 Awards&lt;/code&gt;, classify:&lt;/p&gt;
+&lt;p&gt;Given a task like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GAME-142 Achievements&lt;/code&gt;, classify:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;endpoint work&lt;/li&gt;
@@ -757,16 +757,16 @@ Not “did it generate code?”, but “did it reduce the path to a safe merge?�
 
 &lt;p&gt;Produce a task-specific context bundle:&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Task: WEB-142 Awards
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Task: GAME-142 Achievements
 
 Authoritative sources:
-- doc/requirements/WEB-142_*.md
+- doc/requirements/GAME-142_*.md
 - related Flow doc
 - related PRD if present
 
 Relevant implementation:
-- app/controllers/api/v1/profiles/...
-- app/models/award.rb
+- app/controllers/api/v1/avatars/...
+- app/models/achievement.rb
 - app/blueprints/...
 - spec/requests/...
 
@@ -1188,16 +1188,16 @@ it reduces entropy before generation even starts.&lt;/p&gt;
 
 &lt;p&gt;For example, a database may contain:&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;companies&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;recruiters&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;contracts&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;players&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;guilds&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;scouts&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;guild_pacts&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;But the semantic/business layer explains things like:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;recruiter users must belong to verified non-agency companies&lt;/li&gt;
+  &lt;li&gt;scout players must belong to verified non-mercenary guilds&lt;/li&gt;
   &lt;li&gt;contracts only apply to certain organization types&lt;/li&gt;
   &lt;li&gt;some users are prospects while others are active customers&lt;/li&gt;
   &lt;li&gt;access states affect workflow permissions&lt;/li&gt;
