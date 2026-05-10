@@ -10,7 +10,7 @@ future: true
 
 # Build settings
 markdown: kramdown
-permalink: /blog/:title
+permalink: /blog/:title/
 
 # Exclude files from Jekyll processing
 exclude:

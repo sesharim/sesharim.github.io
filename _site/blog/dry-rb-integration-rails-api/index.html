@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VLFHH5CPGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-VLFHH5CPGM');
+  </script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <title>From Rails Spaghetti to Structured Code: Integrating dry-rb into Your API | Software Engineering consultant</title>
+  
+  <meta name="theme-color" content="#FEFAE0">
+
+  <link rel="canonical" href="http://localhost:4000/blog/dry-rb-integration-rails-api/">
+  <link rel="alternate" type="application/rss+xml" title="Software Engineering consultant" href="/feed.xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <meta name="description"
+    content="  “The best code isn’t clever—it’s obvious. dry-rb makes Rails code obvious.”">
+  <meta name="keywords"
+    content="Software Engineering consultant, programming consultant, Ruby web development, agile Ruby development, Ruby on Rails web design, RoR consulting, Ruby on Rails service, RoR consultant, Ruby on Rails NYC, Ruby on Rails expertise, web agency, ios application development, mobile, api, frontend, backend, development, software engineer partner, sf developer, sf ruby on rails, berling ruby consultant, london consultant">
+  <meta name="author" content="Max Lukin">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>From Rails Spaghetti to Structured Code: Integrating dry-rb into Your API | Software Engineering consultant</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="From Rails Spaghetti to Structured Code: Integrating dry-rb into Your API" />
+<meta name="author" content="Max Lukin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive guide to integrating 11 dry-rb gems into your Ruby on Rails API—showing real before/after examples of how dry-types, dry-struct, dry-monads, dry-validation, dry-container, dry-matcher, dry-configurable, dry-initializer, and dry-events improve maintainability, testability, and code clarity." />
+<meta property="og:description" content="A comprehensive guide to integrating 11 dry-rb gems into your Ruby on Rails API—showing real before/after examples of how dry-types, dry-struct, dry-monads, dry-validation, dry-container, dry-matcher, dry-configurable, dry-initializer, and dry-events improve maintainability, testability, and code clarity." />
+<link rel="canonical" href="http://localhost:4000/blog/dry-rb-integration-rails-api/" />
+<meta property="og:url" content="http://localhost:4000/blog/dry-rb-integration-rails-api/" />
+<meta property="og:site_name" content="Software Engineering consultant" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-12-04T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="From Rails Spaghetti to Structured Code: Integrating dry-rb into Your API" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Max Lukin"},"dateModified":"2025-12-04T00:00:00+02:00","datePublished":"2025-12-04T00:00:00+02:00","description":"A comprehensive guide to integrating 11 dry-rb gems into your Ruby on Rails API—showing real before/after examples of how dry-types, dry-struct, dry-monads, dry-validation, dry-container, dry-matcher, dry-configurable, dry-initializer, and dry-events improve maintainability, testability, and code clarity.","headline":"From Rails Spaghetti to Structured Code: Integrating dry-rb into Your API","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/dry-rb-integration-rails-api/"},"url":"http://localhost:4000/blog/dry-rb-integration-rails-api/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body class="min-h-screen bg-bora text-ink">
+  <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-8 sm:px-8 lg:px-10">
+    <main class="flex-1">
+      <article class="content-shell space-y-10">
+  <nav class="page-nav" aria-label="Post navigation">
+    <a href="/" class="page-link">Home</a>
+    <span class="page-nav-separator">/</span>
+    <a href="/blog/" class="page-link">Blog</a>
+  </nav>
+
+  <header class="post-hero-split">
+    <h1 class="post-hero-title">From Rails Spaghetti to Structured Code: Integrating dry-rb into Your API</h1>
+    <div class="post-meta post-meta-aside">
+      <time datetime="2025-12-04T00:00:00+02:00">Dec 4, 2025</time>
+      
+      
+      
+      <span>/</span>
+      <span>44 min read</span>
+      
+        <span>/</span>
+        <span>Max Lukin</span>
+      
+    </div>
+  </header>
+
+  <div class="prose post-prose">
+    <blockquote>
+  <p><em>“The best code isn’t clever—it’s obvious. dry-rb makes Rails code obvious.”</em></p>
+</blockquote>
+
+<p>Every Rails developer has written code that works but feels wrong. Manual type coercion scattered across controllers. Validation logic duplicated between models and services. Deeply nested conditionals handling success and failure cases. Configuration constants scattered across files. Side effects mixed with business logic. These patterns work, but they accumulate into technical debt.</p>
+
+<p>After shipping dozens of API endpoints, we integrated <strong>dry-rb</strong> into our Rails API. This post documents the transformation—with real before/after examples showing how each gem improves specific code patterns.</p>
+
+<hr />
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li><a href="#1-the-problem-rails-patterns-that-dont-scale">The Problem: Rails Patterns That Don’t Scale</a></li>
+  <li><a href="#2-the-solution-dry-rb-gem-suite">The Solution: dry-rb Gem Suite</a></li>
+  <li><a href="#3-dry-types-type-safe-enums-and-coercion">dry-types: Type-Safe Enums and Coercion</a></li>
+  <li><a href="#4-dry-struct-immutable-data-structures">dry-struct: Immutable Data Structures</a></li>
+  <li><a href="#5-dry-monads-functional-error-handling">dry-monads: Functional Error Handling</a></li>
+  <li><a href="#6-dry-validation-contract-based-validation">dry-validation: Contract-Based Validation</a></li>
+  <li><a href="#7-dry-container--dry-auto_inject-dependency-injection">dry-container + dry-auto_inject: Dependency Injection</a></li>
+  <li><a href="#8-dry-matcher-pattern-matching-for-results">dry-matcher: Pattern Matching for Results</a></li>
+  <li><a href="#9-dry-configurable-thread-safe-configuration">dry-configurable: Thread-Safe Configuration</a></li>
+  <li><a href="#10-dry-initializer-declarative-parameter-dsl">dry-initializer: Declarative Parameter DSL</a></li>
+  <li><a href="#11-dry-events-pubsub-event-system">dry-events: Pub/Sub Event System</a></li>
+  <li><a href="#12-other-dry-rb-gems-worth-exploring">Other dry-rb Gems Worth Exploring</a></li>
+  <li><a href="#13-benefits-and-tradeoffs">Benefits and Tradeoffs</a></li>
+  <li><a href="#14-conclusion">Conclusion</a></li>
+</ol>
+
+<hr />
+
+<h2 id="1-the-problem-rails-patterns-that-dont-scale">1. The Problem: Rails Patterns That Don’t Scale</h2>
+
+<h3 id="11-the-rails-way-has-limits">1.1 The “Rails Way” Has Limits</h3>
+
+<p>Rails conventions are excellent for getting started quickly. But as applications grow, certain patterns become problematic:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Works For</th>
+      <th>Breaks When</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hash params everywhere</td>
+      <td>Simple CRUD</td>
+      <td>Complex nested data structures</td>
+    </tr>
+    <tr>
+      <td>ActiveRecord validations</td>
+      <td>Model-level rules</td>
+      <td>Cross-field business logic</td>
+    </tr>
+    <tr>
+      <td>Controller conditionals</td>
+      <td>Simple flows</td>
+      <td>Multiple success/failure paths</td>
+    </tr>
+    <tr>
+      <td>Manual type coercion</td>
+      <td>Occasional use</td>
+      <td>Dozens of fields need processing</td>
+    </tr>
+    <tr>
+      <td>Class method calls</td>
+      <td>Small apps</td>
+      <td>Testing requires stubbing globals</td>
+    </tr>
+    <tr>
+      <td>Scattered constants</td>
+      <td>One-off values</td>
+      <td>Configuration needs structure</td>
+    </tr>
+    <tr>
+      <td>Inline side effects</td>
+      <td>Simple actions</td>
+      <td>Need audit trail or event-driven architecture</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="12-real-example-avatar-actions-payload">1.2 Real Example: Avatar Actions Payload</h3>
+
+<p>We needed to serialize client-specific avatar data. Here’s what the original code looked like:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Original: 70+ lines of manual validation and coercion</span>
+<span class="k">def</span> <span class="nf">build_actions_payload</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+  <span class="n">actions</span> <span class="o">=</span> <span class="n">extract_actions_data</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+
+  <span class="c1"># Manual enum validation</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">].</span><span class="nf">to_s</span>
+  <span class="n">result</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">]</span> <span class="o">=</span> <span class="no">ACCESS_STATUS_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">?</span> <span class="n">status</span> <span class="p">:</span> <span class="s2">"none"</span>
+
+  <span class="c1"># Manual boolean coercion</span>
+  <span class="n">result</span><span class="p">[</span><span class="ss">:avatar_viewed</span><span class="p">]</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:avatar_viewed</span><span class="p">]</span> <span class="o">==</span> <span class="kp">true</span>
+  <span class="n">result</span><span class="p">[</span><span class="ss">:is_saved</span><span class="p">]</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:is_saved</span><span class="p">]</span> <span class="o">==</span> <span class="kp">true</span>
+
+  <span class="c1"># Manual conditional inclusion</span>
+  <span class="k">if</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:thumb_status</span><span class="p">].</span><span class="nf">present?</span>
+    <span class="n">thumb</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:thumb_status</span><span class="p">].</span><span class="nf">to_s</span>
+    <span class="n">result</span><span class="p">[</span><span class="ss">:thumb_status</span><span class="p">]</span> <span class="o">=</span> <span class="n">thumb</span> <span class="k">if</span> <span class="no">THUMB_STATUS_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">thumb</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">if</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:applied_at</span><span class="p">].</span><span class="nf">present?</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:applied_at</span><span class="p">]</span>
+    <span class="n">result</span><span class="p">[</span><span class="ss">:applied_at</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">.</span><span class="nf">respond_to?</span><span class="p">(</span><span class="ss">:iso8601</span><span class="p">)</span> <span class="p">?</span> <span class="n">value</span><span class="p">.</span><span class="nf">iso8601</span> <span class="p">:</span> <span class="n">value</span><span class="p">.</span><span class="nf">to_s</span>
+  <span class="k">end</span>
+
+  <span class="k">if</span> <span class="n">actions</span><span class="p">.</span><span class="nf">key?</span><span class="p">(</span><span class="ss">:access_expired</span><span class="p">)</span>
+    <span class="n">result</span><span class="p">[</span><span class="ss">:access_expired</span><span class="p">]</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:access_expired</span><span class="p">]</span> <span class="o">==</span> <span class="kp">true</span>
+  <span class="k">end</span>
+
+  <span class="k">if</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:access_end_reason</span><span class="p">].</span><span class="nf">present?</span>
+    <span class="n">reason</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:access_end_reason</span><span class="p">].</span><span class="nf">to_s</span>
+    <span class="n">result</span><span class="p">[</span><span class="ss">:access_end_reason</span><span class="p">]</span> <span class="o">=</span> <span class="n">reason</span> <span class="k">if</span> <span class="no">ACCESS_END_REASON_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># ... 30 more lines</span>
+  <span class="n">result</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Problems:</strong></p>
+<ul>
+  <li>❌ Manual type coercion (<code class="language-plaintext highlighter-rouge">to_s</code>, <code class="language-plaintext highlighter-rouge">== true</code>) repeated everywhere</li>
+  <li>❌ Validation scattered (constants + inline checks)</li>
+  <li>❌ Hard to test—tightly coupled to Blueprint</li>
+  <li>❌ No type safety—wrong data silently coerced</li>
+  <li>❌ Verbose—business logic drowns in boilerplate</li>
+</ul>
+
+<hr />
+
+<h2 id="2-the-solution-dry-rb-gem-suite">2. The Solution: dry-rb Gem Suite</h2>
+
+<p>The <a href="https://dry-rb.org/gems/">dry-rb</a> ecosystem provides focused, composable gems for common problems:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gem</th>
+      <th>Purpose</th>
+      <th>Replaces</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>dry-types</strong></td>
+      <td>Type definitions with constraints</td>
+      <td>Manual enum validation</td>
+    </tr>
+    <tr>
+      <td><strong>dry-struct</strong></td>
+      <td>Immutable typed objects</td>
+      <td>Hash manipulation</td>
+    </tr>
+    <tr>
+      <td><strong>dry-monads</strong></td>
+      <td>Functional result handling</td>
+      <td>try/rescue + conditionals</td>
+    </tr>
+    <tr>
+      <td><strong>dry-validation</strong></td>
+      <td>Contract-based validation</td>
+      <td>Scattered validation logic</td>
+    </tr>
+    <tr>
+      <td><strong>dry-schema</strong></td>
+      <td>Schema coercion</td>
+      <td>Strong parameters edge cases</td>
+    </tr>
+    <tr>
+      <td><strong>dry-container</strong></td>
+      <td>Dependency registry</td>
+      <td>Global class references</td>
+    </tr>
+    <tr>
+      <td><strong>dry-auto_inject</strong></td>
+      <td>Constructor injection</td>
+      <td>Manual dependency passing</td>
+    </tr>
+    <tr>
+      <td><strong>dry-matcher</strong></td>
+      <td>Result pattern matching</td>
+      <td>Case statements on results</td>
+    </tr>
+    <tr>
+      <td><strong>dry-configurable</strong></td>
+      <td>Thread-safe configuration</td>
+      <td>Scattered constants</td>
+    </tr>
+    <tr>
+      <td><strong>dry-initializer</strong></td>
+      <td>Param/option DSL</td>
+      <td>Boilerplate initialize methods</td>
+    </tr>
+    <tr>
+      <td><strong>dry-events</strong></td>
+      <td>Pub/sub event system</td>
+      <td>Inline side effects</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="our-gemfile-addition">Our Gemfile Addition</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Gemfile</span>
+<span class="c1"># Dry-rb gems for structured types, validation, and functional patterns</span>
+<span class="n">gem</span> <span class="s2">"dry-types"</span><span class="p">,</span> <span class="s2">"~&gt; 1.7"</span>
+<span class="n">gem</span> <span class="s2">"dry-struct"</span><span class="p">,</span> <span class="s2">"~&gt; 1.6"</span>
+<span class="n">gem</span> <span class="s2">"dry-monads"</span><span class="p">,</span> <span class="s2">"~&gt; 1.6"</span>
+<span class="n">gem</span> <span class="s2">"dry-validation"</span><span class="p">,</span> <span class="s2">"~&gt; 1.11"</span>
+<span class="n">gem</span> <span class="s2">"dry-schema"</span><span class="p">,</span> <span class="s2">"~&gt; 1.14"</span>
+<span class="n">gem</span> <span class="s2">"dry-container"</span><span class="p">,</span> <span class="s2">"~&gt; 0.11"</span>
+<span class="n">gem</span> <span class="s2">"dry-auto_inject"</span><span class="p">,</span> <span class="s2">"~&gt; 0.9"</span>
+<span class="n">gem</span> <span class="s2">"dry-matcher"</span><span class="p">,</span> <span class="s2">"~&gt; 1.0"</span>
+<span class="n">gem</span> <span class="s2">"dry-configurable"</span><span class="p">,</span> <span class="s2">"~&gt; 1.2"</span>
+<span class="n">gem</span> <span class="s2">"dry-initializer"</span><span class="p">,</span> <span class="s2">"~&gt; 3.1"</span>
+<span class="n">gem</span> <span class="s2">"dry-events"</span><span class="p">,</span> <span class="s2">"~&gt; 1.0"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-dry-types-type-safe-enums-and-coercion">3. dry-types: Type-Safe Enums and Coercion</h2>
+
+<h3 id="31-the-problem-scattered-constants-and-manual-checks">3.1 The Problem: Scattered Constants and Manual Checks</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Constants scattered, validation repeated</span>
+<span class="k">class</span> <span class="nc">AvatarBlueprint</span> <span class="o">&lt;</span> <span class="no">ApplicationBlueprint</span>
+  <span class="no">ACCESS_STATUS_VALUES</span> <span class="o">=</span> <span class="sx">%w[none requested approved denied removed shared]</span><span class="p">.</span><span class="nf">freeze</span>
+  <span class="no">THUMB_STATUS_VALUES</span> <span class="o">=</span> <span class="sx">%w[liked disliked]</span><span class="p">.</span><span class="nf">freeze</span>
+  <span class="no">ACCESS_END_REASON_VALUES</span> <span class="o">=</span> <span class="sx">%w[expired declined blocked removed]</span><span class="p">.</span><span class="nf">freeze</span>
+
+  <span class="k">def</span> <span class="nf">build_actions_payload</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">].</span><span class="nf">to_s</span>
+    <span class="n">result</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">]</span> <span class="o">=</span> <span class="no">ACCESS_STATUS_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">?</span> <span class="n">status</span> <span class="p">:</span> <span class="s2">"none"</span>
+    <span class="c1"># Repeated for every enum field...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Constants defined in one class, used elsewhere</li>
+  <li>Validation logic duplicated wherever enums are checked</li>
+  <li>No automatic coercion or defaults</li>
+</ul>
+
+<h3 id="32-the-solution-centralized-type-registry">3.2 The Solution: Centralized Type Registry</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/types.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/types"</span>
+
+<span class="k">module</span> <span class="nn">Types</span>
+  <span class="kp">include</span> <span class="no">Dry</span><span class="o">.</span><span class="no">Types</span><span class="p">()</span>
+
+  <span class="c1"># Common types with safe defaults</span>
+  <span class="no">SafeBool</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">Bool</span><span class="p">.</span><span class="nf">fallback</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
+  <span class="no">OptionalString</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">.</span><span class="nf">optional</span>
+  <span class="no">OptionalInteger</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">Integer</span><span class="p">.</span><span class="nf">optional</span>
+
+  <span class="c1"># ISO8601 timestamp coercion</span>
+  <span class="no">ISO8601String</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">.</span><span class="nf">optional</span><span class="p">.</span><span class="nf">constructor</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>
+    <span class="k">next</span> <span class="kp">nil</span> <span class="k">if</span> <span class="n">value</span><span class="p">.</span><span class="nf">nil?</span>
+    <span class="k">case</span> <span class="n">value</span>
+    <span class="k">when</span> <span class="no">Time</span><span class="p">,</span> <span class="no">DateTime</span><span class="p">,</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TimeWithZone</span>
+      <span class="n">value</span><span class="p">.</span><span class="nf">iso8601</span>
+    <span class="k">else</span>
+      <span class="n">value</span><span class="p">.</span><span class="nf">to_s</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Avatar Actions enums - SINGLE SOURCE OF TRUTH</span>
+  <span class="k">module</span> <span class="nn">Avatars</span>
+    <span class="no">ACCESS_STATUS_VALUES</span> <span class="o">=</span> <span class="sx">%w[none requested approved denied removed shared]</span><span class="p">.</span><span class="nf">freeze</span>
+    <span class="no">AccessStatus</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">.</span><span class="nf">enum</span><span class="p">(</span><span class="o">*</span><span class="no">ACCESS_STATUS_VALUES</span><span class="p">).</span><span class="nf">fallback</span><span class="p">(</span><span class="s2">"none"</span><span class="p">)</span>
+
+    <span class="no">THUMB_STATUS_VALUES</span> <span class="o">=</span> <span class="sx">%w[liked disliked]</span><span class="p">.</span><span class="nf">freeze</span>
+    <span class="no">ThumbStatus</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">.</span><span class="nf">enum</span><span class="p">(</span><span class="o">*</span><span class="no">THUMB_STATUS_VALUES</span><span class="p">).</span><span class="nf">optional</span>
+
+    <span class="no">ACCESS_END_REASON_VALUES</span> <span class="o">=</span> <span class="sx">%w[expired declined blocked removed]</span><span class="p">.</span><span class="nf">freeze</span>
+    <span class="no">AccessEndReason</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">.</span><span class="nf">enum</span><span class="p">(</span><span class="o">*</span><span class="no">ACCESS_END_REASON_VALUES</span><span class="p">).</span><span class="nf">optional</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Benefits:</strong></p>
+<ul>
+  <li>✅ Enums defined once, reusable everywhere</li>
+  <li>✅ Built-in validation (invalid values → constraint error or fallback)</li>
+  <li>✅ Automatic coercion with <code class="language-plaintext highlighter-rouge">.constructor</code></li>
+  <li>✅ Safe defaults with <code class="language-plaintext highlighter-rouge">.fallback()</code></li>
+  <li>✅ Self-documenting—type definitions are specifications</li>
+</ul>
+
+<h3 id="33-usage-examples">3.3 Usage Examples</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Enum validation is automatic</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">AccessStatus</span><span class="p">[</span><span class="s2">"approved"</span><span class="p">]</span>  <span class="c1"># =&gt; "approved"</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">AccessStatus</span><span class="p">[</span><span class="s2">"invalid"</span><span class="p">]</span>   <span class="c1"># =&gt; "none" (fallback)</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">AccessStatus</span><span class="p">[</span><span class="kp">nil</span><span class="p">]</span>         <span class="c1"># =&gt; "none" (fallback)</span>
+
+<span class="c1"># Boolean coercion with fallback</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">SafeBool</span><span class="p">[</span><span class="kp">true</span><span class="p">]</span>   <span class="c1"># =&gt; true</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">SafeBool</span><span class="p">[</span><span class="kp">nil</span><span class="p">]</span>    <span class="c1"># =&gt; false (fallback, not nil!)</span>
+
+<span class="c1"># Timestamp coercion</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">ISO8601String</span><span class="p">[</span><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">]</span>           <span class="c1"># =&gt; "2025-12-04T09:30:00Z"</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">ISO8601String</span><span class="p">[</span><span class="s2">"2025-12-04T09:30:00Z"</span><span class="p">]</span> <span class="c1"># =&gt; "2025-12-04T09:30:00Z"</span>
+<span class="no">Types</span><span class="o">::</span><span class="no">ISO8601String</span><span class="p">[</span><span class="kp">nil</span><span class="p">]</span>                    <span class="c1"># =&gt; nil</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-dry-struct-immutable-data-structures">4. dry-struct: Immutable Data Structures</h2>
+
+<h3 id="41-the-problem-hash-manipulation-everywhere">4.1 The Problem: Hash Manipulation Everywhere</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Raw hash with manual processing</span>
+<span class="k">def</span> <span class="nf">build_actions</span>
+  <span class="n">actions</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="n">actions</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_access_status</span>
+  <span class="n">actions</span><span class="p">[</span><span class="ss">:avatar_viewed</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_avatar_viewed</span>
+  <span class="n">actions</span><span class="p">[</span><span class="ss">:is_saved</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_is_saved</span>
+  <span class="c1"># No guarantee of structure</span>
+  <span class="c1"># Caller must know what keys exist</span>
+  <span class="c1"># Mutable—anyone can modify</span>
+  <span class="n">actions</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>No schema—structure discovered at runtime</li>
+  <li>Mutable—data can change unexpectedly</li>
+  <li>Manual coercion needed when consuming</li>
+  <li>No IDE autocompletion</li>
+</ul>
+
+<h3 id="42-the-solution-typed-immutable-struct">4.2 The Solution: Typed Immutable Struct</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/structs/avatars/actions.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/struct"</span>
+
+<span class="k">module</span> <span class="nn">Avatars</span>
+  <span class="k">class</span> <span class="nc">Actions</span> <span class="o">&lt;</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Struct</span>
+    <span class="c1"># Allow string keys from input hash</span>
+    <span class="n">transform_keys</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:to_sym</span><span class="p">)</span>
+
+    <span class="c1"># Required fields with defaults (always present in payload)</span>
+    <span class="n">attribute?</span> <span class="ss">:access_status</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">AccessStatus</span><span class="p">.</span><span class="nf">default</span><span class="p">(</span><span class="s2">"none"</span><span class="p">.</span><span class="nf">freeze</span><span class="p">)</span>
+    <span class="n">attribute?</span> <span class="ss">:avatar_viewed</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">SafeBool</span><span class="p">.</span><span class="nf">default</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
+    <span class="n">attribute?</span> <span class="ss">:is_saved</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">SafeBool</span><span class="p">.</span><span class="nf">default</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
+
+    <span class="c1"># Optional fields (only in payload when present)</span>
+    <span class="n">attribute?</span> <span class="ss">:note</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">OptionalString</span>
+    <span class="n">attribute?</span> <span class="ss">:thumb_status</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">ThumbStatus</span>
+    <span class="n">attribute?</span> <span class="ss">:applied_at</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">ISO8601String</span>
+    <span class="n">attribute?</span> <span class="ss">:access_expired</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Bool</span><span class="p">.</span><span class="nf">optional</span>
+    <span class="n">attribute?</span> <span class="ss">:access_end_reason</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">AccessEndReason</span>
+    <span class="n">attribute?</span> <span class="ss">:chat_id</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">OptionalInteger</span>
+    <span class="n">attribute?</span> <span class="ss">:is_shared</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Bool</span><span class="p">.</span><span class="nf">optional</span>
+
+    <span class="c1"># Clean serialization for API response</span>
+    <span class="k">def</span> <span class="nf">to_payload</span>
+      <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="ss">access_status: </span><span class="n">access_status</span><span class="p">,</span>
+        <span class="ss">avatar_viewed: </span><span class="n">avatar_viewed</span><span class="p">,</span>
+        <span class="ss">is_saved: </span><span class="n">is_saved</span>
+      <span class="p">}</span>
+
+      <span class="c1"># Add optional fields only when present</span>
+      <span class="n">payload</span><span class="p">[</span><span class="ss">:note</span><span class="p">]</span> <span class="o">=</span> <span class="n">note</span> <span class="k">if</span> <span class="n">note</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">payload</span><span class="p">[</span><span class="ss">:thumb_status</span><span class="p">]</span> <span class="o">=</span> <span class="n">thumb_status</span> <span class="k">if</span> <span class="n">thumb_status</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">payload</span><span class="p">[</span><span class="ss">:applied_at</span><span class="p">]</span> <span class="o">=</span> <span class="n">applied_at</span> <span class="k">if</span> <span class="n">applied_at</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">payload</span><span class="p">[</span><span class="ss">:access_expired</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_expired</span> <span class="k">unless</span> <span class="n">access_expired</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="n">payload</span><span class="p">[</span><span class="ss">:access_end_reason</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_end_reason</span> <span class="k">if</span> <span class="n">access_end_reason</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">payload</span><span class="p">[</span><span class="ss">:chat_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">chat_id</span> <span class="k">if</span> <span class="n">chat_id</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">payload</span><span class="p">[</span><span class="ss">:is_shared</span><span class="p">]</span> <span class="o">=</span> <span class="kp">true</span> <span class="k">if</span> <span class="n">is_shared</span> <span class="o">==</span> <span class="kp">true</span>
+
+      <span class="n">payload</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="43-before-vs-after-comparison">4.3 Before vs After Comparison</h3>
+
+<p><strong>Before (manual hash building):</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 70+ lines scattered across service and blueprint</span>
+<span class="k">def</span> <span class="nf">build_actions_payload</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+  <span class="n">actions</span> <span class="o">=</span> <span class="n">extract_actions_data</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">].</span><span class="nf">to_s</span>
+  <span class="n">result</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">]</span> <span class="o">=</span> <span class="no">ACCESS_STATUS_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">?</span> <span class="n">status</span> <span class="p">:</span> <span class="s2">"none"</span>
+  <span class="n">result</span><span class="p">[</span><span class="ss">:avatar_viewed</span><span class="p">]</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="ss">:avatar_viewed</span><span class="p">]</span> <span class="o">==</span> <span class="kp">true</span>
+  <span class="c1"># ... 60 more lines of manual processing</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>After (struct instantiation):</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Service creates struct</span>
+<span class="n">actions</span> <span class="o">=</span> <span class="no">Avatars</span><span class="o">::</span><span class="no">Actions</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+  <span class="ss">access_status: </span><span class="n">compute_access_status</span><span class="p">,</span>
+  <span class="ss">avatar_viewed: </span><span class="n">compute_avatar_viewed</span><span class="p">,</span>
+  <span class="ss">is_saved: </span><span class="n">compute_is_saved</span><span class="p">,</span>
+  <span class="ss">chat_id: </span><span class="n">find_chat_room</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">id</span>
+<span class="p">)</span>
+
+<span class="c1"># Blueprint just calls to_payload</span>
+<span class="n">field</span> <span class="ss">:actions</span> <span class="k">do</span> <span class="o">|</span><span class="n">_avatar</span><span class="p">,</span> <span class="n">options</span><span class="o">|</span>
+  <span class="n">options</span><span class="p">.</span><span class="nf">dig</span><span class="p">(</span><span class="ss">:context</span><span class="p">,</span> <span class="ss">:actions</span><span class="p">).</span><span class="nf">to_payload</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Reduction: 70+ lines → ~15 lines</strong></p>
+
+<h3 id="44-benefits-of-dry-struct">4.4 Benefits of dry-struct</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Raw Hash</th>
+      <th>Dry::Struct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Schema</strong></td>
+      <td>Implicit</td>
+      <td>Explicit, documented</td>
+    </tr>
+    <tr>
+      <td><strong>Type safety</strong></td>
+      <td>None</td>
+      <td>Enforced at construction</td>
+    </tr>
+    <tr>
+      <td><strong>Defaults</strong></td>
+      <td>Manual</td>
+      <td>Declarative</td>
+    </tr>
+    <tr>
+      <td><strong>Mutability</strong></td>
+      <td>Mutable</td>
+      <td>Immutable</td>
+    </tr>
+    <tr>
+      <td><strong>IDE support</strong></td>
+      <td>None</td>
+      <td>Autocomplete attributes</td>
+    </tr>
+    <tr>
+      <td><strong>Testability</strong></td>
+      <td>Test whole flow</td>
+      <td>Test struct in isolation</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-dry-monads-functional-error-handling">5. dry-monads: Functional Error Handling</h2>
+
+<h3 id="51-the-problem-nested-conditionals">5.1 The Problem: Nested Conditionals</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Conditional soup</span>
+<span class="k">def</span> <span class="nf">call</span>
+  <span class="k">return</span> <span class="kp">nil</span> <span class="k">unless</span> <span class="n">avatar</span><span class="p">.</span><span class="nf">present?</span>
+  <span class="k">return</span> <span class="kp">nil</span> <span class="k">unless</span> <span class="n">client_user</span><span class="p">.</span><span class="nf">present?</span>
+  <span class="k">return</span> <span class="kp">nil</span> <span class="k">unless</span> <span class="n">client_user</span><span class="p">.</span><span class="nf">client?</span>
+  <span class="k">return</span> <span class="kp">nil</span> <span class="k">unless</span> <span class="n">avatar_user</span><span class="p">.</span><span class="nf">present?</span>
+
+  <span class="c1"># Happy path finally...</span>
+  <span class="n">build_actions</span>
+<span class="k">rescue</span> <span class="no">StandardError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="no">Rails</span><span class="p">.</span><span class="nf">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+  <span class="kp">nil</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Early returns obscure happy path</li>
+  <li>Error information lost (just returns nil)</li>
+  <li>Caller can’t distinguish “no data” from “error”</li>
+  <li>No composability</li>
+</ul>
+
+<h3 id="52-the-solution-result-monad">5.2 The Solution: Result Monad</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/services/avatars/actions_builder.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/monads"</span>
+
+<span class="k">module</span> <span class="nn">Avatars</span>
+  <span class="k">class</span> <span class="nc">ActionsBuilder</span>
+    <span class="kp">include</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Monads</span><span class="p">[</span><span class="ss">:result</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">call</span>
+      <span class="k">return</span> <span class="no">Success</span><span class="p">(</span><span class="n">default_actions_struct</span><span class="p">)</span> <span class="k">unless</span> <span class="n">valid_context?</span>
+
+      <span class="no">Success</span><span class="p">(</span><span class="n">build_actions_struct</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">valid_context?</span>
+      <span class="n">avatar</span><span class="p">.</span><span class="nf">present?</span> <span class="o">&amp;&amp;</span>
+        <span class="n">client_user</span><span class="p">.</span><span class="nf">present?</span> <span class="o">&amp;&amp;</span>
+        <span class="n">client_user</span><span class="p">.</span><span class="nf">client?</span> <span class="o">&amp;&amp;</span>
+        <span class="n">avatar_user</span><span class="p">.</span><span class="nf">present?</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">default_actions_struct</span>
+      <span class="no">Avatars</span><span class="o">::</span><span class="no">Actions</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+        <span class="ss">access_status: </span><span class="s2">"none"</span><span class="p">,</span>
+        <span class="ss">avatar_viewed: </span><span class="kp">false</span><span class="p">,</span>
+        <span class="ss">is_saved: </span><span class="kp">false</span>
+      <span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">build_actions_struct</span>
+      <span class="no">Avatars</span><span class="o">::</span><span class="no">Actions</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+        <span class="ss">access_status: </span><span class="n">compute_access_status</span><span class="p">,</span>
+        <span class="ss">avatar_viewed: </span><span class="n">compute_avatar_viewed</span><span class="p">,</span>
+        <span class="c1"># ... other fields</span>
+      <span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="53-controller-integration">5.3 Controller Integration</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/api/v1/game_controller.rb</span>
+<span class="k">def</span> <span class="nf">show</span>
+  <span class="n">flags</span> <span class="o">=</span> <span class="n">visibility_flags</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">)</span>
+  <span class="n">context</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">visibility_flags: </span><span class="n">flags</span><span class="p">,</span> <span class="ss">host: </span><span class="n">request</span><span class="p">.</span><span class="nf">base_url</span> <span class="p">}</span>
+
+  <span class="k">if</span> <span class="n">current_user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">client?</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">actions_builder</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">avatar: </span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">client_user: </span><span class="n">current_user</span><span class="p">)</span>
+    <span class="n">context</span><span class="p">[</span><span class="ss">:actions</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="nf">value!</span> <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="nf">success?</span>
+  <span class="k">end</span>
+
+  <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">data: </span><span class="no">AvatarBlueprint</span><span class="p">.</span><span class="nf">render_as_hash</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">context: </span><span class="n">context</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="54-pattern-matching-with-results">5.4 Pattern Matching with Results</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For more complex flows, pattern match on Result</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">ActionsBuilder</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">avatar: </span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">client_user: </span><span class="n">current_user</span><span class="p">)</span>
+
+<span class="k">case</span> <span class="n">result</span>
+<span class="k">in</span> <span class="no">Success</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+  <span class="n">render_success</span><span class="p">(</span><span class="n">actions</span><span class="p">.</span><span class="nf">to_payload</span><span class="p">)</span>
+<span class="k">in</span> <span class="no">Failure</span><span class="p">[</span><span class="ss">:invalid_context</span><span class="p">,</span> <span class="n">reason</span><span class="p">]</span>
+  <span class="no">Rails</span><span class="p">.</span><span class="nf">logger</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="s2">"Invalid context: </span><span class="si">#{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+  <span class="n">render_default_actions</span>
+<span class="k">in</span> <span class="no">Failure</span><span class="p">[</span><span class="ss">:database_error</span><span class="p">,</span> <span class="n">exception</span><span class="p">]</span>
+  <span class="no">Sentry</span><span class="p">.</span><span class="nf">capture_exception</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+  <span class="n">head</span> <span class="ss">:internal_server_error</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="55-composing-multiple-operations">5.5 Composing Multiple Operations</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Chain operations that might fail</span>
+<span class="k">class</span> <span class="nc">ProcessOrder</span>
+  <span class="kp">include</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Monads</span><span class="p">[</span><span class="ss">:result</span><span class="p">,</span> <span class="ss">:do</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">order_params</span><span class="p">)</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">validate_order</span><span class="p">(</span><span class="n">order_params</span><span class="p">)</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">find_user</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="nf">player_id</span><span class="p">)</span>
+    <span class="n">payment</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">charge_payment</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">order</span><span class="p">.</span><span class="nf">total</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">send_confirmation</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">payment</span><span class="p">)</span>
+
+    <span class="no">Success</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">validate_order</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="c1"># Returns Success(order) or Failure([:validation, errors])</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">charge_payment</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+    <span class="c1"># Returns Success(payment) or Failure([:payment_failed, reason])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">yield</code> keyword automatically unwraps <code class="language-plaintext highlighter-rouge">Success</code> values and short-circuits on <code class="language-plaintext highlighter-rouge">Failure</code>.</p>
+
+<hr />
+
+<h2 id="6-dry-validation-contract-based-validation">6. dry-validation: Contract-Based Validation</h2>
+
+<h3 id="61-the-problem-validation-logic-everywhere">6.1 The Problem: Validation Logic Everywhere</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Validation scattered across controller, model, and service</span>
+<span class="k">class</span> <span class="nc">ItemsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="c1"># Controller validation</span>
+    <span class="k">return</span> <span class="n">render_error</span><span class="p">(</span><span class="s2">"Title required"</span><span class="p">)</span> <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="ss">:title</span><span class="p">].</span><span class="nf">blank?</span>
+    <span class="k">return</span> <span class="n">render_error</span><span class="p">(</span><span class="s2">"Invalid status"</span><span class="p">)</span> <span class="k">unless</span> <span class="no">VALID_STATUSES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:status</span><span class="p">])</span>
+
+    <span class="vi">@item</span> <span class="o">=</span> <span class="no">Item</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">item_params</span><span class="p">)</span>
+    <span class="c1"># Model validation runs here too...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Item</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="c1"># Model validation</span>
+  <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:status</span><span class="p">,</span> <span class="ss">inclusion: </span><span class="p">{</span> <span class="ss">in: </span><span class="no">VALID_STATUSES</span> <span class="p">}</span>
+  <span class="n">validate</span> <span class="ss">:price_must_be_positive_for_published</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Validation logic duplicated (controller + model)</li>
+  <li>Cross-field rules awkward in ActiveRecord</li>
+  <li>Hard to test validation in isolation</li>
+  <li>Error messages inconsistent</li>
+</ul>
+
+<h3 id="62-the-solution-validation-contracts">6.2 The Solution: Validation Contracts</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/contracts/avatars/actions_contract.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/validation"</span>
+
+<span class="k">module</span> <span class="nn">Avatars</span>
+  <span class="k">class</span> <span class="nc">ActionsContract</span> <span class="o">&lt;</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Validation</span><span class="o">::</span><span class="no">Contract</span>
+    <span class="c1"># Schema definition - coerces and validates structure</span>
+    <span class="n">params</span> <span class="k">do</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:access_status</span><span class="p">).</span><span class="nf">filled</span><span class="p">(</span><span class="ss">:string</span><span class="p">)</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:avatar_viewed</span><span class="p">).</span><span class="nf">filled</span><span class="p">(</span><span class="ss">:bool</span><span class="p">)</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:is_saved</span><span class="p">).</span><span class="nf">filled</span><span class="p">(</span><span class="ss">:bool</span><span class="p">)</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:note</span><span class="p">).</span><span class="nf">maybe</span><span class="p">(</span><span class="ss">:string</span><span class="p">)</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:thumb_status</span><span class="p">).</span><span class="nf">maybe</span><span class="p">(</span><span class="ss">:string</span><span class="p">)</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:access_expired</span><span class="p">).</span><span class="nf">maybe</span><span class="p">(</span><span class="ss">:bool</span><span class="p">)</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:access_end_reason</span><span class="p">).</span><span class="nf">maybe</span><span class="p">(</span><span class="ss">:string</span><span class="p">)</span>
+      <span class="n">optional</span><span class="p">(</span><span class="ss">:chat_id</span><span class="p">).</span><span class="nf">maybe</span><span class="p">(</span><span class="ss">:integer</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="c1"># Enum validation rules</span>
+    <span class="n">rule</span><span class="p">(</span><span class="ss">:access_status</span><span class="p">)</span> <span class="k">do</span>
+      <span class="k">next</span> <span class="k">if</span> <span class="n">value</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="k">unless</span> <span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">ACCESS_STATUS_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">key</span><span class="p">.</span><span class="nf">failure</span><span class="p">(</span><span class="s2">"must be one of: </span><span class="si">#{</span><span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">ACCESS_STATUS_VALUES</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="n">rule</span><span class="p">(</span><span class="ss">:thumb_status</span><span class="p">)</span> <span class="k">do</span>
+      <span class="k">next</span> <span class="k">if</span> <span class="n">value</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="k">unless</span> <span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">THUMB_STATUS_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">key</span><span class="p">.</span><span class="nf">failure</span><span class="p">(</span><span class="s2">"must be one of: </span><span class="si">#{</span><span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">THUMB_STATUS_VALUES</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="c1"># Cross-field validation</span>
+    <span class="n">rule</span><span class="p">(</span><span class="ss">:access_end_reason</span><span class="p">,</span> <span class="ss">:access_expired</span><span class="p">)</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="ss">:access_end_reason</span><span class="p">].</span><span class="nf">present?</span> <span class="o">&amp;&amp;</span> <span class="n">values</span><span class="p">[</span><span class="ss">:access_expired</span><span class="p">]</span> <span class="o">!=</span> <span class="kp">true</span>
+        <span class="n">key</span><span class="p">(</span><span class="ss">:access_end_reason</span><span class="p">).</span><span class="nf">failure</span><span class="p">(</span><span class="s2">"requires access_expired to be true"</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="63-using-contracts">6.3 Using Contracts</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">contract</span> <span class="o">=</span> <span class="no">Avatars</span><span class="o">::</span><span class="no">ActionsContract</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="nf">to_unsafe_h</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="nf">success?</span>
+  <span class="c1"># Validated and coerced data</span>
+  <span class="n">actions</span> <span class="o">=</span> <span class="no">Avatars</span><span class="o">::</span><span class="no">Actions</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">to_h</span><span class="p">)</span>
+<span class="k">else</span>
+  <span class="c1"># Structured errors</span>
+  <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">errors: </span><span class="n">result</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">to_h</span> <span class="p">},</span> <span class="ss">status: :unprocessable_entity</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="64-contract-vs-model-validation">6.4 Contract vs Model Validation</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>ActiveRecord Validation</th>
+      <th>Dry::Validation Contract</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>When runs</strong></td>
+      <td>Before save</td>
+      <td>Before touching model</td>
+    </tr>
+    <tr>
+      <td><strong>Cross-field rules</strong></td>
+      <td>Custom validators</td>
+      <td>Declarative <code class="language-plaintext highlighter-rouge">rule</code> blocks</td>
+    </tr>
+    <tr>
+      <td><strong>Testability</strong></td>
+      <td>Requires model instance</td>
+      <td>Pure Ruby, no DB</td>
+    </tr>
+    <tr>
+      <td><strong>Reusability</strong></td>
+      <td>Tied to model</td>
+      <td>Standalone class</td>
+    </tr>
+    <tr>
+      <td><strong>Error format</strong></td>
+      <td>Rails format</td>
+      <td>Customizable</td>
+    </tr>
+    <tr>
+      <td><strong>Coercion</strong></td>
+      <td>Limited</td>
+      <td>Built-in via schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Use both:</strong> Contracts for input validation (API layer), ActiveRecord for data integrity (persistence layer).</p>
+
+<hr />
+
+<h2 id="7-dry-container--dry-auto_inject-dependency-injection">7. dry-container + dry-auto_inject: Dependency Injection</h2>
+
+<h3 id="71-the-problem-hard-coded-dependencies">7.1 The Problem: Hard-Coded Dependencies</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Tight coupling to class names</span>
+<span class="k">class</span> <span class="nc">GameController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">flags</span> <span class="o">=</span> <span class="no">Visibility</span><span class="o">::</span><span class="no">AvatarVisibilityFlags</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="no">Avatars</span><span class="o">::</span><span class="no">ActionsBuilder</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">avatar: </span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">client_user: </span><span class="n">current_user</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Testing requires stubbing constants</span>
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">GameController</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="n">allow</span><span class="p">(</span><span class="no">Visibility</span><span class="o">::</span><span class="no">AvatarVisibilityFlags</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:get</span><span class="p">).</span><span class="nf">and_return</span><span class="p">({})</span>
+    <span class="n">allow</span><span class="p">(</span><span class="no">Avatars</span><span class="o">::</span><span class="no">ActionsBuilder</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:call</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="no">Success</span><span class="p">({}))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Can’t easily swap implementations</li>
+  <li>Testing requires monkey-patching</li>
+  <li>Dependencies hidden in method bodies</li>
+  <li>No central registry of services</li>
+</ul>
+
+<h3 id="72-the-solution-container--injection">7.2 The Solution: Container + Injection</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/container.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/container"</span>
+<span class="nb">require</span> <span class="s2">"dry/auto_inject"</span>
+
+<span class="k">class</span> <span class="nc">AppContainer</span>
+  <span class="kp">extend</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Container</span><span class="o">::</span><span class="no">Mixin</span>
+
+  <span class="c1"># Register services</span>
+  <span class="n">register</span><span class="p">(</span><span class="ss">:actions_builder</span><span class="p">)</span> <span class="p">{</span> <span class="no">Avatars</span><span class="o">::</span><span class="no">ActionsBuilder</span> <span class="p">}</span>
+  <span class="n">register</span><span class="p">(</span><span class="ss">:visibility_flags</span><span class="p">)</span> <span class="p">{</span> <span class="no">Visibility</span><span class="o">::</span><span class="no">AvatarVisibilityFlags</span> <span class="p">}</span>
+
+  <span class="c1"># Future additions</span>
+  <span class="c1"># register(:email_service) { EmailService.new }</span>
+  <span class="c1"># register(:payment_gateway) { Stripe::Client.new(ENV['STRIPE_KEY']) }</span>
+<span class="k">end</span>
+
+<span class="c1"># For POROs (constructor injection)</span>
+<span class="no">Import</span> <span class="o">=</span> <span class="no">Dry</span><span class="o">::</span><span class="no">AutoInject</span><span class="p">(</span><span class="no">AppContainer</span><span class="p">)</span>
+
+<span class="c1"># For Rails controllers (memoized accessors)</span>
+<span class="k">module</span> <span class="nn">Deps</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="n">base</span><span class="p">.</span><span class="nf">class_eval</span> <span class="k">do</span>
+      <span class="no">AppContainer</span><span class="p">.</span><span class="nf">keys</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="o">|</span>
+        <span class="n">define_method</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">do</span>
+          <span class="vi">@_deps_cache</span> <span class="o">||=</span> <span class="p">{}</span>
+          <span class="vi">@_deps_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">||=</span> <span class="no">AppContainer</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="73-controller-with-injection">7.3 Controller with Injection</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/api/v1/game_controller.rb</span>
+<span class="k">class</span> <span class="nc">GameController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="kp">include</span> <span class="no">Deps</span>  <span class="c1"># Inject all registered dependencies</span>
+
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">flags</span> <span class="o">=</span> <span class="n">visibility_flags</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">)</span>           <span class="c1"># Use injected service</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">actions_builder</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>               <span class="c1"># Use injected builder</span>
+    <span class="c1"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="74-testing-with-injection">7.4 Testing with Injection</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Spec: Easy stubbing via dependency override</span>
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">GameController</span> <span class="k">do</span>
+  <span class="n">let</span><span class="p">(</span><span class="ss">:mock_builder</span><span class="p">)</span> <span class="p">{</span> <span class="n">double</span><span class="p">(</span><span class="s2">"ActionsBuilder"</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">let</span><span class="p">(</span><span class="ss">:mock_flags</span><span class="p">)</span> <span class="p">{</span> <span class="n">double</span><span class="p">(</span><span class="s2">"VisibilityFlags"</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="c1"># Override container registrations for test</span>
+    <span class="no">AppContainer</span><span class="p">.</span><span class="nf">stub</span><span class="p">(</span><span class="ss">:actions_builder</span><span class="p">,</span> <span class="n">mock_builder</span><span class="p">)</span>
+    <span class="no">AppContainer</span><span class="p">.</span><span class="nf">stub</span><span class="p">(</span><span class="ss">:visibility_flags</span><span class="p">,</span> <span class="n">mock_flags</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"uses injected dependencies"</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">mock_flags</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:get</span><span class="p">).</span><span class="nf">and_return</span><span class="p">({})</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">mock_builder</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:call</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="no">Success</span><span class="p">(</span><span class="n">default_actions</span><span class="p">))</span>
+
+    <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">id: </span><span class="n">avatar</span><span class="p">.</span><span class="nf">id</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="75-benefits-of-dependency-injection">7.5 Benefits of Dependency Injection</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Without DI</th>
+      <th>With DI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ClassName.call(...)</code> scattered</td>
+      <td>Centralized registry</td>
+    </tr>
+    <tr>
+      <td>Test with <code class="language-plaintext highlighter-rouge">allow(ClassName)</code></td>
+      <td>Test with mock injection</td>
+    </tr>
+    <tr>
+      <td>Change implementation = change every caller</td>
+      <td>Change registration only</td>
+    </tr>
+    <tr>
+      <td>Dependencies implicit</td>
+      <td>Dependencies explicit</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="8-dry-matcher-pattern-matching-for-results">8. dry-matcher: Pattern Matching for Results</h2>
+
+<h3 id="81-the-problem-verbose-result-handling">8.1 The Problem: Verbose Result Handling</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Manual success/failure checks</span>
+<span class="k">def</span> <span class="nf">show</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">actions_builder</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">avatar: </span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">client_user: </span><span class="n">current_user</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="nf">success?</span>
+    <span class="n">context</span><span class="p">[</span><span class="ss">:actions</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="nf">value!</span>
+  <span class="k">else</span>
+    <span class="k">case</span> <span class="n">result</span><span class="p">.</span><span class="nf">failure</span>
+    <span class="k">when</span> <span class="ss">:not_found</span>
+      <span class="n">head</span> <span class="ss">:not_found</span>
+    <span class="k">when</span> <span class="ss">:unauthorized</span>
+      <span class="n">head</span> <span class="ss">:unauthorized</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">error: </span><span class="n">result</span><span class="p">.</span><span class="nf">failure</span> <span class="p">},</span> <span class="ss">status: :unprocessable_entity</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Verbose conditional logic</li>
+  <li>Easy to forget failure cases</li>
+  <li>Not composable</li>
+  <li>Repeated patterns across controllers</li>
+</ul>
+
+<h3 id="82-the-solution-pattern-matching-concern">8.2 The Solution: Pattern Matching Concern</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/concerns/result_matchable.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/matcher/result_matcher"</span>
+
+<span class="k">module</span> <span class="nn">ResultMatchable</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+
+  <span class="n">included</span> <span class="k">do</span>
+    <span class="n">class_attribute</span> <span class="ss">:result_matcher</span><span class="p">,</span> <span class="ss">default: </span><span class="no">Dry</span><span class="o">::</span><span class="no">Matcher</span><span class="o">::</span><span class="no">ResultMatcher</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Match on a Dry::Monads::Result with pattern matching</span>
+  <span class="k">def</span> <span class="nf">match_result</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">result_matcher</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Extract value from Success or return nil for Failure</span>
+  <span class="k">def</span> <span class="nf">unwrap_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">result</span><span class="p">.</span><span class="nf">success?</span> <span class="p">?</span> <span class="n">result</span><span class="p">.</span><span class="nf">value!</span> <span class="p">:</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Returns [success?, value_or_error]</span>
+  <span class="k">def</span> <span class="nf">result_tuple</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="nf">success?</span>
+      <span class="p">[</span><span class="kp">true</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="nf">value!</span><span class="p">]</span>
+    <span class="k">else</span>
+      <span class="p">[</span><span class="kp">false</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="nf">failure</span><span class="p">]</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="83-controller-with-pattern-matching">8.3 Controller with Pattern Matching</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/api/v1/game_controller.rb</span>
+<span class="k">class</span> <span class="nc">GameController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="kp">include</span> <span class="no">ResultMatchable</span>  <span class="c1"># Add pattern matching</span>
+
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">actions_builder</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">avatar: </span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">client_user: </span><span class="n">current_user</span><span class="p">)</span>
+
+    <span class="c1"># Simple extraction</span>
+    <span class="n">context</span><span class="p">[</span><span class="ss">:actions</span><span class="p">]</span> <span class="o">=</span> <span class="n">unwrap_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="c1"># Or full pattern matching for complex flows</span>
+    <span class="n">match_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span>
+      <span class="n">m</span><span class="p">.</span><span class="nf">success</span> <span class="p">{</span> <span class="o">|</span><span class="n">actions</span><span class="o">|</span> <span class="n">context</span><span class="p">[</span><span class="ss">:actions</span><span class="p">]</span> <span class="o">=</span> <span class="n">actions</span> <span class="p">}</span>
+      <span class="n">m</span><span class="p">.</span><span class="nf">failure</span><span class="p">(</span><span class="ss">:not_found</span><span class="p">)</span> <span class="p">{</span> <span class="n">head</span> <span class="ss">:not_found</span><span class="p">;</span> <span class="k">return</span> <span class="p">}</span>
+      <span class="n">m</span><span class="p">.</span><span class="nf">failure</span><span class="p">(</span><span class="ss">:unauthorized</span><span class="p">)</span> <span class="p">{</span> <span class="n">head</span> <span class="ss">:unauthorized</span><span class="p">;</span> <span class="k">return</span> <span class="p">}</span>
+      <span class="n">m</span><span class="p">.</span><span class="nf">failure</span> <span class="p">{</span> <span class="o">|</span><span class="n">error</span><span class="o">|</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">logger</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="s2">"Actions failed: </span><span class="si">#{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">end</span>
+
+    <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">data: </span><span class="no">AvatarBlueprint</span><span class="p">.</span><span class="nf">render_as_hash</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">context: </span><span class="n">context</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="84-before-vs-after">8.4 Before vs After</h3>
+
+<p><strong>Before:</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 15 lines of conditional logic</span>
+<span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="nf">success?</span>
+  <span class="n">context</span><span class="p">[</span><span class="ss">:actions</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="nf">value!</span>
+<span class="k">else</span>
+  <span class="k">case</span> <span class="n">result</span><span class="p">.</span><span class="nf">failure</span>
+  <span class="k">when</span> <span class="ss">:not_found</span> <span class="k">then</span> <span class="n">head</span> <span class="ss">:not_found</span>
+  <span class="k">when</span> <span class="ss">:unauthorized</span> <span class="k">then</span> <span class="n">head</span> <span class="ss">:unauthorized</span>
+  <span class="k">else</span> <span class="n">render_error</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">failure</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>After:</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1 line for simple cases</span>
+<span class="n">context</span><span class="p">[</span><span class="ss">:actions</span><span class="p">]</span> <span class="o">=</span> <span class="n">unwrap_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># Or declarative matching for complex cases</span>
+<span class="n">match_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span>
+  <span class="n">m</span><span class="p">.</span><span class="nf">success</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">context</span><span class="p">[</span><span class="ss">:actions</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span> <span class="p">}</span>
+  <span class="n">m</span><span class="p">.</span><span class="nf">failure</span><span class="p">(</span><span class="ss">:not_found</span><span class="p">)</span> <span class="p">{</span> <span class="n">head</span> <span class="ss">:not_found</span> <span class="p">}</span>
+  <span class="n">m</span><span class="p">.</span><span class="nf">failure</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">render_error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="85-benefits">8.5 Benefits</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Without dry-matcher</th>
+      <th>With dry-matcher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">if/case</code> statements</td>
+      <td>Declarative blocks</td>
+    </tr>
+    <tr>
+      <td>Easy to miss cases</td>
+      <td>Exhaustive matching</td>
+    </tr>
+    <tr>
+      <td>Scattered handling</td>
+      <td>Centralized concern</td>
+    </tr>
+    <tr>
+      <td>Hard to test branches</td>
+      <td>Each handler testable</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="9-dry-configurable-thread-safe-configuration">9. dry-configurable: Thread-Safe Configuration</h2>
+
+<h3 id="91-the-problem-scattered-constants">9.1 The Problem: Scattered Constants</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Constants scattered across files</span>
+<span class="k">class</span> <span class="nc">AvatarBlueprint</span> <span class="o">&lt;</span> <span class="no">ApplicationBlueprint</span>
+  <span class="no">ACCESS_STATUS_VALUES</span> <span class="o">=</span> <span class="sx">%w[none requested approved denied removed shared]</span><span class="p">.</span><span class="nf">freeze</span>
+  <span class="no">CACHE_TTL</span> <span class="o">=</span> <span class="mi">5</span><span class="p">.</span><span class="nf">minutes</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">AccessRequest</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="no">EXPIRY_DAYS</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">GameController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="no">MAX_PER_PAGE</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Configuration scattered across classes</li>
+  <li>Hard to find all config values</li>
+  <li>No nesting or organization</li>
+  <li>Testing requires constant stubbing</li>
+  <li>Not thread-safe for dynamic changes</li>
+</ul>
+
+<h3 id="92-the-solution-centralized-configuration">9.2 The Solution: Centralized Configuration</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/config/avatar_config.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/configurable"</span>
+
+<span class="k">class</span> <span class="nc">AvatarConfig</span>
+  <span class="kp">extend</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Configurable</span>
+
+  <span class="c1"># Actions settings</span>
+  <span class="n">setting</span> <span class="ss">:actions</span> <span class="k">do</span>
+    <span class="n">setting</span> <span class="ss">:cache_ttl</span><span class="p">,</span> <span class="ss">default: </span><span class="mi">5</span><span class="p">.</span><span class="nf">minutes</span>
+    <span class="n">setting</span> <span class="ss">:default_access_status</span><span class="p">,</span> <span class="ss">default: </span><span class="s2">"none"</span>
+    <span class="n">setting</span> <span class="ss">:default_avatar_viewed</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">false</span>
+    <span class="n">setting</span> <span class="ss">:default_is_saved</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">false</span>
+
+    <span class="n">setting</span> <span class="ss">:access_status_values</span><span class="p">,</span> <span class="ss">default: </span><span class="sx">%w[none requested approved denied removed shared]</span><span class="p">.</span><span class="nf">freeze</span>
+    <span class="n">setting</span> <span class="ss">:thumb_status_values</span><span class="p">,</span> <span class="ss">default: </span><span class="sx">%w[liked disliked]</span><span class="p">.</span><span class="nf">freeze</span>
+    <span class="n">setting</span> <span class="ss">:access_end_reason_values</span><span class="p">,</span> <span class="ss">default: </span><span class="sx">%w[expired declined blocked removed]</span><span class="p">.</span><span class="nf">freeze</span>
+
+    <span class="n">setting</span> <span class="ss">:status_mapping</span><span class="p">,</span> <span class="ss">default: </span><span class="p">{</span>
+      <span class="s2">"pending"</span> <span class="o">=&gt;</span> <span class="s2">"requested"</span><span class="p">,</span>
+      <span class="s2">"approved"</span> <span class="o">=&gt;</span> <span class="s2">"approved"</span><span class="p">,</span>
+      <span class="s2">"declined"</span> <span class="o">=&gt;</span> <span class="s2">"denied"</span><span class="p">,</span>
+      <span class="s2">"blocked"</span> <span class="o">=&gt;</span> <span class="s2">"denied"</span><span class="p">,</span>
+      <span class="s2">"expired"</span> <span class="o">=&gt;</span> <span class="s2">"removed"</span>
+    <span class="p">}.</span><span class="nf">freeze</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Visibility settings</span>
+  <span class="n">setting</span> <span class="ss">:visibility</span> <span class="k">do</span>
+    <span class="n">setting</span> <span class="ss">:default_mode</span><span class="p">,</span> <span class="ss">default: </span><span class="s2">"visible"</span>
+    <span class="n">setting</span> <span class="ss">:modes</span><span class="p">,</span> <span class="ss">default: </span><span class="sx">%w[visible semi_anonymous fully_anonymous]</span><span class="p">.</span><span class="nf">freeze</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Access request settings</span>
+  <span class="n">setting</span> <span class="ss">:access</span> <span class="k">do</span>
+    <span class="n">setting</span> <span class="ss">:request_expiry_days</span><span class="p">,</span> <span class="ss">default: </span><span class="mi">30</span>
+    <span class="n">setting</span> <span class="ss">:auto_approve_verified_companies</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">false</span>
+    <span class="n">setting</span> <span class="ss">:max_pending_per_company</span><span class="p">,</span> <span class="ss">default: </span><span class="mi">100</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Event publishing settings</span>
+  <span class="n">setting</span> <span class="ss">:events</span> <span class="k">do</span>
+    <span class="n">setting</span> <span class="ss">:publish_avatar_views</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">true</span>
+    <span class="n">setting</span> <span class="ss">:publish_access_events</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="93-usage-in-code">9.3 Usage in Code</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Access nested settings with dot notation</span>
+<span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">actions</span><span class="p">.</span><span class="nf">cache_ttl</span>           <span class="c1"># =&gt; 5.minutes</span>
+<span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">actions</span><span class="p">.</span><span class="nf">status_mapping</span>      <span class="c1"># =&gt; {"pending" =&gt; "requested", ...}</span>
+<span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">visibility</span><span class="p">.</span><span class="nf">default_mode</span>     <span class="c1"># =&gt; "visible"</span>
+<span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">access</span><span class="p">.</span><span class="nf">request_expiry_days</span>  <span class="c1"># =&gt; 30</span>
+
+<span class="c1"># Use in service objects</span>
+<span class="k">class</span> <span class="nc">ActionsBuilder</span>
+  <span class="k">def</span> <span class="nf">default_actions_struct</span>
+    <span class="no">Avatars</span><span class="o">::</span><span class="no">Actions</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+      <span class="ss">access_status: </span><span class="n">config</span><span class="p">.</span><span class="nf">default_access_status</span><span class="p">,</span>
+      <span class="ss">avatar_viewed: </span><span class="n">config</span><span class="p">.</span><span class="nf">default_avatar_viewed</span><span class="p">,</span>
+      <span class="ss">is_saved: </span><span class="n">config</span><span class="p">.</span><span class="nf">default_is_saved</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">config</span>
+    <span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">actions</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="94-testing-with-configuration">9.4 Testing with Configuration</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">ActionsBuilder</span> <span class="k">do</span>
+  <span class="c1"># Override config for test</span>
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="n">allow</span><span class="p">(</span><span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">actions</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:cache_ttl</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Or use configure block</span>
+  <span class="n">around</span> <span class="k">do</span> <span class="o">|</span><span class="n">example</span><span class="o">|</span>
+    <span class="n">original</span> <span class="o">=</span> <span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">actions</span><span class="p">.</span><span class="nf">cache_ttl</span>
+    <span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">configure</span> <span class="p">{</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span> <span class="n">c</span><span class="p">.</span><span class="nf">actions</span><span class="p">.</span><span class="nf">cache_ttl</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="n">example</span><span class="p">.</span><span class="nf">run</span>
+    <span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">configure</span> <span class="p">{</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span> <span class="n">c</span><span class="p">.</span><span class="nf">actions</span><span class="p">.</span><span class="nf">cache_ttl</span> <span class="o">=</span> <span class="n">original</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="95-before-vs-after">9.5 Before vs After</h3>
+
+<p><strong>Before:</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Hunt through 10 files to find all avatar-related constants</span>
+<span class="n">grep</span> <span class="o">-</span><span class="n">r</span> <span class="s2">"CACHE_TTL</span><span class="se">\|</span><span class="s2">EXPIRY_DAYS</span><span class="se">\|</span><span class="s2">MAX_"</span> <span class="n">app</span><span class="o">/</span>
+</code></pre></div></div>
+
+<p><strong>After:</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># One file, organized by domain</span>
+<span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span>  <span class="c1"># =&gt; nested configuration tree</span>
+</code></pre></div></div>
+
+<h3 id="96-benefits">9.6 Benefits</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scattered Constants</th>
+      <th>dry-configurable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Find: grep across codebase</td>
+      <td>Find: one file</td>
+    </tr>
+    <tr>
+      <td>Organize: N/A</td>
+      <td>Organize: nested settings</td>
+    </tr>
+    <tr>
+      <td>Test: stub constants</td>
+      <td>Test: configure block</td>
+    </tr>
+    <tr>
+      <td>Thread-safe: No</td>
+      <td>Thread-safe: Yes</td>
+    </tr>
+    <tr>
+      <td>Document: comments</td>
+      <td>Document: structure IS docs</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="10-dry-initializer-declarative-parameter-dsl">10. dry-initializer: Declarative Parameter DSL</h2>
+
+<h3 id="101-the-problem-boilerplate-initialize-methods">10.1 The Problem: Boilerplate Initialize Methods</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Manual parameter handling</span>
+<span class="k">class</span> <span class="nc">ActionsBuilder</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">avatar</span><span class="p">:,</span> <span class="n">client_user</span><span class="p">:)</span>
+    <span class="vi">@avatar</span> <span class="o">=</span> <span class="n">avatar</span>
+    <span class="vi">@client_user</span> <span class="o">=</span> <span class="n">client_user</span>
+    <span class="vi">@avatar_user</span> <span class="o">=</span> <span class="n">avatar</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">player</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">avatar</span><span class="p">:,</span> <span class="n">client_user</span><span class="p">:)</span>
+    <span class="n">new</span><span class="p">(</span><span class="ss">avatar: </span><span class="n">avatar</span><span class="p">,</span> <span class="ss">client_user: </span><span class="n">client_user</span><span class="p">).</span><span class="nf">call</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="nb">attr_reader</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="ss">:client_user</span><span class="p">,</span> <span class="ss">:avatar_user</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Boilerplate <code class="language-plaintext highlighter-rouge">@x = x</code> assignments</li>
+  <li>Manual <code class="language-plaintext highlighter-rouge">attr_reader</code> for each param</li>
+  <li>No type coercion</li>
+  <li>No default values</li>
+  <li><code class="language-plaintext highlighter-rouge">self.call</code> pattern repeated everywhere</li>
+</ul>
+
+<h3 id="102-the-solution-declarative-parameters">10.2 The Solution: Declarative Parameters</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/services/avatars/actions_builder.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/initializer"</span>
+
+<span class="k">module</span> <span class="nn">Avatars</span>
+  <span class="k">class</span> <span class="nc">ActionsBuilder</span>
+    <span class="kp">extend</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Initializer</span>
+
+    <span class="c1"># Required parameters</span>
+    <span class="n">param</span> <span class="ss">:avatar</span>
+    <span class="n">param</span> <span class="ss">:client_user</span>
+
+    <span class="c1"># Derived option with default</span>
+    <span class="n">option</span> <span class="ss">:avatar_user</span><span class="p">,</span> <span class="ss">default: </span><span class="nb">proc</span> <span class="p">{</span> <span class="n">avatar</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">player</span> <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">avatar</span><span class="p">:,</span> <span class="n">client_user</span><span class="p">:)</span>
+      <span class="n">new</span><span class="p">(</span><span class="n">avatar</span><span class="p">,</span> <span class="n">client_user</span><span class="p">).</span><span class="nf">call</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">call</span>
+      <span class="k">return</span> <span class="no">Success</span><span class="p">(</span><span class="n">default_actions_struct</span><span class="p">)</span> <span class="k">unless</span> <span class="n">valid_context?</span>
+      <span class="no">Success</span><span class="p">(</span><span class="n">build_actions_struct</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="c1"># params are accessible directly - no attr_reader needed</span>
+    <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">valid_context?</span>
+      <span class="n">avatar</span><span class="p">.</span><span class="nf">present?</span> <span class="o">&amp;&amp;</span> <span class="n">client_user</span><span class="p">.</span><span class="nf">present?</span> <span class="o">&amp;&amp;</span> <span class="n">client_user</span><span class="p">.</span><span class="nf">client?</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="103-advanced-features">10.3 Advanced Features</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">OrderProcessor</span>
+  <span class="kp">extend</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Initializer</span>
+
+  <span class="c1"># Required param with type coercion</span>
+  <span class="n">param</span> <span class="ss">:order_id</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Integer</span>
+
+  <span class="c1"># Optional param with default</span>
+  <span class="n">param</span> <span class="ss">:notify</span><span class="p">,</span> <span class="ss">default: </span><span class="nb">proc</span> <span class="p">{</span> <span class="kp">true</span> <span class="p">}</span>
+
+  <span class="c1"># Named options (keyword args)</span>
+  <span class="n">option</span> <span class="ss">:logger</span><span class="p">,</span> <span class="ss">default: </span><span class="nb">proc</span> <span class="p">{</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">logger</span> <span class="p">}</span>
+  <span class="n">option</span> <span class="ss">:mailer</span><span class="p">,</span> <span class="ss">default: </span><span class="nb">proc</span> <span class="p">{</span> <span class="no">OrderMailer</span> <span class="p">}</span>
+
+  <span class="c1"># Type-checked option</span>
+  <span class="n">option</span> <span class="ss">:priority</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">.</span><span class="nf">enum</span><span class="p">(</span><span class="s2">"low"</span><span class="p">,</span> <span class="s2">"normal"</span><span class="p">,</span> <span class="s2">"high"</span><span class="p">),</span> <span class="ss">default: </span><span class="nb">proc</span> <span class="p">{</span> <span class="s2">"normal"</span> <span class="p">}</span>
+
+  <span class="c1"># Reader visibility</span>
+  <span class="n">option</span> <span class="ss">:api_key</span><span class="p">,</span> <span class="ss">reader: :private</span>
+
+  <span class="k">def</span> <span class="nf">call</span>
+    <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"Processing order </span><span class="si">#{</span><span class="n">order_id</span><span class="si">}</span><span class="s2"> with priority </span><span class="si">#{</span><span class="n">priority</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Usage</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="no">OrderProcessor</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">priority: </span><span class="s2">"high"</span><span class="p">)</span>
+<span class="n">processor</span><span class="p">.</span><span class="nf">order_id</span>  <span class="c1"># =&gt; 123</span>
+<span class="n">processor</span><span class="p">.</span><span class="nf">priority</span>  <span class="c1"># =&gt; "high"</span>
+</code></pre></div></div>
+
+<h3 id="104-before-vs-after">10.4 Before vs After</h3>
+
+<p><strong>Before (19 lines):</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ActionsBuilder</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">avatar</span><span class="p">:,</span> <span class="n">client_user</span><span class="p">:)</span>
+    <span class="vi">@avatar</span> <span class="o">=</span> <span class="n">avatar</span>
+    <span class="vi">@client_user</span> <span class="o">=</span> <span class="n">client_user</span>
+    <span class="vi">@avatar_user</span> <span class="o">=</span> <span class="n">avatar</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">player</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">avatar</span><span class="p">:,</span> <span class="n">client_user</span><span class="p">:)</span>
+    <span class="n">new</span><span class="p">(</span><span class="ss">avatar: </span><span class="n">avatar</span><span class="p">,</span> <span class="ss">client_user: </span><span class="n">client_user</span><span class="p">).</span><span class="nf">call</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="nb">attr_reader</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="ss">:client_user</span><span class="p">,</span> <span class="ss">:avatar_user</span>
+
+  <span class="k">def</span> <span class="nf">call</span>
+    <span class="c1"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>After (10 lines):</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ActionsBuilder</span>
+  <span class="kp">extend</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Initializer</span>
+
+  <span class="n">param</span> <span class="ss">:avatar</span>
+  <span class="n">param</span> <span class="ss">:client_user</span>
+  <span class="n">option</span> <span class="ss">:avatar_user</span><span class="p">,</span> <span class="ss">default: </span><span class="nb">proc</span> <span class="p">{</span> <span class="n">avatar</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">player</span> <span class="p">}</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">avatar</span><span class="p">:,</span> <span class="n">client_user</span><span class="p">:)</span>
+    <span class="n">new</span><span class="p">(</span><span class="n">avatar</span><span class="p">,</span> <span class="n">client_user</span><span class="p">).</span><span class="nf">call</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">call</span>
+    <span class="c1"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="105-benefits">10.5 Benefits</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Manual Initialize</th>
+      <th>dry-initializer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@x = x</code> boilerplate</td>
+      <td>Declarative <code class="language-plaintext highlighter-rouge">param</code>/<code class="language-plaintext highlighter-rouge">option</code></td>
+    </tr>
+    <tr>
+      <td>Manual <code class="language-plaintext highlighter-rouge">attr_reader</code></td>
+      <td>Auto-generated readers</td>
+    </tr>
+    <tr>
+      <td>No type coercion</td>
+      <td>Built-in type support</td>
+    </tr>
+    <tr>
+      <td>No defaults DSL</td>
+      <td><code class="language-plaintext highlighter-rouge">default: proc { }</code></td>
+    </tr>
+    <tr>
+      <td>All public readers</td>
+      <td><code class="language-plaintext highlighter-rouge">reader: :private</code> option</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="11-dry-events-pubsub-event-system">11. dry-events: Pub/Sub Event System</h2>
+
+<h3 id="111-the-problem-inline-side-effects">11.1 The Problem: Inline Side Effects</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Side effects mixed with business logic</span>
+<span class="k">class</span> <span class="nc">GameController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@avatar</span> <span class="o">=</span> <span class="no">Avatar</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+    <span class="c1"># Business logic</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">build_context</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">)</span>
+
+    <span class="c1"># Side effect #1: Analytics</span>
+    <span class="no">Analytics</span><span class="p">.</span><span class="nf">track</span><span class="p">(</span><span class="s2">"avatar_viewed"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="ss">avatar_id: </span><span class="vi">@avatar</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+      <span class="ss">viewer_id: </span><span class="n">current_user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">id</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Side effect #2: Logging</span>
+    <span class="no">AuditLog</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span>
+      <span class="ss">action: </span><span class="s2">"avatar_view"</span><span class="p">,</span>
+      <span class="ss">resource: </span><span class="vi">@avatar</span><span class="p">,</span>
+      <span class="ss">player: </span><span class="n">current_user</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Side effect #3: Cache warming</span>
+    <span class="no">AvatarCacheWarmer</span><span class="p">.</span><span class="nf">perform_async</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span> <span class="k">if</span> <span class="n">should_warm_cache?</span>
+
+    <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">data: </span><span class="no">AvatarBlueprint</span><span class="p">.</span><span class="nf">render_as_hash</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">context: </span><span class="n">context</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>Issues:</strong></p>
+<ul>
+  <li>Controller bloated with side effects</li>
+  <li>Hard to test business logic in isolation</li>
+  <li>Adding new side effects = modifying controller</li>
+  <li>Side effects tightly coupled to triggering code</li>
+  <li>No audit trail of “what events exist”</li>
+</ul>
+
+<h3 id="112-the-solution-event-publisher">11.2 The Solution: Event Publisher</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/events/publisher.rb</span>
+<span class="nb">require</span> <span class="s2">"dry/events"</span>
+
+<span class="k">class</span> <span class="nc">EventPublisher</span>
+  <span class="kp">include</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Events</span><span class="o">::</span><span class="no">Publisher</span><span class="p">[</span><span class="ss">:app</span><span class="p">]</span>
+
+  <span class="c1"># Avatar events</span>
+  <span class="n">register_event</span><span class="p">(</span><span class="s2">"avatar.viewed"</span><span class="p">)</span>
+  <span class="n">register_event</span><span class="p">(</span><span class="s2">"avatar.actions_computed"</span><span class="p">)</span>
+
+  <span class="c1"># Access request events</span>
+  <span class="n">register_event</span><span class="p">(</span><span class="s2">"access.requested"</span><span class="p">)</span>
+  <span class="n">register_event</span><span class="p">(</span><span class="s2">"access.approved"</span><span class="p">)</span>
+  <span class="n">register_event</span><span class="p">(</span><span class="s2">"access.declined"</span><span class="p">)</span>
+
+  <span class="c1"># Chat events</span>
+  <span class="n">register_event</span><span class="p">(</span><span class="s2">"chat.room_accessed"</span><span class="p">)</span>
+
+  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+    <span class="k">def</span> <span class="nf">instance</span>
+      <span class="vi">@instance</span> <span class="o">||=</span> <span class="n">new</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">publish</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="p">{})</span>
+      <span class="k">return</span> <span class="k">unless</span> <span class="n">should_publish?</span><span class="p">(</span><span class="n">event_name</span><span class="p">)</span>
+
+      <span class="n">instance</span><span class="p">.</span><span class="nf">publish</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">payload</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="ss">published_at: </span><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">))</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">listener_or_event</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nb">block_given?</span>
+        <span class="n">instance</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="n">listener_or_event</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+      <span class="k">else</span>
+        <span class="n">instance</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="n">listener_or_event</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">should_publish?</span><span class="p">(</span><span class="n">event_name</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kp">false</span> <span class="k">unless</span> <span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">events</span><span class="p">.</span><span class="nf">publish_avatar_views</span> <span class="k">if</span> <span class="n">event_name</span><span class="p">.</span><span class="nf">start_with?</span><span class="p">(</span><span class="s2">"avatar."</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kp">false</span> <span class="k">unless</span> <span class="no">AvatarConfig</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">events</span><span class="p">.</span><span class="nf">publish_access_events</span> <span class="k">if</span> <span class="n">event_name</span><span class="p">.</span><span class="nf">start_with?</span><span class="p">(</span><span class="s2">"access."</span><span class="p">)</span>
+      <span class="kp">true</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="113-publishing-events">11.3 Publishing Events</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/api/v1/game_controller.rb</span>
+<span class="k">class</span> <span class="nc">GameController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@avatar</span> <span class="o">=</span> <span class="no">Avatar</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">build_context</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">)</span>
+
+    <span class="c1"># Publish event - side effects handled by subscribers</span>
+    <span class="no">EventPublisher</span><span class="p">.</span><span class="nf">publish</span><span class="p">(</span><span class="s2">"avatar.viewed"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="ss">avatar_id: </span><span class="vi">@avatar</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+      <span class="ss">viewer_id: </span><span class="n">current_user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+      <span class="ss">viewer_role: </span><span class="n">current_user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">role</span>
+    <span class="p">})</span>
+
+    <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">data: </span><span class="no">AvatarBlueprint</span><span class="p">.</span><span class="nf">render_as_hash</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">,</span> <span class="ss">context: </span><span class="n">context</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># app/services/avatars/actions_builder.rb</span>
+<span class="k">class</span> <span class="nc">ActionsBuilder</span>
+  <span class="k">def</span> <span class="nf">call</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="n">build_actions_struct</span>
+
+    <span class="c1"># Publish event with computed data</span>
+    <span class="no">EventPublisher</span><span class="p">.</span><span class="nf">publish</span><span class="p">(</span><span class="s2">"avatar.actions_computed"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="ss">avatar_id: </span><span class="n">avatar</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+      <span class="ss">client_player_id: </span><span class="n">client_user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+      <span class="ss">access_status: </span><span class="n">actions</span><span class="p">.</span><span class="nf">access_status</span><span class="p">,</span>
+      <span class="ss">has_chat: </span><span class="n">actions</span><span class="p">.</span><span class="nf">chat_id</span><span class="p">.</span><span class="nf">present?</span>
+    <span class="p">})</span>
+
+    <span class="no">Success</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="114-subscribing-to-events">11.4 Subscribing to Events</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/initializers/event_subscribers.rb</span>
+
+<span class="c1"># Block-based subscriber</span>
+<span class="no">EventPublisher</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="s2">"avatar.viewed"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
+  <span class="no">Analytics</span><span class="p">.</span><span class="nf">track</span><span class="p">(</span><span class="s2">"avatar_view"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># Object-based subscriber</span>
+<span class="k">class</span> <span class="nc">AuditListener</span>
+  <span class="k">def</span> <span class="nf">on_avatar_viewed</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="no">AuditLog</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span>
+      <span class="ss">action: </span><span class="s2">"avatar_view"</span><span class="p">,</span>
+      <span class="ss">resource_type: </span><span class="s2">"Avatar"</span><span class="p">,</span>
+      <span class="ss">resource_id: </span><span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">[</span><span class="ss">:avatar_id</span><span class="p">],</span>
+      <span class="ss">player_id: </span><span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">[</span><span class="ss">:viewer_id</span><span class="p">],</span>
+      <span class="ss">occurred_at: </span><span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">[</span><span class="ss">:published_at</span><span class="p">]</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">on_access_requested</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="no">AuditLog</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">action: </span><span class="s2">"access_request"</span><span class="p">,</span> <span class="o">**</span><span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">on_access_approved</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="no">AuditLog</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">action: </span><span class="s2">"access_approval"</span><span class="p">,</span> <span class="o">**</span><span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">EventPublisher</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="no">AuditListener</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+
+<span class="c1"># Conditional subscriber</span>
+<span class="k">class</span> <span class="nc">CacheWarmerListener</span>
+  <span class="k">def</span> <span class="nf">on_avatar_viewed</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">unless</span> <span class="n">should_warm_cache?</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">[</span><span class="ss">:avatar_id</span><span class="p">])</span>
+
+    <span class="no">AvatarCacheWarmer</span><span class="p">.</span><span class="nf">perform_async</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="nf">payload</span><span class="p">[</span><span class="ss">:avatar_id</span><span class="p">])</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">should_warm_cache?</span><span class="p">(</span><span class="n">avatar_id</span><span class="p">)</span>
+    <span class="c1"># Logic to determine if cache should be warmed</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">EventPublisher</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="no">CacheWarmerListener</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="115-before-vs-after">11.5 Before vs After</h3>
+
+<p><strong>Before (controller with inline side effects):</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span>
+  <span class="vi">@avatar</span> <span class="o">=</span> <span class="no">Avatar</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+  <span class="c1"># Side effect #1</span>
+  <span class="no">Analytics</span><span class="p">.</span><span class="nf">track</span><span class="p">(</span><span class="s2">"avatar_viewed"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">avatar_id: </span><span class="vi">@avatar</span><span class="p">.</span><span class="nf">id</span> <span class="p">})</span>
+
+  <span class="c1"># Side effect #2</span>
+  <span class="no">AuditLog</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">action: </span><span class="s2">"avatar_view"</span><span class="p">,</span> <span class="ss">resource: </span><span class="vi">@avatar</span><span class="p">)</span>
+
+  <span class="c1"># Side effect #3</span>
+  <span class="no">AvatarCacheWarmer</span><span class="p">.</span><span class="nf">perform_async</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+
+  <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">data: </span><span class="no">AvatarBlueprint</span><span class="p">.</span><span class="nf">render_as_hash</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>After (clean controller, events handle side effects):</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span>
+  <span class="vi">@avatar</span> <span class="o">=</span> <span class="no">Avatar</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+  <span class="no">EventPublisher</span><span class="p">.</span><span class="nf">publish</span><span class="p">(</span><span class="s2">"avatar.viewed"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="ss">avatar_id: </span><span class="vi">@avatar</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+    <span class="ss">viewer_id: </span><span class="n">current_user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">id</span>
+  <span class="p">})</span>
+
+  <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">data: </span><span class="no">AvatarBlueprint</span><span class="p">.</span><span class="nf">render_as_hash</span><span class="p">(</span><span class="vi">@avatar</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="116-testing-events">11.6 Testing Events</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">GameController</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="s2">"GET #show"</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"publishes avatar.viewed event"</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="no">EventPublisher</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:publish</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span>
+        <span class="s2">"avatar.viewed"</span><span class="p">,</span>
+        <span class="n">hash_including</span><span class="p">(</span><span class="ss">avatar_id: </span><span class="n">avatar</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">viewer_id: </span><span class="n">player</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+      <span class="p">)</span>
+
+      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">id: </span><span class="n">avatar</span><span class="p">.</span><span class="nf">id</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">AuditListener</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="s2">"#on_avatar_viewed"</span> <span class="k">do</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:event</span><span class="p">)</span> <span class="p">{</span> <span class="n">double</span><span class="p">(</span><span class="ss">payload: </span><span class="p">{</span> <span class="ss">avatar_id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">viewer_id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">published_at: </span><span class="no">Time</span><span class="p">.</span><span class="nf">current</span> <span class="p">})</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="s2">"creates audit log entry"</span> <span class="k">do</span>
+      <span class="n">expect</span> <span class="p">{</span> <span class="n">subject</span><span class="p">.</span><span class="nf">on_avatar_viewed</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">}.</span><span class="nf">to</span> <span class="n">change</span><span class="p">(</span><span class="no">AuditLog</span><span class="p">,</span> <span class="ss">:count</span><span class="p">).</span><span class="nf">by</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="117-benefits">11.7 Benefits</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Inline Side Effects</th>
+      <th>dry-events</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mixed with business logic</td>
+      <td>Separated via pub/sub</td>
+    </tr>
+    <tr>
+      <td>Hard to test in isolation</td>
+      <td>Each listener testable</td>
+    </tr>
+    <tr>
+      <td>Adding effects = modify caller</td>
+      <td>Adding effects = new subscriber</td>
+    </tr>
+    <tr>
+      <td>No event catalog</td>
+      <td><code class="language-plaintext highlighter-rouge">register_event</code> documents all</td>
+    </tr>
+    <tr>
+      <td>Tight coupling</td>
+      <td>Loose coupling</td>
+    </tr>
+    <tr>
+      <td>Synchronous only</td>
+      <td>Async-ready (queue subscribers)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="12-other-dry-rb-gems-worth-exploring">12. Other dry-rb Gems Worth Exploring</h2>
+
+<h3 id="121-dry-transaction-multi-step-business-operations">12.1 dry-transaction: Multi-Step Business Operations</h3>
+
+<p>Perfect for complex workflows like order processing or player registration:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/transactions/create_order.rb</span>
+<span class="k">class</span> <span class="nc">CreateOrder</span>
+  <span class="kp">include</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Transaction</span>
+
+  <span class="n">step</span> <span class="ss">:validate</span>
+  <span class="n">step</span> <span class="ss">:create_order</span>
+  <span class="n">step</span> <span class="ss">:charge_payment</span>
+  <span class="n">step</span> <span class="ss">:send_confirmation</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+    <span class="n">contract</span> <span class="o">=</span> <span class="no">OrderContract</span><span class="p">.</span><span class="nf">new</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+    <span class="n">result</span><span class="p">.</span><span class="nf">success?</span> <span class="p">?</span> <span class="no">Success</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">to_h</span><span class="p">)</span> <span class="p">:</span> <span class="no">Failure</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">errors</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create_order</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="no">Order</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+    <span class="no">Success</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+  <span class="k">rescue</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">RecordInvalid</span> <span class="o">=&gt;</span> <span class="n">e</span>
+    <span class="no">Failure</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="nf">message</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">charge_payment</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+    <span class="c1"># Payment logic...</span>
+    <span class="no">Success</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">send_confirmation</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+    <span class="no">OrderMailer</span><span class="p">.</span><span class="nf">confirmation</span><span class="p">(</span><span class="n">order</span><span class="p">).</span><span class="nf">deliver_later</span>
+    <span class="no">Success</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Usage</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">CreateOrder</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">order_params</span><span class="p">)</span>
+<span class="n">result</span><span class="p">.</span><span class="nf">success?</span> <span class="c1"># =&gt; true/false</span>
+</code></pre></div></div>
+
+<h3 id="122-dry-effects-algebraic-effects">12.2 dry-effects: Algebraic Effects</h3>
+
+<p>Advanced: dependency injection via effects (alternative to dry-container):</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ProcessPayment</span>
+  <span class="kp">include</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Effects</span><span class="o">.</span><span class="no">Reader</span><span class="p">(</span><span class="ss">:current_user</span><span class="p">)</span>
+  <span class="kp">include</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Effects</span><span class="o">.</span><span class="no">Resolve</span><span class="p">(</span><span class="ss">:payment_gateway</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+    <span class="n">gateway</span> <span class="o">=</span> <span class="n">resolve</span><span class="p">(</span><span class="ss">:payment_gateway</span><span class="p">)</span>
+    <span class="n">gateway</span><span class="p">.</span><span class="nf">charge</span><span class="p">(</span><span class="n">current_user</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Provide effects at call site</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">Dry</span><span class="o">::</span><span class="no">Effects</span><span class="p">.</span><span class="nf">handler</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span>
+  <span class="ss">current_user: </span><span class="n">player</span><span class="p">,</span>
+  <span class="ss">resolve: </span><span class="p">{</span> <span class="ss">payment_gateway: </span><span class="no">StripeGateway</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
+<span class="p">)</span> <span class="p">{</span> <span class="no">ProcessPayment</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="123-gem-selection-guide">12.3 Gem Selection Guide</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gem</th>
+      <th>When to Use</th>
+      <th>Complexity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>dry-types</strong></td>
+      <td>Any project (foundational)</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <td><strong>dry-struct</strong></td>
+      <td>Data transfer objects, value objects</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <td><strong>dry-configurable</strong></td>
+      <td>Configuration management</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <td><strong>dry-initializer</strong></td>
+      <td>Service object parameters</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <td><strong>dry-monads</strong></td>
+      <td>Service objects with failures</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td><strong>dry-validation</strong></td>
+      <td>API input validation</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td><strong>dry-container</strong></td>
+      <td>Large apps, testing focus</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td><strong>dry-matcher</strong></td>
+      <td>Result pattern matching</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td><strong>dry-events</strong></td>
+      <td>Event-driven architecture</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td><strong>dry-transaction</strong></td>
+      <td>Multi-step workflows</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td><strong>dry-effects</strong></td>
+      <td>Advanced FP patterns</td>
+      <td>High</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="13-benefits-and-tradeoffs">13. Benefits and Tradeoffs</h2>
+
+<h3 id="131-benefits">13.1 Benefits</h3>
+
+<p><strong>1. Explicit Over Implicit</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: What can access_status be? Check the code...</span>
+<span class="n">result</span><span class="p">[</span><span class="ss">:access_status</span><span class="p">]</span> <span class="o">=</span> <span class="no">ACCESS_STATUS_VALUES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">?</span> <span class="n">status</span> <span class="p">:</span> <span class="s2">"none"</span>
+
+<span class="c1"># After: The type IS the documentation</span>
+<span class="n">attribute</span> <span class="ss">:access_status</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">AccessStatus</span>  <span class="c1"># Enum is explicit</span>
+</code></pre></div></div>
+
+<p><strong>2. Testability</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Test through controller/blueprint</span>
+<span class="n">it</span> <span class="s2">"returns correct access_status"</span> <span class="k">do</span>
+  <span class="n">get</span> <span class="s2">"/avatars/1"</span><span class="p">,</span> <span class="ss">headers: </span><span class="n">auth_headers</span>
+  <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">'"access_status":"approved"'</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># After: Unit test the struct directly</span>
+<span class="n">it</span> <span class="s2">"coerces invalid status to none"</span> <span class="k">do</span>
+  <span class="n">actions</span> <span class="o">=</span> <span class="no">Avatars</span><span class="o">::</span><span class="no">Actions</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">access_status: </span><span class="s2">"invalid"</span><span class="p">)</span>
+  <span class="n">expect</span><span class="p">(</span><span class="n">actions</span><span class="p">.</span><span class="nf">access_status</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"none"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>3. Composability</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Combine types to build complex structures</span>
+<span class="no">CompanyAvatar</span> <span class="o">=</span> <span class="no">Types</span><span class="o">::</span><span class="no">Hash</span><span class="p">.</span><span class="nf">schema</span><span class="p">(</span>
+  <span class="ss">name: </span><span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">,</span>
+  <span class="ss">employees: </span><span class="no">Types</span><span class="o">::</span><span class="no">Array</span><span class="p">.</span><span class="nf">of</span><span class="p">(</span><span class="no">EmployeeStruct</span><span class="p">),</span>
+  <span class="ss">settings: </span><span class="no">Types</span><span class="o">::</span><span class="no">Hash</span><span class="p">.</span><span class="nf">schema</span><span class="p">(</span>
+    <span class="ss">visibility: </span><span class="no">Types</span><span class="o">::</span><span class="no">Avatars</span><span class="o">::</span><span class="no">VisibilityMode</span><span class="p">,</span>
+    <span class="ss">features: </span><span class="no">Types</span><span class="o">::</span><span class="no">Array</span><span class="p">.</span><span class="nf">of</span><span class="p">(</span><span class="no">Types</span><span class="o">::</span><span class="no">String</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>4. Error Messages</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># dry-validation provides structured errors</span>
+<span class="n">contract</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">thumb_status: </span><span class="s2">"invalid"</span><span class="p">).</span><span class="nf">errors</span><span class="p">.</span><span class="nf">to_h</span>
+<span class="c1"># =&gt; { thumb_status: ["must be one of: liked, disliked"] }</span>
+</code></pre></div></div>
+
+<p><strong>5. Event-Driven Architecture</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: Side effects scattered in controllers</span>
+<span class="no">Analytics</span><span class="p">.</span><span class="nf">track</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="no">AuditLog</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="no">CacheWarmer</span><span class="p">.</span><span class="nf">perform_async</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># After: Single event, multiple handlers</span>
+<span class="no">EventPublisher</span><span class="p">.</span><span class="nf">publish</span><span class="p">(</span><span class="s2">"avatar.viewed"</span><span class="p">,</span> <span class="p">{</span> <span class="o">...</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>6. Centralized Configuration</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: grep -r "CACHE_TTL" app/</span>
+<span class="c1"># After: AvatarConfig.config.actions.cache_ttl</span>
+</code></pre></div></div>
+
+<h3 id="132-tradeoffs">13.2 Tradeoffs</h3>
+
+<p><strong>1. Learning Curve</strong></p>
+<ul>
+  <li>Team needs to learn dry-rb idioms</li>
+  <li>Functional programming concepts (monads, composition)</li>
+  <li>More files/classes than “Rails way”</li>
+</ul>
+
+<p><strong>2. Indirection</strong></p>
+<ul>
+  <li>Types defined in one place, used in another</li>
+  <li>Following data flow requires understanding container</li>
+  <li>Events may be handled far from where they’re published</li>
+</ul>
+
+<p><strong>3. Overhead for Simple Cases</strong></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For a simple boolean flag, this is overkill:</span>
+<span class="n">attribute</span> <span class="ss">:is_active</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Bool</span><span class="p">.</span><span class="nf">default</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
+
+<span class="c1"># This is fine:</span>
+<span class="nb">attr_accessor</span> <span class="ss">:is_active</span>
+</code></pre></div></div>
+
+<p><strong>4. Gems Add Dependencies</strong></p>
+<ul>
+  <li>11 gems for full suite</li>
+  <li>Version compatibility to manage</li>
+  <li>Bundle size increases</li>
+</ul>
+
+<h3 id="133-when-to-use-dry-rb">13.3 When to Use dry-rb</h3>
+
+<p><strong>✅ Good Fit:</strong></p>
+<ul>
+  <li>APIs with complex data contracts</li>
+  <li>Services with multiple failure modes</li>
+  <li>Apps where testability is priority</li>
+  <li>Teams comfortable with FP concepts</li>
+  <li>Large apps with many developers</li>
+  <li>Event-driven or audit-heavy systems</li>
+</ul>
+
+<p><strong>❌ Poor Fit:</strong></p>
+<ul>
+  <li>Simple CRUD apps</li>
+  <li>Prototypes/MVPs</li>
+  <li>Teams unfamiliar with FP</li>
+  <li>Performance-critical hot paths (slight overhead)</li>
+</ul>
+
+<hr />
+
+<h2 id="14-conclusion">14. Conclusion</h2>
+
+<p>Integrating dry-rb into our Rails API transformed code that “worked” into code that’s <strong>obvious, testable, and maintainable</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Before</th>
+      <th>After</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Actions payload code</td>
+      <td>70+ lines</td>
+      <td>15 lines</td>
+    </tr>
+    <tr>
+      <td>Type validation</td>
+      <td>Manual per-field</td>
+      <td>Declarative</td>
+    </tr>
+    <tr>
+      <td>Error handling</td>
+      <td>try/rescue + nil</td>
+      <td>Result monad</td>
+    </tr>
+    <tr>
+      <td>Dependencies</td>
+      <td>Hard-coded classes</td>
+      <td>Injected</td>
+    </tr>
+    <tr>
+      <td>Configuration</td>
+      <td>Scattered constants</td>
+      <td>Centralized</td>
+    </tr>
+    <tr>
+      <td>Side effects</td>
+      <td>Inline in controllers</td>
+      <td>Event-driven</td>
+    </tr>
+    <tr>
+      <td>Service parameters</td>
+      <td>Manual initialize</td>
+      <td>Declarative DSL</td>
+    </tr>
+    <tr>
+      <td>Result handling</td>
+      <td>if/case statements</td>
+      <td>Pattern matching</td>
+    </tr>
+    <tr>
+      <td>Test isolation</td>
+      <td>Integration only</td>
+      <td>Unit + integration</td>
+    </tr>
+    <tr>
+      <td>Gems used</td>
+      <td>0</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="key-takeaways">Key Takeaways</h3>
+
+<ol>
+  <li><strong>Start with dry-types</strong> — It’s foundational and low-risk</li>
+  <li><strong>Add dry-struct for data transfer</strong> — Especially for API responses</li>
+  <li><strong>Use dry-monads in services</strong> — Replace boolean/nil returns</li>
+  <li><strong>Add dry-validation for API inputs</strong> — Before data hits your models</li>
+  <li><strong>Use dry-configurable early</strong> — Centralize config before it scatters</li>
+  <li><strong>Add dry-initializer to services</strong> — Reduce boilerplate immediately</li>
+  <li><strong>Introduce dry-container gradually</strong> — When testing pain increases</li>
+  <li><strong>Add dry-matcher for cleaner controllers</strong> — Pattern matching is elegant</li>
+  <li><strong>Use dry-events for side effects</strong> — Decouple analytics, logging, notifications</li>
+  <li><strong>Don’t over-engineer</strong> — A simple hash is fine for simple data</li>
+</ol>
+
+<h3 id="the-return-on-investment">The Return on Investment</h3>
+
+<p>The initial investment—learning curves, refactoring, new patterns—pays dividends in:</p>
+
+<ul>
+  <li><strong>Fewer bugs</strong> — Type mismatches caught at construction, not runtime</li>
+  <li><strong>Faster debugging</strong> — Follow explicit contracts, not implicit conventions</li>
+  <li><strong>Easier onboarding</strong> — Types and events document themselves</li>
+  <li><strong>Confident refactoring</strong> — Change implementation, types verify compatibility</li>
+  <li><strong>Testable architecture</strong> — Unit test components in isolation</li>
+  <li><strong>Scalable patterns</strong> — Event-driven architecture grows with your app</li>
+</ul>
+
+<p>dry-rb doesn’t replace Rails conventions—it <strong>complements them</strong> where they fall short. Use the right tool for each job.</p>
+
+<hr />
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><strong>dry-rb Official Site</strong>: <a href="https://dry-rb.org/">dry-rb.org</a></li>
+  <li><strong>dry-rb GitHub</strong>: <a href="https://github.com/dry-rb">github.com/dry-rb</a></li>
+  <li><strong>dry-types Documentation</strong>: <a href="https://dry-rb.org/gems/dry-types">dry-rb.org/gems/dry-types</a></li>
+  <li><strong>dry-monads Documentation</strong>: <a href="https://dry-rb.org/gems/dry-monads">dry-rb.org/gems/dry-monads</a></li>
+  <li><strong>dry-validation Documentation</strong>: <a href="https://dry-rb.org/gems/dry-validation">dry-rb.org/gems/dry-validation</a></li>
+  <li><strong>dry-events Documentation</strong>: <a href="https://dry-rb.org/gems/dry-events">dry-rb.org/gems/dry-events</a></li>
+  <li><strong>dry-configurable Documentation</strong>: <a href="https://dry-rb.org/gems/dry-configurable">dry-rb.org/gems/dry-configurable</a></li>
+  <li><strong>dry-initializer Documentation</strong>: <a href="https://dry-rb.org/gems/dry-initializer">dry-rb.org/gems/dry-initializer</a></li>
+  <li><strong>dry-matcher Documentation</strong>: <a href="https://dry-rb.org/gems/dry-matcher">dry-rb.org/gems/dry-matcher</a></li>
+  <li><strong>Trailblazer (alternative)</strong>: <a href="https://trailblazer.to/">trailblazer.to</a> (uses dry-rb under the hood)</li>
+</ul>
+
+<hr />
+
+<p><em>This post documents our integration of 11 dry-rb gems into the TestApp API. The patterns described here reduced our Avatar Actions payload logic from 70+ lines to 15, improved test coverage, established event-driven architecture, and created patterns that scale across 100+ endpoints.</em></p>
+
+
+  </div>
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+      
+      
+      
+      
+
+  <nav class="post-nav-slim">
+    
+      <a href="/blog/mysql-to-postgresql-migration-guide/" class="post-nav-text">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-ink/45">Older</span>
+        <span class="mt-2 block font-semibold leading-snug text-ink">From MySQL to PostgreSQL: A Practical Migration Guide...</span>
+      </a>
+    
+    
+      <a href="/blog/neverlands-browser-bot-game-design-analyst/" class="post-nav-text">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-ink/45">Newer</span>
+        <span class="mt-2 block font-semibold leading-snug text-ink">Turning Neverlands Into Design Fuel: A Browser Bot...</span>
+      </a>
+    
+  </nav>
+</article>
+
+    </main>
+
+    <footer>
+      <div class="flex flex-col items-center justify-center gap-3 py-8 font-mono text-xs text-ink/50 sm:flex-row sm:gap-4">
+  <span>Max Lukin</span>
+  <nav class="flex items-center gap-4">
+    <a href="/blog/" class="no-underline hover:text-ink">Blog</a>
+    <a href="/feed.xml" class="no-underline hover:text-ink">RSS</a>
+  </nav>
+</div>
+
+    </footer>
+  </div>
+</body>
+</html>

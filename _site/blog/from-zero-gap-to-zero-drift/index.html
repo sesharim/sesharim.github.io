@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VLFHH5CPGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-VLFHH5CPGM');
+  </script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <title>From Zero-Gap to Zero-Drift: Making AI Follow Rails Rules (Frozen vs Strict) | Software Engineering consultant</title>
+  
+  <meta name="theme-color" content="#FEFAE0">
+
+  <link rel="canonical" href="http://localhost:4000/blog/from-zero-gap-to-zero-drift/">
+  <link rel="alternate" type="application/rss+xml" title="Software Engineering consultant" href="/feed.xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <meta name="description"
+    content="  TL;DR      Contract-first + verification gates eliminate gaps (missing fields, regressions). fileciteturn2file0    But LLMs still create rule drift (the...">
+  <meta name="keywords"
+    content="Software Engineering consultant, programming consultant, Ruby web development, agile Ruby development, Ruby on Rails web design, RoR consulting, Ruby on Rails service, RoR consultant, Ruby on Rails NYC, Ruby on Rails expertise, web agency, ios application development, mobile, api, frontend, backend, development, software engineer partner, sf developer, sf ruby on rails, berling ruby consultant, london consultant">
+  <meta name="author" content="Max Lukin">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>From Zero-Gap to Zero-Drift: Making AI Follow Rails Rules (Frozen vs Strict) | Software Engineering consultant</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="From Zero-Gap to Zero-Drift: Making AI Follow Rails Rules (Frozen vs Strict)" />
+<meta name="author" content="Max Lukin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A practical upgrade to the Zero-Gap framework: how we reduced AI rule drift using a single entry-point prompt, Hard-Fail rules, evidence-based audits, negative examples, and bin/verify—with Frozen and Strict modes." />
+<meta property="og:description" content="A practical upgrade to the Zero-Gap framework: how we reduced AI rule drift using a single entry-point prompt, Hard-Fail rules, evidence-based audits, negative examples, and bin/verify—with Frozen and Strict modes." />
+<link rel="canonical" href="http://localhost:4000/blog/from-zero-gap-to-zero-drift/" />
+<meta property="og:url" content="http://localhost:4000/blog/from-zero-gap-to-zero-drift/" />
+<meta property="og:site_name" content="Software Engineering consultant" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-01-07T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="From Zero-Gap to Zero-Drift: Making AI Follow Rails Rules (Frozen vs Strict)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Max Lukin"},"dateModified":"2026-01-07T00:00:00+02:00","datePublished":"2026-01-07T00:00:00+02:00","description":"A practical upgrade to the Zero-Gap framework: how we reduced AI rule drift using a single entry-point prompt, Hard-Fail rules, evidence-based audits, negative examples, and bin/verify—with Frozen and Strict modes.","headline":"From Zero-Gap to Zero-Drift: Making AI Follow Rails Rules (Frozen vs Strict)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/from-zero-gap-to-zero-drift/"},"url":"http://localhost:4000/blog/from-zero-gap-to-zero-drift/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body class="min-h-screen bg-bora text-ink">
+  <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-8 sm:px-8 lg:px-10">
+    <main class="flex-1">
+      <article class="content-shell space-y-10">
+  <nav class="page-nav" aria-label="Post navigation">
+    <a href="/" class="page-link">Home</a>
+    <span class="page-nav-separator">/</span>
+    <a href="/blog/" class="page-link">Blog</a>
+  </nav>
+
+  <header class="post-hero-split">
+    <h1 class="post-hero-title">From Zero-Gap to Zero-Drift: Making AI Follow Rails Rules (Frozen vs Strict)</h1>
+    <div class="post-meta post-meta-aside">
+      <time datetime="2026-01-07T00:00:00+02:00">Jan 7, 2026</time>
+      
+      
+      
+      <span>/</span>
+      <span>5 min read</span>
+      
+        <span>/</span>
+        <span>Max Lukin</span>
+      
+    </div>
+  </header>
+
+  <div class="prose post-prose">
+    <blockquote>
+  <p><strong>TL;DR</strong></p>
+
+  <ul>
+    <li>Contract-first + verification gates eliminate <em>gaps</em> (missing fields, regressions). fileciteturn2file0</li>
+    <li>But LLMs still create <strong>rule drift</strong> (they quote rules, then violate them).</li>
+    <li>We fixed drift with <strong>guardrails</strong>, not more prose: <strong>Hard-Fail rule IDs</strong>, <strong>STOP gates</strong>, <strong>mandatory evidence audits</strong>, and <strong>negative examples</strong>.</li>
+    <li>Entry point stays tiny and stable; the enforcement lives in versioned docs.</li>
+    <li>We keep two characters: <strong>Frozen (v1.0)</strong> for speed, <strong>Strict (v1.1)</strong> for enforcement.</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h2 id="why-this-follow-up-exists">Why this follow-up exists</h2>
+
+<p>In <strong>Zero-Gap API Development</strong>, the goal was “ship APIs with zero regressions” by turning implementation into a contract + verification problem: TypeScript interfaces as canonical truth, safe defaults, systematic verification gates, and discrepancy classification (<code class="language-plaintext highlighter-rouge">[IMPL]</code> vs <code class="language-plaintext highlighter-rouge">[DOC]</code>). fileciteturn2file0</p>
+
+<p>That framework works. The problem we hit next was different:</p>
+
+<blockquote>
+  <p><strong>AI doesn’t drift because rules are unclear. It drifts because rules have no consequences.</strong></p>
+</blockquote>
+
+<p>Even when an agent reads <code class="language-plaintext highlighter-rouge">AGENTS.md</code> and repeats rules back, it can still “helpfully” shortcut:</p>
+<ul>
+  <li>“Use Ransack for filtering/searching.” → agent writes custom <code class="language-plaintext highlighter-rouge">where(...)</code> anyway.</li>
+  <li>“Avoid DB-specific SQL.” → agent sneaks in <code class="language-plaintext highlighter-rouge">ILIKE</code>, <code class="language-plaintext highlighter-rouge">IFNULL</code>, <code class="language-plaintext highlighter-rouge">REGEXP</code>, etc.</li>
+  <li>“Controllers only wrap envelopes.” → agent hand-builds JSON in controller.</li>
+</ul>
+
+<p>So this session was about adding an enforcement layer on top of Zero-Gap.</p>
+
+<hr />
+
+<h2 id="the-goal-of-this-session">The goal of this session</h2>
+
+<p>We wanted a system where a reviewer can say:</p>
+
+<blockquote>
+  <p>“This violates <strong>two rules</strong>: HF-1 and HF-2”</p>
+</blockquote>
+
+<p>…<strong>and the agent itself is forced to detect and correct that before shipping code.</strong></p>
+
+<p>To do that, we restructured the workflow into a toolchain:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">PROMPT.md</code> → execution runtime (phases, STOP gates, verification receipts)</li>
+  <li><code class="language-plaintext highlighter-rouge">AGENTS.md</code> → <strong>hard authority</strong> (Hard-Fail rules, failure semantics)</li>
+  <li><code class="language-plaintext highlighter-rouge">GUIDE.md</code> → patterns &amp; examples (non-authority, includes anti-patterns)</li>
+  <li><code class="language-plaintext highlighter-rouge">bin/verify</code> → canonical verifier</li>
+</ul>
+
+<hr />
+
+<h2 id="the-single-entry-point-stable-forever">The single entry point (stable forever)</h2>
+
+<p>Instead of embedding giant prompts in README/issues, every task uses the same tiny entry point:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Task: WEB-485 – User Notifications
+
+Refs:
+- Requirements: doc/requirements/users/USER_NOTIFICATIONS.md
+- Flow: doc/flow/WEB-485_user_notifications.md
+- PRD: doc/prd/WEB-485_user_notifications_PRD.md
+
+Execute per PROMPT.md.
+</code></pre></div></div>
+
+<p><strong>Important property:</strong> the task block never changes.<br />
+Strictness evolves only inside <code class="language-plaintext highlighter-rouge">PROMPT.md</code>, <code class="language-plaintext highlighter-rouge">AGENTS.md</code>, and <code class="language-plaintext highlighter-rouge">GUIDE.md</code>.</p>
+
+<p>This prevents the most common drift source: copying outdated prompt blobs across tickets.</p>
+
+<hr />
+
+<h2 id="frozen-vs-strict-why-we-keep-both">Frozen vs Strict: why we keep both</h2>
+
+<p>We ended up with two prompt characters:</p>
+
+<h3 id="frozen-v10">Frozen (v1.0)</h3>
+<ul>
+  <li>Optimized for: <strong>brevity</strong>, human readability, speed</li>
+  <li>Best for: trusted contributors, small refactors, quick spikes</li>
+  <li>Weakness: rules are descriptive (“MUST”), so AI can rationalize shortcuts</li>
+</ul>
+
+<h3 id="strict-v11">Strict (v1.1)</h3>
+<ul>
+  <li>Optimized for: <strong>compliance</strong>, auditability, “no surprises” AI execution</li>
+  <li>Best for: contract-sensitive endpoints, anything touching search/filtering/auth/pagination</li>
+  <li>Weakness: longer text (but it’s enforcement scaffolding, not noise)</li>
+</ul>
+
+<p>The key is: <strong>both share the same entry point.</strong> You swap the runtime, not the call site.</p>
+
+<hr />
+
+<h2 id="what-actually-stops-drift-the-4-mechanisms">What actually stops drift (the 4 mechanisms)</h2>
+
+<h3 id="1-hard-fail-rule-ids-hf-">1) Hard-Fail rule IDs (HF-*)</h3>
+<p>Instead of “Rule #5,” we introduced stable IDs:</p>
+
+<ul>
+  <li><strong>HF-1</strong> — Ransack-only search/filtering</li>
+  <li><strong>HF-2</strong> — DB-agnostic queries only (no raw SQL / DB-specific funcs)</li>
+  <li><strong>HF-3</strong> — Blueprinter-only JSON</li>
+  <li><strong>HF-4</strong> — snake_case only</li>
+  <li><strong>HF-5</strong> — Required fields never null (safe defaults)</li>
+</ul>
+
+<p><strong>Why IDs matter:</strong> they turn “standards” into enforceable references:</p>
+<ul>
+  <li>easy review comments (“HF-2 violation”)</li>
+  <li>easy self-audit checkboxes</li>
+  <li>easy future evolution (rename content, keep ID stable)</li>
+</ul>
+
+<h3 id="2-stop-gates-control-flow-not-suggestions">2) STOP gates (control flow, not suggestions)</h3>
+<p>Strict mode adds explicit control flow:</p>
+<ul>
+  <li>Phase 0–2: <strong>NO CODE</strong></li>
+  <li>Stop after planning</li>
+  <li>If any HF-* would be violated → <strong>STOP</strong> and report</li>
+</ul>
+
+<p>LLMs follow control flow better than prose.</p>
+
+<h3 id="3-mandatory-rule-compliance-audit-proof-not-vibes">3) Mandatory Rule Compliance Audit (proof, not vibes)</h3>
+<p>Before final output, the agent must produce:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RULE COMPLIANCE AUDIT
+HF-1: COMPLIANT — evidence: UsersController#index uses User.ransack(params[:q])
+HF-2: COMPLIANT — evidence: no raw SQL; only ActiveRecord/Arel
+...
+</code></pre></div></div>
+
+<p>This forces the agent to <em>prove</em> it complied.
+If it can’t produce evidence, it typically self-corrects before shipping.</p>
+
+<h3 id="4-negative-examples-anti-pattern-firewall">4) Negative examples (anti-pattern firewall)</h3>
+<p>Guides that only show “good” patterns still allow AI to invent “bad” ones.
+So we added explicit “DO NOT COPY” snippets:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ❌ HF-1 violation (manual SQL filtering)</span>
+<span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"email ILIKE ?"</span><span class="p">,</span> <span class="s2">"%</span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">]</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+
+<span class="c1"># ✅ Correct (Ransack owns filtering)</span>
+<span class="no">User</span><span class="p">.</span><span class="nf">ransack</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:q</span><span class="p">]).</span><span class="nf">result</span>
+</code></pre></div></div>
+
+<p>LLMs imitate examples aggressively. Negative examples prevent “helpful improvisation.”</p>
+
+<hr />
+
+<h2 id="example-the-exact-drift-were-preventing">Example: the exact drift we’re preventing</h2>
+
+<h3 id="bad-hf-1--hf-2-violation">Bad (HF-1 + HF-2 violation)</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ❌ don't do this</span>
+<span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"email ILIKE ?"</span><span class="p">,</span> <span class="s2">"%</span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">]</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="good-hf-1-compliant">Good (HF-1 compliant)</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">search</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">ransack</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:q</span><span class="p">])</span>
+<span class="n">users</span>  <span class="o">=</span> <span class="n">search</span><span class="p">.</span><span class="nf">result</span><span class="p">.</span><span class="nf">page</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:page</span><span class="p">]).</span><span class="nf">per</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:per_page</span><span class="p">]</span> <span class="o">||</span> <span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In strict mode, if an agent proposes the bad version, it must output:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ RULE VIOLATION
+Rule: HF-1
+Location: app/controllers/...:12
+Reason: manual filtering used instead of Ransack
+Required Fix: replace with Model.ransack(params[:q]).result
+</code></pre></div></div>
+
+<p>No debate. Fix it or stop.</p>
+
+<hr />
+
+<h2 id="verification-one-command-one-receipt">Verification: one command, one receipt</h2>
+
+<p>Zero-Gap already required verification gates. fileciteturn2file0<br />
+The strict upgrade makes verification harder to “forget” by standardizing:</p>
+
+<ul>
+  <li>Preferred: <code class="language-plaintext highlighter-rouge">bin/verify</code></li>
+  <li>Legacy commands remain in docs as commented fallback</li>
+</ul>
+
+<p>And the final output requires a <strong>CHECKS</strong> section with exit codes.</p>
+
+<p>That turns “I think I ran tests” into a receipt.</p>
+
+<hr />
+
+<h2 id="operational-guidance-when-to-use-which-mode">Operational guidance: when to use which mode</h2>
+
+<p>Use <strong>Frozen (v1.0)</strong> when:</p>
+<ul>
+  <li>small refactor</li>
+  <li>low contract risk</li>
+  <li>you want short prompts and fast iteration</li>
+</ul>
+
+<p>Use <strong>Strict (v1.1)</strong> when:</p>
+<ul>
+  <li>building/upgrading endpoints</li>
+  <li>touching filtering/search/pagination/auth</li>
+  <li>upgrading versioned requirement docs</li>
+  <li>AI is doing most of the work</li>
+</ul>
+
+<p>If in doubt: default to <strong>Strict</strong>.</p>
+
+<hr />
+
+<h2 id="closing-zero-gap-is-the-architecture-zero-drift-is-governance">Closing: Zero-Gap is the architecture; Zero-Drift is governance</h2>
+
+<p>Zero-Gap prevents missing fields and regressions by making contracts and verification non-negotiable. fileciteturn2file0<br />
+Zero-Drift makes AI reliably follow your engineering rules by adding:</p>
+
+<ul>
+  <li>failure semantics</li>
+  <li>proof requirements</li>
+  <li>anti-pattern training</li>
+  <li>a stable entry point</li>
+  <li>a canonical verifier</li>
+</ul>
+
+<p>In practice, this reduces review churn dramatically:
+you spend less time catching “obvious violations” and more time on product decisions.</p>
+
+<hr />
+
+<h3 id="appendix-quick-mental-model">Appendix: quick mental model</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">REQUIREMENT_DOC</code> = spec</li>
+  <li><code class="language-plaintext highlighter-rouge">PROMPT.md</code> = runtime</li>
+  <li><code class="language-plaintext highlighter-rouge">AGENTS.md</code> = language law + compiler errors (HF-*)</li>
+  <li><code class="language-plaintext highlighter-rouge">GUIDE.md</code> = standard library + examples</li>
+  <li><code class="language-plaintext highlighter-rouge">bin/verify</code> = test runner</li>
+</ul>
+
+  </div>
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+      
+      
+      
+      
+
+  <nav class="post-nav-slim">
+    
+      <a href="/blog/how-to-start-agentic-development/" class="post-nav-text">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-ink/45">Older</span>
+        <span class="mt-2 block font-semibold leading-snug text-ink">How to Start with Agentic Development: What to...</span>
+      </a>
+    
+    
+      <a href="/blog/enterprise-seed-system-rails/" class="post-nav-text">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-ink/45">Newer</span>
+        <span class="mt-2 block font-semibold leading-snug text-ink">From Monolithic Seeds to Enterprise-Ready Data Generation: Building...</span>
+      </a>
+    
+  </nav>
+</article>
+
+    </main>
+
+    <footer>
+      <div class="flex flex-col items-center justify-center gap-3 py-8 font-mono text-xs text-ink/50 sm:flex-row sm:gap-4">
+  <span>Max Lukin</span>
+  <nav class="flex items-center gap-4">
+    <a href="/blog/" class="no-underline hover:text-ink">Blog</a>
+    <a href="/feed.xml" class="no-underline hover:text-ink">RSS</a>
+  </nav>
+</div>
+
+    </footer>
+  </div>
+</body>
+</html>

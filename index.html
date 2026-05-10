@@ -1,108 +1,43 @@
 ---
 layout: default
 ---
-<div>
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Hello, I'm Max Lukin</h1>
-    <!-- <p class="subtitle">ex-Apple, Staff Software Engineer, consultant, and AI enthusiast.</p> -->
+<section class="content-shell home-shell">
+  <header class="home-hero">
+    <p class="eyebrow">Max Lukin</p>
+    <h1 class="home-title">
+      I build reliable software systems.
+    </h1>
   </header>
 
-  <!-- Main Content -->
-  <div class="content-section">
-    <p class="intro">
-      I help companies ship software that works—consulting, building, and leading engineering teams remotely.
-      From architecture to delivery, I make sure projects stay aligned with business goals without burning time or budget.
+  <div class="home-copy">
+    <p class="home-lead">
+      I help companies ship software that works: consulting, building, and leading engineering teams remotely.
+      From architecture to delivery, I keep projects aligned with business goals without burning time or budget.
     </p>
 
     <p>
       I turn ideas into working products: MVPs that validate, SaaS that scales, and systems designed
-      to be maintained—not just shipped. Full stack, full lifecycle.
+      to be maintained, not just shipped. Full stack, full lifecycle.
     </p>
 
     <p>
       15 years of experience. Staff Engineer at Apple. Medical systems for Fortune 500 healthcare.
-      Facial recognition for UK Met Police. I build software where failure isn't an option.
+      Facial recognition for UK Met Police. I build software where failure is not an option.
     </p>
 
     <p>
-      I build AI-powered products—SaaS platforms, agents, automation—using
-      <code>Next.js</code>, <code>React</code>, <code>TypeScript</code>,
-      <code>Ruby on Rails</code>, and <code>Golang</code>.
-      I've also developed workflows for AI-assisted development (<code>MCP</code>, <code>RAG</code>, contract-first APIs)
-      that turn AI into a multiplier, not a liability.
+      I build AI-powered products using <code>Next.js</code>, <code>React</code>,
+      <code>TypeScript</code>, <code>Ruby on Rails</code>, and <code>Golang</code>.
+      I also design workflows for AI-assisted development: <code>MCP</code>, <code>RAG</code>,
+      and contract-first APIs.
     </p>
-
-    <hr class="section-divider">
-
-    <p>
-      I <a href="/blog">write</a> about what I build.
-    </p>
-
-    <!-- Social links - icon style -->
-    <div class="social-links">
-      <a href="https://linkedin.com/in/lukin-io" target="_blank" title="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-          <rect x="2" y="9" width="4" height="12"/>
-          <circle cx="4" cy="4" r="2"/>
-        </svg>
-      </a>
-      <a href="https://github.com/lukin-io" target="_blank" title="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-        </svg>
-      </a>
-      <a href="mailto:max@lukin.io" title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
-        </svg>
-      </a>
-      <a href="/cv.pdf" target="_blank" title="Download CV">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/>
-          <line x1="16" y1="17" x2="8" y2="17"/>
-          <polyline points="10 9 9 9 8 9"/>
-        </svg>
-      </a>
-    </div>
   </div>
 
-  {% comment %}
-  <!-- Recent posts section - uncomment to restore -->
-  <section style="margin-top: 4rem;">
-    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">Recent Posts</h2>
-    <div>
-      {% for post in site.posts limit:5 %}
-        <article class="post-preview">
-          <h2 style="font-size: 1.2rem;">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </h2>
-          <div class="post-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-    <div style="display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap;">
-      <a href="/blog" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-        View all posts
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"/>
-          <polyline points="12 5 19 12 12 19"/>
-        </svg>
-      </a>
-      <a href="/search" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-        Search posts
-      </a>
-    </div>
-  </section>
-  {% endcomment %}
-</div>
+  <nav class="home-nav">
+    <a href="/blog/" class="text-nav">Blog</a>
+    <a href="https://linkedin.com/in/lukin-io" target="_blank" class="text-nav">LinkedIn</a>
+    <a href="https://github.com/lukin-io" target="_blank" class="text-nav">GitHub</a>
+    <a href="mailto:max@lukin.io" class="text-nav">Email</a>
+    <a href="/cv.pdf" target="_blank" class="text-nav">CV</a>
+  </nav>
+</section>

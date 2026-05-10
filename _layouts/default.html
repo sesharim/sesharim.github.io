@@ -2,47 +2,15 @@
 <html lang="en">
 {% include head.html %}
 
-<body>
-  <!-- Main content wrapper -->
-  <div class="main-wrapper centered">
-    <main>
+<body class="min-h-screen bg-bora text-ink">
+  <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-8 sm:px-8 lg:px-10">
+    <main class="flex-1">
       {{ content }}
     </main>
 
-    <footer class="site-footer">
+    <footer>
       {% include footer.html %}
     </footer>
   </div>
-
-  <script>
-    // Theme toggle
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-      // Use View Transitions API if available
-      if (document.startViewTransition) {
-        document.startViewTransition(() => {
-          html.setAttribute('data-theme', newTheme);
-          localStorage.setItem('theme', newTheme);
-        });
-      } else {
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-      }
-    }
-
-    // Keyboard shortcut: press 't' to toggle theme
-    document.addEventListener('keydown', function(e) {
-      // Don't trigger if user is typing in an input/textarea
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
-        return;
-      }
-      if (e.key === 't' || e.key === 'T') {
-        toggleTheme();
-      }
-    });
-  </script>
 </body>
 </html>
