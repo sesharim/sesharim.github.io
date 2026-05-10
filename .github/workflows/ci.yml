@@ -12,10 +12,15 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       JEKYLL_ENV: production
     steps:
@@ -36,13 +41,10 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install Node dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
-      - name: Build Tailwind CSS
-        run: npm run build:css
-
-      - name: Build Jekyll site
-        run: bundle exec jekyll build --trace
+      - name: Build site
+        run: npm run jekyll:build
 
       - name: Upload GitHub Pages artifact
         if: github.event_name == 'push'

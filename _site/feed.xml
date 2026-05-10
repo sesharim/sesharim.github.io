@@ -3,10 +3,10 @@
   <channel>
     <title>Software Engineering consultant</title>
     <description>Experienced Ruby on Rails and Go developer specializing in scalable web applications</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 10 May 2026 21:28:01 +0300</pubDate>
-    <lastBuildDate>Sun, 10 May 2026 21:28:01 +0300</lastBuildDate>
+    <link>https://lukin.io/</link>
+    <atom:link href="https://lukin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 10 May 2026 21:47:25 +0300</pubDate>
+    <lastBuildDate>Sun, 10 May 2026 21:47:25 +0300</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -1436,8 +1436,8 @@ Not vibe-coded PRs.&lt;/p&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 06 May 2026 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/blog/mergeable-by-default-context-engine-ai-codegen/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/mergeable-by-default-context-engine-ai-codegen/</guid>
+        <link>https://lukin.io/blog/mergeable-by-default-context-engine-ai-codegen/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/mergeable-by-default-context-engine-ai-codegen/</guid>
         
         <category>ai</category>
         
@@ -2506,8 +2506,8 @@ Not vibe-coded PRs.&lt;/p&gt;
 &lt;p&gt;Because the suite became usable at the speed the work was happening.&lt;/p&gt;
 </description>
         <pubDate>Thu, 30 Apr 2026 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/blog/why-test-refactoring-matters/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/why-test-refactoring-matters/</guid>
+        <link>https://lukin.io/blog/why-test-refactoring-matters/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/why-test-refactoring-matters/</guid>
         
         <category>rails</category>
         
@@ -3652,8 +3652,8 @@ It prevents &lt;strong&gt;new drift first&lt;/strong&gt;.&lt;/p&gt;
 A better engineering operating system.&lt;/p&gt;
 </description>
         <pubDate>Tue, 07 Apr 2026 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/blog/1-backend-engineer-vs-11-engineers-with-ai/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/1-backend-engineer-vs-11-engineers-with-ai/</guid>
+        <link>https://lukin.io/blog/1-backend-engineer-vs-11-engineers-with-ai/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/1-backend-engineer-vs-11-engineers-with-ai/</guid>
         
         <category>ai</category>
         
@@ -5316,8 +5316,8 @@ Result: PASSED (14 checks, 1 warning)
 &lt;p&gt;&lt;em&gt;This post documents the transformation of the TestApp seed system from a 3,600-line monolith to an enterprise-grade data generation platform. The patterns described here—modular architecture, context objects, conditional execution, progress tracking, validation, and batch processing—are applicable to any Rails application that has outgrown simple seeds.&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 24 Jan 2026 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/enterprise-seed-system-rails/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/enterprise-seed-system-rails/</guid>
+        <link>https://lukin.io/blog/enterprise-seed-system-rails/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/enterprise-seed-system-rails/</guid>
         
         <category>rails</category>
         
@@ -5597,8 +5597,8 @@ you spend less time catching “obvious violations” and more time on product d
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 07 Jan 2026 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/from-zero-gap-to-zero-drift/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/from-zero-gap-to-zero-drift/</guid>
+        <link>https://lukin.io/blog/from-zero-gap-to-zero-drift/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/from-zero-gap-to-zero-drift/</guid>
         
         <category>ai</category>
         
@@ -6247,8 +6247,8 @@ The point is &lt;strong&gt;standardizing your best engineering behavior&lt;/stro
 Your process stays.&lt;/p&gt;
 </description>
         <pubDate>Thu, 01 Jan 2026 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/how-to-start-agentic-development/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/how-to-start-agentic-development/</guid>
+        <link>https://lukin.io/blog/how-to-start-agentic-development/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/how-to-start-agentic-development/</guid>
         
         <category>ai</category>
         
@@ -7420,8 +7420,8 @@ Total wall time: ~3:00 (limited by slowest parallel step)
 
 </description>
         <pubDate>Wed, 10 Dec 2025 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/rspec-ci-optimization-rails-bitbucket/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/rspec-ci-optimization-rails-bitbucket/</guid>
+        <link>https://lukin.io/blog/rspec-ci-optimization-rails-bitbucket/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/rspec-ci-optimization-rails-bitbucket/</guid>
         
         <category>rails</category>
         
@@ -7644,8 +7644,8 @@ doc/         # human docs (setup, usage, dev)
 
 </description>
         <pubDate>Sat, 06 Dec 2025 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/neverlands-browser-bot-game-design-analyst/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/neverlands-browser-bot-game-design-analyst/</guid>
+        <link>https://lukin.io/blog/neverlands-browser-bot-game-design-analyst/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/neverlands-browser-bot-game-design-analyst/</guid>
         
         <category>ai</category>
         
@@ -9680,8 +9680,8 @@ doc/         # human docs (setup, usage, dev)
 
 </description>
         <pubDate>Thu, 04 Dec 2025 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/dry-rb-integration-rails-api/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/dry-rb-integration-rails-api/</guid>
+        <link>https://lukin.io/blog/dry-rb-integration-rails-api/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/dry-rb-integration-rails-api/</guid>
         
         <category>rails</category>
         
@@ -10896,8 +10896,8 @@ rails runner &lt;span class=&quot;s2&quot;&gt;&quot;Benchmark.measure { Player.c
 
 </description>
         <pubDate>Wed, 03 Dec 2025 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/blog/mysql-to-postgresql-migration-guide/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/mysql-to-postgresql-migration-guide/</guid>
+        <link>https://lukin.io/blog/mysql-to-postgresql-migration-guide/</link>
+        <guid isPermaLink="true">https://lukin.io/blog/mysql-to-postgresql-migration-guide/</guid>
         
         <category>rails</category>
         
