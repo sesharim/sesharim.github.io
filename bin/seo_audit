@@ -77,6 +77,7 @@ html_files.each do |file|
   html.scan(/<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1/i).each do |_quote, raw_href|
     href = CGI.unescapeHTML(raw_href.strip)
     next if href.empty? || href.start_with?("#")
+    next if href.include?("${") || href.include?("{{") || href.include?("{%")
     next if href.match?(%r{\A(?:mailto|tel|javascript|data):}i)
     next if href.start_with?("//")
 
