@@ -1,11 +1,12 @@
 # Site settings
 title: "Software Engineering & AI Development"
-tagline: "Rails, Go, backend systems, coding agents, and verification"
+tagline: "Agentic development, coding agents, Rails, Go, and verification-driven delivery"
 email: lukin.maksim@gmail.com
 description: >-
   Practical guides and production case studies on software engineering,
-  AI-assisted development, coding agents, Ruby on Rails, Go, backend
-  architecture, testing, and verification.
+  AI-assisted software development, coding agents, context engineering,
+  Ruby on Rails, Go, backend architecture, testing, and
+  verification-driven development.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://lukin.io"
 twitter_username: lukin_io
