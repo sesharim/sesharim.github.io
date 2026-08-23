@@ -22,7 +22,8 @@ The numbering below is the stable review contract. A request such as “remove p
 ## 2. Site metadata
 
 **Done**
-- Changed the site title from `Software Engineering consultant` to `Software Engineering & AI Development`.
+- Changed the site identity from the generic `Software Engineering consultant` title to `lukin.io`.
+- Added `Software Engineering & AI Development` as the topic tagline, keeping the domain as the site name and the keywords as the positioning.
 - Replaced the Rails/Go-only description with software engineering plus AI-development positioning.
 - Added author and social identity metadata for structured output without making the author name the search target.
 - Repositioned the blog landing-page title, description, H1, and introduction around software engineering and AI development.
@@ -52,7 +53,7 @@ The numbering below is the stable review contract. A request such as “remove p
 
 **Done**
 - Added `/projects/agents/` as the product/project page for `lukin-io/agents`.
-- Explains `AGENTS.md`, `bin/verify`, `bin/contract_audit`, documentation templates, and the expected workflow.
+- Explains `AGENTS.md`, `verify → bin/verify`, `contract_audit → bin/contract_audit`, documentation templates, and the expected workflow.
 - Links the open-source implementation to the case study and relevant framework articles.
 
 **Files**
