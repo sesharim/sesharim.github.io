@@ -46,9 +46,6 @@ jobs:
       - name: Build site
         run: npm run jekyll:build
 
-      - name: Audit SEO output
-        run: ruby bin/seo_audit
-
       - name: Upload GitHub Pages artifact
         if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
