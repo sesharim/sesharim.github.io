@@ -1,0 +1,127 @@
+---
+layout: default
+permalink: /projects/agents/
+title: "Agents: Contract-First Tooling for Reliable Coding Agents"
+description: An open-source Rails toolkit for coding agents: repository rules, contract-first delivery, fast verification, drift audits, and repeatable documentation workflows.
+---
+<section class="content-shell space-y-12">
+  <nav class="page-nav" aria-label="Agents project navigation">
+    <a href="/" class="page-link">Home</a>
+    <span class="page-nav-separator">/</span>
+    <a href="/ai-development/" class="page-link">AI Development</a>
+  </nav>
+
+  <!-- 4. Agents project page -->
+  <header class="home-hero">
+    <p class="eyebrow">Open-Source Project</p>
+    <h1 class="home-title">Agents: contract-first tooling for reliable coding agents.</h1>
+    <p class="home-lead max-w-4xl">
+      A reusable Rails API toolkit that turns engineering rules, verification, and documentation into an explicit operating system for humans and coding agents.
+    </p>
+    <div class="flex flex-wrap gap-x-6 gap-y-3 pt-2">
+      <a href="https://github.com/lukin-io/agents" target="_blank" rel="noopener noreferrer" class="text-nav">View on GitHub</a>
+      <a href="/blog/1-backend-engineer-vs-11-engineers-with-ai/" class="text-nav">Read the production case study</a>
+    </div>
+  </header>
+
+  <section class="prose post-prose" aria-labelledby="agents-problem">
+    <h2 id="agents-problem">The problem it solves</h2>
+    <p>
+      Coding agents can generate plausible changes quickly, but speed is not the same as correctness. Teams still need a shared contract for architecture,
+      response formats, authorization, testing, documentation, and the definition of done.
+    </p>
+    <p>
+      Agents packages that contract as repository-owned files and executable checks. The model does not have to guess how the team works,
+      and reviewers do not have to rediscover the same violations in every pull request.
+    </p>
+  </section>
+
+  <section class="space-y-6" aria-labelledby="agents-contents">
+    <div class="space-y-3">
+      <p class="eyebrow">Repository Contents</p>
+      <h2 id="agents-contents" class="text-2xl font-semibold leading-tight sm:text-3xl">A small toolkit with explicit responsibilities</h2>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2">
+      <article class="rounded-md border border-line bg-paper/30 p-5">
+        <h3 class="font-mono text-base font-semibold">AGENTS.md</h3>
+        <p class="mt-2 text-ink/70">
+          Defines the implementation workflow, API contract, hard-fail rules, verification order, and documentation responsibilities.
+        </p>
+      </article>
+
+      <article class="rounded-md border border-line bg-paper/30 p-5">
+        <h3 class="font-mono text-base font-semibold">bin/verify</h3>
+        <p class="mt-2 text-ink/70">
+          Runs the required verification profile so local work and CI share one repeatable definition of technical readiness.
+        </p>
+      </article>
+
+      <article class="rounded-md border border-line bg-paper/30 p-5">
+        <h3 class="font-mono text-base font-semibold">bin/contract_audit</h3>
+        <p class="mt-2 text-ink/70">
+          Detects contract drift, unsafe shortcuts, route inconsistencies, serializer violations, and documentation-template problems.
+        </p>
+      </article>
+
+      <article class="rounded-md border border-line bg-paper/30 p-5">
+        <h3 class="font-mono text-base font-semibold">Flow / PRD templates</h3>
+        <p class="mt-2 text-ink/70">
+          Gives derived documentation a stable structure after implementation and verification are complete.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="prose post-prose" aria-labelledby="agents-workflow">
+    <h2 id="agents-workflow">Typical workflow</h2>
+    <ol>
+      <li>Define or update the requirement contract.</li>
+      <li>Load repository rules and relevant implementation context.</li>
+      <li>Plan the change and map requirements to tests.</li>
+      <li>Implement inside the documented Rails conventions.</li>
+      <li>Run verification and contract audits.</li>
+      <li>Update Flow, PRD, and changelog artifacts only after the checks pass.</li>
+    </ol>
+  </section>
+
+  <section class="space-y-6" aria-labelledby="agents-evidence">
+    <div class="space-y-3">
+      <p class="eyebrow">Production Evidence</p>
+      <h2 id="agents-evidence" class="text-2xl font-semibold leading-tight sm:text-3xl">The workflow was built against real delivery pressure</h2>
+      <p class="max-w-3xl text-ink/70">
+        The production case study documents the wider engineering system in which these tools evolved. The metrics describe that workflow—not a synthetic benchmark of this repository alone.
+      </p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-md border border-line p-5">
+        <p class="text-2xl font-semibold">400+</p>
+        <p class="mt-1 text-sm text-ink/65">backend pull requests</p>
+      </div>
+      <div class="rounded-md border border-line p-5">
+        <p class="text-2xl font-semibold">7,445</p>
+        <p class="mt-1 text-sm text-ink/65">test examples</p>
+      </div>
+      <div class="rounded-md border border-line p-5">
+        <p class="text-2xl font-semibold">~39s</p>
+        <p class="mt-1 text-sm text-ink/65">local proof loop</p>
+      </div>
+      <div class="rounded-md border border-line p-5">
+        <p class="text-2xl font-semibold">95%</p>
+        <p class="mt-1 text-sm text-ink/65">merged without a post-merge hotfix</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rounded-md border border-line bg-paper/30 p-6 sm:p-8">
+    <p class="eyebrow">Related Reading</p>
+    <h2 class="mt-3 text-2xl font-semibold leading-tight">Architecture, governance, and measurable results</h2>
+    <div class="mt-5 flex flex-wrap gap-x-6 gap-y-3">
+      <a href="/blog/zero-gap-api-development-with-ai/" class="text-nav">Zero-Gap API Development</a>
+      <a href="/blog/from-zero-gap-to-zero-drift/" class="text-nav">Zero-Drift governance</a>
+      <a href="/blog/why-test-refactoring-matters/" class="text-nav">The 39-second proof loop</a>
+      <a href="/ai-development/" class="text-nav">AI development hub</a>
+    </div>
+  </section>
+</section>
