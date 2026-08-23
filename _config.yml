@@ -1,12 +1,27 @@
 # Site settings
-title: Software Engineering consultant
+title: "Software Engineering & AI Development"
+tagline: "Rails, Go, backend systems, coding agents, and verification"
 email: lukin.maksim@gmail.com
-description: Experienced Ruby on Rails and Go developer specializing in scalable web applications
+description: >-
+  Practical guides and production case studies on software engineering,
+  AI-assisted development, coding agents, Ruby on Rails, Go, backend
+  architecture, testing, and verification.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://lukin.io"
 twitter_username: lukin_io
-github_username:  lukin-io
+github_username: lukin-io
 future: true
+
+author:
+  name: Max Lukin
+  url: "https://lukin.io/"
+
+social:
+  name: lukin.io
+  links:
+    - "https://www.linkedin.com/in/lukin-io"
+    - "https://github.com/lukin-io"
+    - "https://twitter.com/lukin_io"
 
 # Build settings
 markdown: kramdown
