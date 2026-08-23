@@ -1,9 +1,9 @@
 # AI Engineering Positioning — Review Changelog
 
 **Branch:** `feature/ai-engineering-positioning`  
-**Scope:** Site positioning, landing pages, navigation, metadata, and evidence. Existing blog article bodies are unchanged.
+**Scope:** Site positioning, landing pages, navigation, and metadata. Existing blog article bodies are unchanged.
 
-The numbering below is the stable review contract. A request such as “remove point 8” refers to the complete scope documented under **8. Vocabulary consistency**.
+The numbering below is the stable review contract. Removed recommendations leave a gap rather than renumbering later points. A request such as “remove point 8” refers to the complete scope documented under **8. Vocabulary consistency**.
 
 ## 1. Homepage positioning
 
@@ -17,7 +17,7 @@ The numbering below is the stable review contract. A request such as “remove p
 - `index.html`
 
 **Remove point 1**
-- Revert the homepage hero, lead, and positioning copy while leaving the navigation, pillar cards, and evidence sections intact.
+- Revert the homepage hero, lead, and positioning copy while leaving the navigation and pillar cards intact.
 
 ## 2. Site metadata
 
@@ -99,23 +99,6 @@ The numbering below is the stable review contract. A request such as “remove p
 **Remove point 6**
 - Delete `software-engineering.html`, remove the two homepage pillar cards, and remove pillar cross-links.
 
-## 7. Projects / evidence section
-
-**Done**
-- Added a homepage evidence section with links to:
-  - the 400+ PR / 5× case study
-  - the 7,445-test / ~39-second proof loop
-  - the open-source Agents toolkit
-- Added a clearly qualified evidence section to the Agents project page.
-- The Agents page explicitly states that the metrics describe the wider production workflow, not a synthetic repository benchmark.
-
-**Files**
-- `index.html`
-- `agents.html`
-
-**Remove point 7**
-- Remove the homepage evidence section and the production-evidence block from the Agents page.
-
 ## 8. Vocabulary consistency
 
 **Canonical terms**
@@ -139,4 +122,4 @@ The numbering below is the stable review contract. A request such as “remove p
 - `agents.html`
 
 **Remove point 8**
-- Remove the explicit five-term standardization from those files while preserving the pages, navigation, evidence, and broader software-engineering/AI-development positioning.
+- Remove the explicit five-term standardization from those files while preserving the pages, navigation, and broader software-engineering/AI-development positioning.
