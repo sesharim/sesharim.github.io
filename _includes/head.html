@@ -1,24 +1,14 @@
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VLFHH5CPGM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-VLFHH5CPGM');
-  </script>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  {% if page.title %}
-  <title>{{ page.title }} | {{ site.title }}</title>
-  {% else %}
-  <title>{{ site.title }}</title>
-  {% endif %}
   <meta name="theme-color" content="#FEFAE0">
 
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  {% seo %}
+  {% if page.robots %}
+  <meta name="robots" content="{{ page.robots }}">
+  {% endif %}
+
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | relative_url }}">
   <link rel="icon" href="{{ "/favicon.ico" | relative_url }}" sizes="any">
   <link rel="icon" type="image/png" href="{{ "/favicon.png" | relative_url }}">
@@ -32,11 +22,11 @@
 
   <link rel="stylesheet" href="{{ "assets/css/styles.css" | relative_url }}">
 
-  <meta name="description"
-    content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <meta name="keywords"
-    content="Software Engineering consultant, programming consultant, Ruby web development, agile Ruby development, Ruby on Rails web design, RoR consulting, Ruby on Rails service, RoR consultant, Ruby on Rails NYC, Ruby on Rails expertise, web agency, ios application development, mobile, api, frontend, backend, development, software engineer partner, sf developer, sf ruby on rails, berling ruby consultant, london consultant">
-  <meta name="author" content="Max Lukin">
-
-  {% seo %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VLFHH5CPGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-VLFHH5CPGM');
+  </script>
 </head>
